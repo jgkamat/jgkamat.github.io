@@ -1,6 +1,6 @@
 ---
-title: JPlanet Simulator
-subtitle: 2D Planetary Simulation
+title: JayLayer
+subtitle: Making Sound So Much Easier!
 layout: default
 modal-id: 1
 date: 2013-05-01
