@@ -2,7 +2,7 @@
 title: JayLayer
 subtitle: Making Sound So Much Easier!
 layout: default
-modal-id: 1
+modal-id: 2
 date: 2013-05-01
 img: jaylayer.png
 thumbnail: jaylayer-thumb.png
