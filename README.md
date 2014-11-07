@@ -1,6 +1,6 @@
-jgkamat.github.io
+[jgkamat.github.io](http://jgkamat.github.io)
 =================
 
 My Personal Website!
 
-It is under heavy construction right now, so plz dont judge =P
+I used the 'Agency' Theme by Smart Bootstrap. Thanks to them for opensourcing their code!
