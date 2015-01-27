@@ -1,0 +1,16 @@
+---
+title: ViPaint
+subtitle: An Experimental Painting Program
+layout: default
+modal-id: 4
+date: 2015-01-26
+img: vipaint_img.jpg
+thumbnail: vipaint_thumb.jpg
+alt: The ViPaint Logo
+project-date: December 2014
+project-website: http://www.homesteadrobotics.com/
+project-github: http://www.github.com/jgkamat
+category: Personal Project
+description: I created ViPaint to show how Vi-like modal interfaces can be applied to nearly everything. This project was created with Java 8, utilizing new features like lambdas, streams, and javafx.
+
+---
