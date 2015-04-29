@@ -9,7 +9,7 @@ thumbnail: vipaint_thumb.jpg
 alt: The ViPaint Logo
 project-date: December 2014
 project-website: https://github.com/jgkamat/ViPaint/releases
-project-github: http://www.github.com/jgkamat
+project-github: http://www.github.com/jgkamat/ViPaint
 category: Personal Project
 description: I created ViPaint to show how Vi-like modal interfaces can be applied to nearly everything. This project was created with Java 8, utilizing new features like lambdas, streams, and javafx.
 
