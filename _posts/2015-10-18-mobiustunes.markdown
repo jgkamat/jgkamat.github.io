@@ -1,5 +1,5 @@
 ---
-title: MobiusTunes
+title: Mobius Tunes
 subtitle: A Automatic Playlist Mixer
 layout: default
 modal-id: 5
