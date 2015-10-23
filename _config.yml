@@ -18,14 +18,14 @@ social:
   url: http://github.com/jgkamat
 - title: linux
   url: http://hub.docker.com/u/jgkamat/
-- title: terminal
-  url: http://onionchesse.wordpress.com/
 - title: linkedin
   url: http://www.linkedin.com/in/jaykamat
 - title: stack-overflow
   url: https://stackoverflow.com/users/4196467/jay-kamat
-- title: git
+- title: code-fork
   url: https://gitlab.com/u/jgkamat
+- title: terminal
+  url: http://onionchesse.wordpress.com/
 #  - title: twitter
 #   url: http://twitter.com/jekyllrb
 #  - title: facebook
