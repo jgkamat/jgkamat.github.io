@@ -1,6 +1,6 @@
 ---
 title: Mobius Tunes
-subtitle: A Automatic Playlist Mixer
+subtitle: An Automatic Playlist Mixer
 layout: default
 modal-id: 5
 date: 2015-10-18
