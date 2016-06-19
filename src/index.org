@@ -1,8 +1,48 @@
-
-#+bind: org-export-publishing-directory "./exports"
 #+TITLE: Jay Kamat
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
+#+OPTIONS: whn:nil title:nil toc:3
 
-* Jay Kamat
+# Macro to determine age of things (years). Input the start year and it will return its age. 
+#+MACRO: age-years src_emacs-lisp[:results raw]{(- (string-to-number (format-time-string "%Y")) (elt (parse-time-string "$1") 5))}
 
+* Introduction
+Hi! I'm Jay Kamat, an undergraduate student at Georgia Tech, and I'm interested in everything related to science, technology, computers, engineering, and space!
+
+** Links
+- [[http://www.github.com/jgkamat][GitHub]]
+- [[https://hub.docker.com/u/jgkamat/][DockerHub]]
+- [[https://gitlab.com/u/jgkamat][GitLab]]
+- [[https://www.linkedin.com/in/jaykamat][Linkedin]]
+  
+* Projects
+** Personal Projects
+** Contributions to OSS
+** School Projects
+* About
+** Languages
+- Java /({{{age-years(2009)}}} years)/
+- Shell /({{{age-years(2013)}}} years)/
+- Python /({{{age-years(2014)}}} years)/
+- C /({{{age-years(2014)}}} years)/
+** Skills
+- Linux
+  - Deb Based
+  - RPM Based
+  - Arch Linux
+- Vim/Emacs Editing
+  - [[https://github.com/jgkamat/dotfiles][My Personal Configs]]
+- Docker
+  + Plain Docker
+  + Docker Swarm
+  + Advanced Docker Networking
+- Testing and CI
+  + CircleCI
+  + Jenkins
+  + GoCD
+  + Travis
+- Robotics
+  + Hometead HRT - FRC Team 670 /(2012-2014)/
+  + Georgia Tech Robojackets - Robocup /(2014-Present)/
+* Contact
+- [[mailto:jaygkamat@gmail.com][Email]]
