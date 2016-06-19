@@ -3,14 +3,14 @@
 #+EMAIL: jaygkamat@gmail.com
 #+OPTIONS: whn:nil title:nil toc:3
 
-# Macro to determine age of things (years). Input the start year and it will return its age. 
+# Macro to determine age of things (years). Input the start year and it will return its age.
 #+MACRO: age-years src_emacs-lisp[:results raw :cache yes]{(- (string-to-number (format-time-string "%Y")) (elt (parse-time-string "$1") 5))}
 
-#+BEGIN_SRC emacs-lisp :exports none :results output
-  (fboundp 'gh-stars)   ;; Found in project.el
-  (fbountp 'org-link-to-str)
-
-#+END_SRC
+# #+BEGIN_SRC emacs-lisp :exports none :results output
+#   ;; Found in project.el
+#   (fboundp 'gh-stars)
+#   (fbountp 'org-link-to-str)
+# #+END_SRC
 
 * Introduction
 Hi! I'm Jay Kamat, an undergraduate computer science student at Georgia Tech, and I'm interested in everything related to science, technology, computers, engineering, and space!
@@ -20,28 +20,51 @@ Hi! I'm Jay Kamat, an undergraduate computer science student at Georgia Tech, an
 - [[https://hub.docker.com/u/jgkamat/][DockerHub]]
 - [[https://gitlab.com/u/jgkamat][GitLab]]
 - [[https://www.linkedin.com/in/jaykamat][Linkedin]]
-  
+
 * Projects
 ** Personal Projects
 
-|------------------+--------------------+----+------------------------|
-| Project          | Date               |  ★ | Notes                  |
-|------------------+--------------------+----+------------------------|
-| [[https://github.com/jgkamat/alda-mode][alda-mode]]        | /(March 2016)/     | 10 |                        |
-| [[http://www.github.com/MountainRange/mobius-tunes][Mobius-Tunes]]     | /(September 2015)/ |  5 | Created at HackGT 2015 |
-| [[https://github.com/jgkamat/ViPaint][ViPaint]]          | /(December 2014)/  | 10 |                        |
-| [[https://github.com/jgkamat/JayLayer/][JayLayer]]         | /(May 2013)/       |  1 |                        |
-| [[https://github.com/jgkamat/JPlanetSimulator][JPlanetSimulator]] | /(December 2012)/  |  6 |                        |
-|------------------+--------------------+----+------------------------|
-#+TBLFM: $3='(gh-stars (org-link-to-str $1));L
+These are projects that I have created purely for fun, or for improvements in my day to day workflow.
+
+1. [[https://github.com/jgkamat/alda-mode][alda-mode]]
+
+   An Emacs major mode for [[https://github.com/alda-lang/alda][alda]]
+2. [[https://github.com/jgkamat/DoCIF][DoCIF]]                 
+
+  A Docker CI Framework, Leveraging Github/CircleCI
+3. [[https://github.com/jgkamat/elevator-linked-list][elevator-linked-list]]  
+
+  A demo on how the design of super-tall elevators can be used to improve linked list performance
+4. [[http://www.github.com/MountainRange/mobius-tunes][Mobius-Tunes]]          
+
+  Created at HackGT 2015
+5. [[https://github.com/jgkamat/ViPaint][ViPaint]]               
+
+  A vi inspired, modal painting program
+6. [[https://github.com/jgkamat/JayLayer/][JayLayer]]              
+
+  MP3 wrapper library to make sound easy!
+7. [[https://github.com/jgkamat/JPlanetSimulator][JPlanetSimulator]]      
+
+  A 2D Planet Simulation using Newton's Laws
 ** Contributions to OSS
+- Major Contributions
+  1. [[https://github.com/RoboJackets/robocup-software][robocup-software]]
+
+     Actively contributing through undergrad. See [[https://github.com/RoboJackets/robocup-software/pulls?q=is%3Apr+author%3Ajgkamat+is%3Aclosed][my merged pull requests]] for details.
+  2. [[https://github.com/alda-lang/alda][Alda]]
+
+     Contributed the Alda auto-updater. See ~alda update~
+
+- Minor Contributions
+  1. [[https://github.com/TricksterGuy/complx][Complx]] docker support
+  2. [[https://github.com/dpayne/cli-visualizer][cli-visulizer]] xdg home support
 ** School Projects
-|------------+-------------------+--------------------|
-| Project    | Date              | Notes              |
-|------------+-------------------+--------------------|
-| [[https://github.com/MountainRange/MULE][MULE Clone]] | /(December 2015)/ | Created for CS2340 |
-|            |                   |                    |
-|------------+-------------------+--------------------|
+|------------+---------------+--------------------|
+| Project    | Start Date    | Notes              |
+|------------+---------------+--------------------|
+| [[https://github.com/MountainRange/MULE][MULE Clone]] | December 2015 | Created for CS2340 |
+|------------+---------------+--------------------|
 * About
 ** Languages
 - Java /({{{age-years(2009)}}} years)/
@@ -69,5 +92,3 @@ Hi! I'm Jay Kamat, an undergraduate computer science student at Georgia Tech, an
   + Georgia Tech Robojackets - Robocup /(2014-Present)/
 * Contact
 - [[mailto:jaygkamat@gmail.com][Email]]
-
-  

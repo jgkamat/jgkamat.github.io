@@ -14,16 +14,18 @@
 
 (require 'request)
 (defun gh-stars (repo-string)
-  (progn (require 'request)
-    (defvar result nil)
-    (request (concat  "https://api.github.com/repos/" repo-string "/stargazers")
-      :parser 'json-read
-      :sync t
-      :success
-      (cl-function
-        (lambda (&key data &allow-other-keys)
-          (setq result (length data)))))
-    result))
+  (if (string= "-" repo-string)
+    "-"
+    (progn (require 'request)
+      (defvar result nil)
+      (request (concat  "https://api.github.com/repos/" repo-string "/stargazers")
+        :parser 'json-read
+        :sync t
+        :success
+        (cl-function
+          (lambda (&key data &allow-other-keys)
+            (setq result (length data)))))
+      result)))
 
 (defun parse-gh-str (url-string)
   "Parses a github url and returns a nice representation like: jgkamat/alda-mode"
@@ -38,5 +40,8 @@
   (symbol-name (elt (elt org-link 0) 0)))
 
 (defun org-link-to-str (link)
-"Turns org links to jgkamat/alda-mode format"
-(parse-gh-str (parse-org-link link)))
+  "Turns org links to jgkamat/alda-mode format"
+  (let ((str-link (parse-org-link link)))
+    (if (string-match "github" str-link)
+      (parse-gh-str str-link)
+      "-")))
