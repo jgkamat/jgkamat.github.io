@@ -1,0 +1,8 @@
+
+#+bind: org-export-publishing-directory "./exports"
+#+TITLE: Jay Kamat
+#+AUTHOR: Jay Kamat
+#+EMAIL: jaygkamat@gmail.com
+
+* Jay Kamat
+
