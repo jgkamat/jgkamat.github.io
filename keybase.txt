@@ -1,0 +1,55 @@
+==================================================================
+https://keybase.io/jgkamat
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://jgkamat.github.io
+  * I am jgkamat (https://keybase.io/jgkamat) on keybase.
+  * I have a public key ASBaCSG1YsS8KsPu1UIEbOLcs2SPRDmG5T9xG5WJrIrm8go
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01205a0921b562c4bc2ac3eed542046ce2dcb3648f443986e53f711b9589ac8ae6f20a",
+            "host": "keybase.io",
+            "kid": "01205a0921b562c4bc2ac3eed542046ce2dcb3648f443986e53f711b9589ac8ae6f20a",
+            "uid": "b24b81a5345b97f1a76acd448bde0c19",
+            "username": "jgkamat"
+        },
+        "service": {
+            "hostname": "jgkamat.github.io",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.16"
+    },
+    "ctime": 1469294635,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1469294581,
+        "hash": "169e7c3483d9c75c6e0b0fc8d8f575bac0dcd52ebea25632da08a901f25c7324913ce8fddca3b31c05bb3e0736df787115f084e83e1d623b642888f0867d56f3",
+        "seqno": 539470
+    },
+    "prev": "b1f59c3ea6085830bbb87fb4312f157cded4b47775ab26ceddb2d190080aa0fe",
+    "seqno": 10,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgWgkhtWLEvCrD7tVCBGzi3LNkj0Q5huU/cRuViayK5vIKp3BheWxvYWTFAvl7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwNWEwOTIxYjU2MmM0YmMyYWMzZWVkNTQyMDQ2Y2UyZGNiMzY0OGY0NDM5ODZlNTNmNzExYjk1ODlhYzhhZTZmMjBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwNWEwOTIxYjU2MmM0YmMyYWMzZWVkNTQyMDQ2Y2UyZGNiMzY0OGY0NDM5ODZlNTNmNzExYjk1ODlhYzhhZTZmMjBhIiwidWlkIjoiYjI0YjgxYTUzNDViOTdmMWE3NmFjZDQ0OGJkZTBjMTkiLCJ1c2VybmFtZSI6Impna2FtYXQifSwic2VydmljZSI6eyJob3N0bmFtZSI6Impna2FtYXQuZ2l0aHViLmlvIiwicHJvdG9jb2wiOiJodHRwczoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuMTYifSwiY3RpbWUiOjE0NjkyOTQ2MzUsImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJtZXJrbGVfcm9vdCI6eyJjdGltZSI6MTQ2OTI5NDU4MSwiaGFzaCI6IjE2OWU3YzM0ODNkOWM3NWM2ZTBiMGZjOGQ4ZjU3NWJhYzBkY2Q1MmViZWEyNTYzMmRhMDhhOTAxZjI1YzczMjQ5MTNjZThmZGRjYTNiMzFjMDViYjNlMDczNmRmNzg3MTE1ZjA4NGU4M2UxZDYyM2I2NDI4ODhmMDg2N2Q1NmYzIiwic2Vxbm8iOjUzOTQ3MH0sInByZXYiOiJiMWY1OWMzZWE2MDg1ODMwYmJiODdmYjQzMTJmMTU3Y2RlZDRiNDc3NzVhYjI2Y2VkZGIyZDE5MDA4MGFhMGZlIiwic2Vxbm8iOjEwLCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQD7uX0L87miJiEi/3+ixNPVv52XiEXh/SoafblxXxbRa9ZEhRamUmSPHxLZiH/oSjkQ2LxLgT1z3uC79wM7zmQKoc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCBcleLZkgq+6aFuc8VFbDoFuRPX635Pj6acXgl9y52296N0YWfNAgKndmVyc2lvbgE=
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/jgkamat
+
+==================================================================
+
