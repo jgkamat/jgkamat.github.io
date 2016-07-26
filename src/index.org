@@ -49,7 +49,7 @@ These are projects that I have created purely for fun, or for improvements in my
   MP3 wrapper library to make sound easy!
 8. [[https://github.com/jgkamat/JPlanetSimulator][JPlanetSimulator]]      
 
-  A 2D Planet Simulation using Newton's Laws
+  A 2D N-Body Planet Simulation using Newton's Laws
 ** Contributions to OSS
 - Major Contributions
   1. [[https://github.com/RoboJackets/robocup-software][robocup-software]]

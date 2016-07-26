@@ -1,0 +1,135 @@
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
+
+@font-face {
+    font-family: existence;
+    src: url(Existence-Light-webfont.ttf);
+}
+a {
+	text-decoration: none;
+}
+
+li {
+	margin-bottom: 0;
+}
+
+#topheader {
+	width: 90%;
+	max-width: 100rem;
+	margin: 0 auto;
+	text-align: center;
+	height: 150px;
+	padding: 2rem 3rem 3rem;
+}
+
+#topheader nav {
+	float: right;
+	text-align: center;
+}
+
+#topheader h1 {
+	font-size: 5.5rem;
+	margin: 2.5rem 0 0.9rem 1.2rem;
+	float: left;
+	color: white;
+	font-weight: 400;
+}
+
+#topheader > span {
+	float: left;
+	position: relative;
+	z-index: 1000;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.8rem;
+	padding: 0 0 0.96rem .16rem;
+}
+
+#topheader > span span:after {
+	width: 30px;
+	height: 30px;
+	left: -12px;
+	font-size: 50%;
+	top: -8px;
+	font-size: 75%;
+	position: relative;
+}
+
+#logo-heading {
+	color: white;
+	font-family: existence;
+	font-size: 7rem;
+	line-height: 0;
+}
+
+/* Main menu wrapper */
+.hsmenu-wrapper {
+	position: relative;
+}
+
+/* Common style for all lists */
+.hsmenu-wrapper ul {
+	list-style: none;
+	padding: 0;
+	margin: 0 auto;
+}
+
+/* 100% width bar for menu */
+.hsinner {
+	background: #00B8E6;
+	position: relative;
+	z-index: 100;
+}
+
+/* Main menu style */
+.hsmenu-wrapper .hsmenu {
+	width: 90%;
+	max-width: 100rem;
+	margin: 0 auto;
+	padding: 0 2rem;
+}
+
+.hsmenu > li {
+	/* margin-left: 6.4rem; */
+	display: inline-block;
+}
+
+.hsmenu > li:first-child {
+	margin-left: 0;
+}
+
+/* Main menu link style */
+.hsmenu > li > a {
+	color: #fff;
+	font-size: 1.92rem;
+	line-height: 4.8rem;
+	display: inline-block;
+	position: relative;
+	z-index: 1000;
+	outline: none;
+	padding: 0 2.2rem;
+}
+
+.hsmenu > li > a:hover {
+	background-color: #00A6CF;
+	transition: 200ms ease;
+}
+
+.no-touch .hsmenu > li > a:hover,
+.no-touch .hsmenu > li > a:focus {
+	color: #02639d;
+}
+
+#login-modal-dialog { width: 350px; }
+
+/* styles for desktop */
+.tinynav { display: none }
+
+/* styles for mobile */
+@media screen and (max-width: 600px) {
+    .tinynav { display: block }
+    .hsmenu { display: none }
+}
