@@ -5,12 +5,9 @@
   '(("jgkamat.github.io"
       :base-directory "."
       :publishing-directory "../"
-      :publishing-function org-twbs-publish-to-html
-      :html-head "
-<link  href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css\" rel=\"stylesheet\">
-<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js\"></script>
-<script src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js\"></script>
-")))
+      :publishing-function org-twbs-publish-to-html)))
+
+(setq org-twbs-head-include-default-style t)
 
 (require 'request)
 (defun gh-stars (repo-string)

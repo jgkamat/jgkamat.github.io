@@ -2,6 +2,7 @@
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
 #+OPTIONS: whn:nil title:nil toc:3
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 # Macro to determine age of things (years). Input the start year and it will return its age.
 #+MACRO: age-years src_emacs-lisp[:results raw :cache yes]{(- (string-to-number (format-time-string "%Y")) (elt (parse-time-string "$1") 5))}

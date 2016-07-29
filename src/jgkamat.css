@@ -1,0 +1,59 @@
+
+/* Yah, I can't build websites for my life. Nothing to see here. */
+
+body {
+    background-color: #262626;
+}
+
+h1 {
+	color: #E05F27;
+	font-weight : bold;
+	font-family: 'Open Sans', sans-serif;
+}
+
+h2 {
+	color: #2F7BDE;
+	font-family: 'Open Sans', sans-serif;
+}
+
+h3 {
+	color: #598249;
+	font-family: 'Open Sans', sans-serif;
+}
+
+h4, h5, h6, h7, li {
+	color: #909396;
+	font-family: 'Open Sans', sans-serif;
+}
+
+/*  Simple colors here */
+/*
+h1, h2, h3, h4, h5, h6, h7, li {
+	color: #909396;
+}
+*/
+
+p {
+	color: #909396;
+	font-family: 'Open Sans', sans-serif;
+}
+
+/* links */
+a:link, a:hover, a:active {
+	color: #bd3832;
+}
+
+a:visited {
+	color: #992d27;
+}
+
+/* footer */
+footer {
+	background-color: #2B2B2C;
+}
+
+/* I'm not planning on actually having code here ;/ */
+code {
+	background-color: #303030;
+	color: #909396;
+}
