@@ -18,13 +18,13 @@
     "-"
     (progn (require 'request)
       (defvar result nil)
-      (request (concat  "https://api.github.com/repos/" repo-string "/stargazers")
+      (request (concat  "https://api.github.com/repos/" repo-string "/stargazers?per_page=1")
         :parser 'json-read
         :sync t
         :success
         (cl-function
-          (lambda (&key data &allow-other-keys)
-            (setq result (length data)))))
+          (lambda (&key response &allow-other-keys)
+            (setq result response))))
       result)))
 
 (defun parse-gh-str (url-string)

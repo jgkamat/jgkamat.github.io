@@ -3,4 +3,11 @@
 
 My Personal Website!
 
-I used the 'Agency' Theme by Smart Bootstrap. Thanks to them for opensourcing their code!
+My personal website is built on org mode. 
+
+### Building
+
+To build it, first install `ox-twbs` and `request` from melpa.
+
+Then load `project.el`, then run `(org-publish-project)` with `index.org` selected.
+
