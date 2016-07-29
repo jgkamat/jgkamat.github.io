@@ -7,7 +7,13 @@
       :publishing-directory "../"
       :publishing-function org-twbs-publish-to-html)))
 
-(setq org-twbs-head-include-default-style t)
+;; (setq org-twbs-postamble 'auto)
+;; (setq org-twbs-postamble-format
+;;   '(("en" " <p class=\"author\">Author: %a (%e)</p>
+;; <p class=\"author\">Author: %a (%e)</p>
+;; <p class=\"date\">Date: %d</p>
+;; <p class=\"creator\">%c</p>")))
+
 
 (require 'request)
 (defun gh-stars (repo-string)
