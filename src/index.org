@@ -35,22 +35,22 @@ These are projects that I have created purely for fun, or for improvements in my
   A Docker CI Framework, Leveraging Github/CircleCI
 3. [[https://github.com/jgkamat/elevator-linked-list][elevator-linked-list]]  
 
-  A demo on how the design of super-tall elevators can be used to improve linked list performance
+  A C++ demo on how the design of super-tall elevators can be used to improve linked list performance
 4. [[http://www.github.com/MountainRange/mobius-tunes][Mobius-Tunes]]          
 
   Created at HackGT 2015
 5. [[https://github.com/jgkamat/ViPaint][ViPaint]]               
 
-  A vi inspired, modal painting program
+  A vi inspired, modal painting program, written in Java
 6. [[https://github.com/jgkamat/dotfiles][dotfiles]]
 
    My dotfiles, containing all my configs and desktop automation tools
 7. [[https://github.com/jgkamat/JayLayer/][JayLayer]]              
 
-  MP3 wrapper library to make sound easy!
+  A Java MP3 wrapper library to make sound easy!
 8. [[https://github.com/jgkamat/JPlanetSimulator][JPlanetSimulator]]      
 
-  A 2D N-Body Planet Simulation using Newton's Laws
+  A Java 2D N-Body Planet Simulation using Newton's Laws
 ** Contributions to OSS
 - Major Contributions
   1. [[https://github.com/RoboJackets/robocup-software][robocup-software]]
@@ -74,13 +74,13 @@ These are projects that I have created purely for fun, or for improvements in my
 - Python /({{{age-years(2014)}}} years)/
 - C /({{{age-years(2014)}}} years)/
 ** Skills
-- Linux
+- Linux /({{{age-years(2010)}}} years)/
   - Deb Based
   - RPM Based
   - Arch Linux
 - Vim/Emacs Editing
   - [[https://github.com/jgkamat/dotfiles][My Personal Configs]]
-- Docker
+- Docker /({{{age-years(2013)}}} years)/
   + Plain Docker
   + Docker Swarm
   + Advanced Docker Networking
@@ -90,7 +90,7 @@ These are projects that I have created purely for fun, or for improvements in my
   + GoCD
   + Travis
 - Robotics
-  + Hometead HRT - FRC Team 670 /(2012-2014)/
-  + Georgia Tech Robojackets - Robocup /(2014-Present)/
+  + [[http://homesteadrobotics.com/][Hometead HRT]] - FRC Team 670 /(2012-2014)/
+  + [[https://www.robojackets.org/][Georgia Tech Robojackets]] - Robocup /(2014-Present)/
 * Contact
 - [[mailto:jaygkamat@gmail.com][Email]]
