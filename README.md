@@ -3,4 +3,4 @@
 
 My Personal Website!
 
-I used the 'Agency' Theme by Smart Bootstrap. Thanks to them for opensourcing their code!
+This website was built with [org-mode](http://orgmode.org/), and [ox-twbs](https://github.com/marsmining/ox-twbs).
