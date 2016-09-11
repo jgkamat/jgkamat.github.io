@@ -4,6 +4,13 @@
 body {
     background-color: #262626;
 }
+::selection {
+  background: #909396; 
+}
+
+::-moz-selection {
+  background: #909396
+}
 
 h1 {
 	color: #E05F27;
