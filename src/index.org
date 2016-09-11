@@ -2,6 +2,9 @@
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
 
+# Add css to this page relative so it works locally too.
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
 # Macro to determine age of things (years). Input the start year and it will return its age.
 #+MACRO: age-years src_emacs-lisp[:results raw :cache yes]{(- (string-to-number (format-time-string "%Y")) (elt (parse-time-string "$1") 5))}
 
@@ -10,6 +13,7 @@
 #   (fboundp 'gh-stars)
 #   (fbountp 'org-link-to-str)
 # #+END_SRC
+
 
 * Introduction
 Hi! I'm Jay Kamat, an undergraduate computer science student at Georgia Tech, and I'm interested in everything related to science, technology, computers, engineering, and space!

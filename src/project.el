@@ -14,12 +14,14 @@
         :toc 3
         :publishing-function org-twbs-publish-to-html))))
 
-;; (setq org-twbs-postamble 'auto)
-;; (setq org-twbs-postamble-format
-;;   '(("en" " <p class=\"author\">Author: %a (%e)</p>
-;; <p class=\"author\">Author: %a (%e)</p>
-;; <p class=\"date\">Date: %d</p>
-;; <p class=\"creator\">%c</p>")))
+(setq org-twbs-postamble 't)
+(setq org-twbs-postamble-format
+  '(("en" "
+<div>
+<p class=\"author\">Author: %a</p>
+<p class=\"date\">Updated: %C</p>
+<p class=\"creator\">%c</p>
+</div>")))
 
 
 (require 'request)
