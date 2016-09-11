@@ -1,11 +1,18 @@
 
 (require 'ox-publish)
 
-(setq org-publish-project-alist
-  '(("jgkamat.github.io"
-      :base-directory "."
-      :publishing-directory "../"
-      :publishing-function org-twbs-publish-to-html)))
+
+(let ((proj-base (file-name-directory load-file-name)))
+  (setq org-publish-project-alist
+    `(("jgkamat.github.io"
+        :base-directory ,(concat proj-base ".")
+        :recursive t
+        :publishing-directory ,(concat proj-base  "../")
+        :html-head-extra "<link rel=\"stylesheet\" type=\"text/css\" href=\"/src/jgkamat.css\"> <link href=\"https://fonts.googleapis.com/css?family=Open+Sans\" rel=\"stylesheet\">"
+        :title nil
+        :with-headline-numbers nil
+        :toc 3
+        :publishing-function org-twbs-publish-to-html))))
 
 ;; (setq org-twbs-postamble 'auto)
 ;; (setq org-twbs-postamble-format
