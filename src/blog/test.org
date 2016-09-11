@@ -1,0 +1,8 @@
+
+#+TITLE: Test Blog Entry
+#+AUTHOR: Jay Kamat
+#+EMAIL: jaygkamat@gmail.com
+
+* Test
+
+This is a test blog entry to demonstrate how easy org mode is! ~=)~

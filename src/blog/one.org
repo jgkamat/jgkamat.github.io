@@ -1,6 +1,0 @@
-
-#+TITLE: Jay Kamat
-#+AUTHOR: Jay Kamat
-#+EMAIL: jaygkamat@gmail.com
-
-* hi
