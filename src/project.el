@@ -3,6 +3,7 @@
 
 
 (let ((proj-base (file-name-directory load-file-name)))
+  (setq project-base proj-base)
   (setq org-publish-project-alist
     `(("jgkamat.github.io"
         :base-directory ,(concat proj-base ".")
@@ -13,7 +14,6 @@
         :with-headline-numbers nil
         :toc 3
         :publishing-function org-twbs-publish-to-html))))
-
 (setq org-twbs-postamble 't)
 (setq org-twbs-postamble-format
   '(("en" "
@@ -22,6 +22,27 @@
 <p class=\"date\">Updated: %C</p>
 <p class=\"creator\">%c</p>
 </div>")))
+
+;; Blog generators
+(defun gen-links (&optional directory)
+  (interactive)
+  (let* ((directory (or directory (concat project-base "/blog")))
+         (files (directory-files directory nil ".*\.org")))
+    ;; Reduce everything into a string
+    (reduce #'concat
+    ;; Map properties to strings
+    (mapcar '(lambda (x)
+               (format "[[file:%s][%s]]\n\n" (first x) (first (last x))))
+      ;; Map environments to (filename . property titles)
+      (mapcar '(lambda (x)
+                 (with-temp-buffer
+                   (let ((filename (concat directory "/" x)))
+                     (insert-file-contents filename)
+                     `(,x . ,(plist-get (org-export-get-environment) ':title)))))
+        files)))))
+
+
+
 
 
 ;; (require 'request)

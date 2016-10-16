@@ -6,3 +6,10 @@
 * Test
 
 This is a test blog entry to demonstrate how easy org mode is! ~=)~
+
+
+* Test Links
+#+BEGIN_SRC emacs-lisp :exports results :results raw
+(print "Hi!")
+(gen-links)
+#+END_SRC
