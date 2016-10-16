@@ -24,6 +24,7 @@
 </div>")))
 
 ;; Blog generators
+;; The directory you pass in must be the relative directory to work from (and must be relative to this file)
 (defun gen-links (&optional directory)
   (interactive)
   (let* ((directory (or directory (concat project-base "/blog")))
