@@ -5,7 +5,7 @@ body {
     background-color: #262626;
 }
 ::selection {
-  background: #909396; 
+  background: #909396;
 }
 
 ::-moz-selection {
@@ -63,4 +63,18 @@ footer {
 code {
 	background-color: #303030;
 	color: #909396;
+}
+
+.div-left{
+    float:left;
+}
+.div-right{
+    float:right;
+}
+
+.footer-cont{
+    height:40px;
+    max-width:980px;
+    border:1px solid salmon;
+    padding-top:5px;
 }
