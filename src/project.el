@@ -14,12 +14,12 @@
         :with-headline-numbers nil
         :toc 3
         :publishing-function org-twbs-publish-to-html))))
-(setq org-twbs-postamble 't)
+(setq orgtwbs-postamble 't)
 (setq org-twbs-postamble-format
   '(("en" "
 <div>
 <p class=\"author\">Author: %a</p>
-<p class=\"date\">Updated: %C</p>
+<p class=\"date\">Updated: %d</p>
 <p class=\"creator\">%c</p>
 </div>")))
 
@@ -33,14 +33,19 @@
     (reduce #'concat
     ;; Map properties to strings
     (mapcar '(lambda (x)
-               (format "[[file:%s][%s]]\n\n" (first x) (first (last x))))
-      ;; Map environments to (filename . property titles)
-      (mapcar '(lambda (x)
-                 (with-temp-buffer
-                   (let ((filename (concat directory "/" x)))
-                     (insert-file-contents filename)
-                     `(,x . ,(plist-get (org-export-get-environment) ':title)))))
-        files)))))
+               (format "[[file:%s][%s]]\n\n" (first x) (first (first (last x)))))
+      (sort
+        ;; Map environments to (filename . property titles)
+        (mapcar '(lambda (x)
+                   (with-temp-buffer
+                     (let ((filename (concat directory "/" x)))
+                       (insert-file-contents filename)
+                       `(,x ,(plist-get (org-export-get-environment) ':date) ,(plist-get (org-export-get-environment) ':title)))))
+          files)
+        '(lambda (one two)
+           (let ((x (date-to-time (first one)))
+                  (y (date-to-time(first two))))
+             (calendar-date-compare x y))))))))
 
 
 
