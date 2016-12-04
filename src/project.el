@@ -1,7 +1,6 @@
 
 (require 'ox-publish)
 
-
 (let ((proj-base (file-name-directory load-file-name)))
   (setq project-base proj-base)
   (setq org-publish-project-alist
@@ -43,9 +42,14 @@
                        `(,x ,(plist-get (org-export-get-environment) ':date) ,(plist-get (org-export-get-environment) ':title)))))
           files)
         '(lambda (one two)
-           (let ((x (date-to-time (first one)))
-                  (y (date-to-time(first two))))
-             (calendar-date-compare x y))))))))
+           (let ((x (first (second one)))
+                  (y (first (second two))))
+             ;; (print )
+             ;; (print (org-2ft x))
+             ;; (print (org-2ft y))
+             ;; (print (org-time> x y))
+             ;; (print (org-time< x y))
+             (org-time< x y))))))))
 
 
 

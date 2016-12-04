@@ -1,6 +1,6 @@
 #+TITLE: Second test blog entry (first by date)
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
-#+DATE: 2016-11-01
+#+DATE: <2016-11-01>
 
 * Hey! This should appear before the other one
