@@ -2,14 +2,14 @@
 /* Yah, I can't build websites for my life. Nothing to see here. */
 
 body {
-    background-color: #262626;
+	background-color: #262626;
 }
 ::selection {
-  background: #909396;
+	background: #393c3f;
 }
 
 ::-moz-selection {
-  background: #909396
+	background: #393c3f;
 }
 
 h1 {
@@ -66,15 +66,15 @@ code {
 }
 
 .div-left{
-    float:left;
+	float:left;
 }
 .div-right{
-    float:right;
+	float:right;
 }
 
 .footer-cont{
-    height:40px;
-    max-width:980px;
-    border:1px solid salmon;
-    padding-top:5px;
+	height:40px;
+	max-width:980px;
+	border:1px solid salmon;
+	padding-top:5px;
 }
