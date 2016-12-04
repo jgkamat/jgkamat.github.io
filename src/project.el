@@ -1,7 +1,6 @@
 
 (require 'ox-publish)
 
-
 (let ((proj-base (file-name-directory load-file-name)))
   (setq project-base proj-base)
   (setq org-publish-project-alist
@@ -14,33 +13,48 @@
         :with-headline-numbers nil
         :toc 3
         :publishing-function org-twbs-publish-to-html))))
-(setq org-twbs-postamble 't)
+(setq orgtwbs-postamble 't)
 (setq org-twbs-postamble-format
   '(("en" "
 <div>
 <p class=\"author\">Author: %a</p>
-<p class=\"date\">Updated: %C</p>
+<p class=\"date\">Updated: %d</p>
 <p class=\"creator\">%c</p>
 </div>")))
+
+
+(defun org-timestamp-to-str (stamp)
+  "Returns string value if org timestamp. Else, return stamp."
+  (if (and (not (stringp stamp)) (eql (first stamp) 'timestamp))
+    (plist-get (second stamp) ':raw-value)
+    stamp))
 
 ;; Blog generators
 ;; The directory you pass in must be the relative directory to work from (and must be relative to this file)
 (defun gen-links (&optional directory)
   (interactive)
   (let* ((directory (or directory (concat project-base "/blog")))
-         (files (directory-files directory nil ".*\.org")))
+          (files (directory-files directory nil ".*\.org")))
     ;; Reduce everything into a string
     (reduce #'concat
-    ;; Map properties to strings
-    (mapcar '(lambda (x)
-               (format "1. [[file:%s][%s]]\n\n" (first x) (first (last x))))
-      ;; Map environments to (filename . property titles)
+      ;; Map properties to strings
       (mapcar '(lambda (x)
-                 (with-temp-buffer
-                   (let ((filename (concat directory "/" x)))
-                     (insert-file-contents filename)
-                     `(,x . ,(plist-get (org-export-get-environment) ':title)))))
-        files)))))
+                 (format "1. [[file:%s][%s]]\n\n" (first x) (first (first (last x)))))
+        (sort
+          ;; Map environments to (filename . property titles)
+          (mapcar '(lambda (x)
+                     (with-temp-buffer
+                       (let ((filename (concat directory "/" x)))
+                         (insert-file-contents filename)
+                         `(,x ,(plist-get (org-export-get-environment) ':date) ,(plist-get (org-export-get-environment) ':title)))))
+            files)
+          '(lambda (one two)
+             (let ((x (org-timestamp-to-str (first (second one))))
+                    (y (org-timestamp-to-str (first (second two)))))
+               (when (or (eql 0 (org-2ft x)) (eql 0 (org-2ft y)))
+                 (error (concat "Org parsing error found: "
+                          x " " y)))
+               (org-time< x y))))))))
 
 
 

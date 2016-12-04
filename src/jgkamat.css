@@ -47,8 +47,8 @@ p {
 
 /* links */
 a:link, a:hover, a:active {
-	color: #bd3832;
-}
+					 color: #bd3832;
+				 }
 
 a:visited {
 	color: #992d27;

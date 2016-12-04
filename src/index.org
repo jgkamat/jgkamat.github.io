@@ -71,10 +71,13 @@ These are projects that I have created purely for fun, or for improvements in my
    Created for a project based class for CS2340 at Georgia Tech
 * About
 ** Languages
-- Java /({{{age-years(2009)}}} years)/
+# Since 2009
+- Java /(7 Years)/
 - Shell /({{{age-years(2013)}}} years)/
 - Python /({{{age-years(2014)}}} years)/
 - C /({{{age-years(2014)}}} years)/
+  # Since 2015
+- Common Lisp /(1 Year)/
 ** Skills
 - Linux /({{{age-years(2010)}}} years)/
   - Deb Based
