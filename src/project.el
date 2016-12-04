@@ -33,7 +33,7 @@
     (reduce #'concat
     ;; Map properties to strings
     (mapcar '(lambda (x)
-               (format "[[file:%s][%s]]\n\n" (first x) (first (last x))))
+               (format "1. [[file:%s][%s]]\n\n" (first x) (first (last x))))
       ;; Map environments to (filename . property titles)
       (mapcar '(lambda (x)
                  (with-temp-buffer

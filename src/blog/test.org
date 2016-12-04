@@ -1,77 +1,35 @@
 
-# #+TITLE: Test Blog Entry
-# #+AUTHOR: Jay Kamat
-# #+EMAIL: jaygkamat@gmail.com
+#+TITLE: Test Blog Entry
+#+AUTHOR: Jay Kamat
+#+EMAIL: jaygkamat@gmail.com
+#+DATE: <2016-12-04 Sun>
 
 
-# # Add css to this page relative so it works locally too.
-# #+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="../src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-# #+MACRO: html-only (eval (if (org-export-derived-backend-p org-export-current-backend 'html) "$1" ""))
-
-# * Test
-
-# This is a test blog entry to demonstrate how easy org mode is! ~=)~
+# Add css to this page relative so it works locally too.
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="../src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+#+MACRO: html-only (eval (if (org-export-derived-backend-p org-export-current-backend 'html) "$1" ""))
 
 
-# * Test Links
-
-# #+BEGIN_SRC emacs-lisp :exports results :results raw
-# (print "Hi!")
-# (gen-links)
-# #+END_SRC
-
-# #+begin_center
-# hi
-# {{{html-only(*Abstract*)}}}
-# #+end_center
-
-
-# #+BEGIN_HTML
-# <p style="text-align:left;">
-# This text is left aligned
-# <span style="float:right;">
-# #+END_HTML
-# #+BEGIN_VERSE
-# hello world
-# #+END_VERSE
-# #+BEGIN_HTML
-# </span></p>
-# #+END_HTML
-
-
-
-#+TITLE: An Orged Paper
-#+AUTHOR: Rasmus
-#+DATE: A Dark Day for Science
-
-#+RESULTS: html-header
 * Test
 
-#+begin_footer_cont
+This is a test blog entry to demonstrate how easy org mode is! ~=)~
+
+* Test Links
+
+#+BEGIN_SRC emacs-lisp :exports results :results raw
+(gen-links)
+#+END_SRC
+
+# #+RESULTS: html-header
+* Test
+
 #+begin_div-left
 Magic One
 #+end_div-left
 #+begin_div-right
 Cool one
 #+end_div-right
-#+end_footer_cont
 
+* Tese2
 # TODO FIGURE OUT WHY THIS Two is leaking
 two
-
-* Test
-
-* styles                                                           :noexport:
-#+HTML_HEAD_EXTRA: <style type="text/css">
-#+HTML_HEAD_EXTRA: <!--
-#+HTML_HEAD_EXTRA:   .header_title {font-size: 2em; font-weight: bold;}
-#+HTML_HEAD_EXTRA:   .header_author {font-size: 1.5em; font-weight: bold;text-align:center;}
-#+HTML_HEAD_EXTRA:   .header_date {text-align:center;}
-#+HTML_HEAD_EXTRA:   .header_date .timestamp {font-size:1em; color:#000000;}
-#+HTML_HEAD_EXTRA:   .abstract {max-width: 30em; margin-left: auto; margin-right: auto;}
-#+HTML_HEAD_EXTRA: -->
-#+HTML_HEAD_EXTRA: </style>
-#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="../src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
-
-#+MACRO: html-only (eval (if (org-export-derived-backend-p org-export-current-backend 'html) "$1" ""))

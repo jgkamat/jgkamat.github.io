@@ -66,15 +66,13 @@ code {
 }
 
 .div-left{
-	float:left;
+	display: inline-block;
 }
 .div-right{
 	float:right;
 }
 
-.footer-cont{
-	height:40px;
-	max-width:980px;
-	border:1px solid salmon;
+/* .footer-cont{
 	padding-top:5px;
-}
+	padding-bottom:5px;
+} */
