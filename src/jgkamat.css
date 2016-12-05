@@ -66,11 +66,26 @@ code {
 	color: #909396;
 }
 
-.div-left{
+.div-wrap {
 	display: inline-block;
+	width: 100%;
+	position: relative;
+
 }
-.div-right{
+
+.div-left {
+	display: inline-block;
+	float: left;
+}
+.div-right {
 	float:right;
+}
+
+.div-center {
+	float: left;
+    position: absolute;
+	width: 100%;
+	text-align: center;
 }
 
 /* .footer-cont{

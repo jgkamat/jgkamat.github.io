@@ -34,16 +34,16 @@
 
 (defun gen-org-property (filename)
   "Generates an org property from a filename"
+  (let ((filename (file-relative-name (file-truename filename))))
     (with-temp-buffer
       (insert-file-contents filename)
       ;; TODO use a plist here instead of hacky ordering
-      `(,filename ,(plist-get (org-export-get-environment) ':date) ,(plist-get (org-export-get-environment) ':title))))
+      `(,filename ,(plist-get (org-export-get-environment) ':date) ,(plist-get (org-export-get-environment) ':title)))))
 
 (defun gen-links-properties (&optional directory)
   "Gens a sorted (by date) (filename . properties) from an org directory"
   (let* ((directory (or directory (concat project-base "/blog")))
-          (files (directory-files directory nil ".*\.org"))
-          (default-directory directory))
+          (files (directory-files-recursively directory ".*\.org")))
     (sort
       ;; Map environments to (filename . property titles)
       (mapcar #'gen-org-property files)
@@ -59,7 +59,7 @@
 
 (defun org-property-to-link (x)
   "Turns a property genrated by gen-org-properties into an org link"
-  (format "[[file:%s][%s]]\n\n" (first x) (first (first (last x)))))
+  (format "[[file:%s][%s]]\n" (first x) (first (first (last x)))))
 ;; The directory you pass in must be the relative directory to work from (and must be relative to this file)
 (defun gen-links (&optional directory)
   "Generates a list of links from a directory"
@@ -76,11 +76,20 @@
   (interactive)
   (let* ((current-property (gen-org-property buffer-file-name))
          (properties (gen-links-properties directory))
-         (index (position properties current-property)))
+         (index (position current-property properties :test #'equal)))
     (when (eql index nil)
       (error "This org file was not part of this project"))
-    ;; TODO get next nad prev link
-    ))
+    (let* ((next (elt properties (min (1- (length properties)) (+ index 1))))
+            (prev (elt properties (max 0 (- index 1)))))
+      (concat
+        "#+begin_div-wrap\n"
+        "#+begin_div-left\n"
+        (org-property-to-link prev)
+        "#+end_div-left\n"
+        "#+begin_div-right\n"
+        (org-property-to-link next)
+        "\n#+end_div-right"
+        "\n#+end_div-wrap"))))
 
 
 
