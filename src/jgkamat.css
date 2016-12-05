@@ -70,15 +70,19 @@ code {
 	display: inline-block;
 	width: 100%;
 	position: relative;
-
+	text-align: center;
 }
 
 .div-left {
-	display: inline-block;
+    position: relative;
+	width: auto;
 	float: left;
+	z-index: 1;
 }
 .div-right {
+    position: relative;
 	float:right;
+	z-index: 1;
 }
 
 .div-center {

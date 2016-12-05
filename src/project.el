@@ -25,6 +25,9 @@
 ;; Export format of DATE:
 (setq org-export-date-timestamp-format "%Y-%m-%d")
 
+(setq blog-homepage (concat project-base "/blog/home.org"))
+
+
 ;; Blog generators
 (defun org-timestamp-to-str (stamp)
   "Returns string value if org timestamp. Else, return stamp."
@@ -86,17 +89,13 @@
         "#+begin_div-left\n"
         (org-property-to-link prev)
         "#+end_div-left\n"
+        "#+begin_div-center\n"
+        (format "[[file:%s][Home]]\n" (file-relative-name blog-homepage))
+        "#+end_div-center\n"
         "#+begin_div-right\n"
         (org-property-to-link next)
         "\n#+end_div-right"
         "\n#+end_div-wrap"))))
-
-
-
-
-
-
-
 
 ;; (require 'request)
 ;; (defun gh-stars (repo-string)
