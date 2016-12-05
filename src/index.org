@@ -1,6 +1,7 @@
 #+TITLE: Jay Kamat
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
+#+DATE: <2016-12-05>
 
 # Add css to this page relative so it works locally too.
 #+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -20,8 +21,9 @@ Hi! I'm Jay Kamat, an undergraduate computer science student at Georgia Tech, an
 
 ** Links
 - [[https://www.github.com/jgkamat][GitHub]]
-- [[https://hub.docker.com/u/jgkamat/][DockerHub]]
 - [[https://gitlab.com/u/jgkamat][GitLab]]
+- [[file:blog/home.org][Blog]]
+- [[https://hub.docker.com/u/jgkamat/][DockerHub]]
 - [[https://www.linkedin.com/in/jaykamat][Linkedin]]
 
 * Projects
