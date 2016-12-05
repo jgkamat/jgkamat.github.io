@@ -17,7 +17,7 @@
 
 
 * Introduction
-Hi! I'm Jay Kamat, an undergraduate computer science student at Georgia Tech, and I'm interested in everything related to science, technology, computers, engineering, and space!
+Hi! I'm {{{author}}}, an undergraduate computer science student at Georgia Tech, and I'm interested in everything related to science, technology, computers, engineering, and space!
 
 ** Links
 - [[https://www.github.com/jgkamat][GitHub]]
@@ -74,19 +74,19 @@ These are projects that I have created purely for fun, or for improvements in my
 * About
 ** Languages
 # Since 2009
-- Java /(7 Years)/
-- Shell /({{{age-years(2013)}}} years)/
-- Python /({{{age-years(2014)}}} years)/
-- C /({{{age-years(2014)}}} years)/
++ Java /(7 Years)/
++ Shell /({{{age-years(2013)}}} years)/
++ Python /({{{age-years(2014)}}} years)/
++ C /({{{age-years(2014)}}} years)/
   # Since 2015
-- Common Lisp /(1 Year)/
++ Common Lisp /(2 Yeark)/
 ** Skills
 - Linux /({{{age-years(2010)}}} years)/
-  - Deb Based
-  - RPM Based
-  - Arch Linux
+  + Deb Based
+  + RPM Based
+  + Arch Linux
 - Vim/Emacs Editing
-  - [[https://github.com/jgkamat/dotfiles][My Personal Configs]]
+  + [[https://github.com/jgkamat/dotfiles][My Personal Configs]]
 - Docker /({{{age-years(2013)}}} years)/
   + Plain Docker
   + Docker Swarm
