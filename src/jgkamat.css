@@ -40,6 +40,13 @@ h1, h2, h3, h4, h5, h6, h7, li {
 }
 */
 
+/* Source code blocks */
+pre {
+	background-color: #2B2B2C;
+	color: #909396;
+	border-color: black;
+}
+
 p, th, td {
 	color: #909396;
 	font-family: 'Open Sans', sans-serif;
