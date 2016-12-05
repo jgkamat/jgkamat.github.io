@@ -79,7 +79,7 @@ These are projects that I have created purely for fun, or for improvements in my
 + Python /({{{age-years(2014)}}} years)/
 + C /({{{age-years(2014)}}} years)/
   # Since 2015
-+ Common Lisp /(2 Yeark)/
++ Common Lisp /(2 years)/
 ** Skills
 - Linux /({{{age-years(2010)}}} years)/
   + Deb Based
