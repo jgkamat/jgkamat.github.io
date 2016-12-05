@@ -3,7 +3,7 @@
 #+EMAIL: jaygkamat@gmail.com
 #+DATE: <2016-12-05>
 
-# Add css to this page relative so it works locally too.
+# Add css to this page relative so we can develop css locally with this page
 #+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 # Macro to determine age of things (years). Input the start year and it will return its age.

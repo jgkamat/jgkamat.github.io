@@ -11,7 +11,7 @@
         :base-directory ,(concat proj-base ".")
         :recursive t
         :publishing-directory ,(concat proj-base  "../")
-        :html-head-extra "<link rel=\"stylesheet\" type=\"text/css\" href=\"/src/jgkamat.css\"> <link href=\"https://fonts.googleapis.com/css?family=Open+Sans\" rel=\"stylesheet\">"
+        :html-head-extra "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://jgkamat.github.io/src/jgkamat.css\"> <link href=\"https://fonts.googleapis.com/css?family=Open+Sans\" rel=\"stylesheet\">"
         :title nil
         :with-headline-numbers nil
         :toc 3
