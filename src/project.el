@@ -22,8 +22,6 @@
 <p class=\"creator\">%c</p>
 </div>")))
 
-
-
 ;; Blog generators
 (defun org-timestamp-to-str (stamp)
   "Returns string value if org timestamp. Else, return stamp."
@@ -33,16 +31,16 @@
 
 (defun gen-org-property (filename)
   "Generates an org property from a filename"
-  (let ((filename (file-truename filename)))
     (with-temp-buffer
       (insert-file-contents filename)
       ;; TODO use a plist here instead of hacky ordering
-      `(,filename ,(plist-get (org-export-get-environment) ':date) ,(plist-get (org-export-get-environment) ':title)))))
+      `(,filename ,(plist-get (org-export-get-environment) ':date) ,(plist-get (org-export-get-environment) ':title))))
 
 (defun gen-links-properties (&optional directory)
   "Gens a sorted (by date) (filename . properties) from an org directory"
   (let* ((directory (or directory (concat project-base "/blog")))
-          (files (directory-files directory t ".*\.org")))
+          (files (directory-files directory nil ".*\.org"))
+          (default-directory directory))
     (sort
       ;; Map environments to (filename . property titles)
       (mapcar #'gen-org-property files)

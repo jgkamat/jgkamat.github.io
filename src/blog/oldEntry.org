@@ -1,5 +1,4 @@
 
-
 #+TITLE: Old Blog Entry
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
