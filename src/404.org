@@ -1,0 +1,14 @@
+#+TITLE: 404-Page Not Found
+#+AUTHOR: Jay Kamat
+#+EMAIL: jaygkamat@gmail.com
+#+DATE: <2016-12-05>
+
+# Add css to this page relative so it works locally too.
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+Sorry, this page doesn't exist. Perhaps you wanted to go to one of these
+
+* Root Pages
+- [[file:index.org][Website Home]]
+- [[file:blog/home.org][Blog Home]]
+- [[https://www.github.com/jgkamat][GitHub]]
