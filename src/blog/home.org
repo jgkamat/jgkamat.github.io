@@ -20,7 +20,6 @@ Sorted by date, newest first
 (gen-links)
 #+END_SRC
 
-# #+RESULTS: html-header
 * Navigation
 #+BEGIN_SRC emacs-lisp :exports results :results raw
 (gen-prev-next)

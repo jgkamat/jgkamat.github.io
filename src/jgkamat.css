@@ -40,15 +40,35 @@ h1, h2, h3, h4, h5, h6, h7, li {
 }
 */
 
-p {
+p, th, td {
 	color: #909396;
 	font-family: 'Open Sans', sans-serif;
+}
+
+/* Tables (dammit bootstrap) */
+.table {
+	background-color: #262626;
+	border-color: black;
+}
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+	background-color: #2B2B2C;
+}
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+	background-color: #363638;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+	border-color: black;
 }
 
 /* links */
 a:link, a:hover, a:active {
 					 color: #bd3832;
-				 }
+}
 
 a:visited {
 	color: #992d27;
