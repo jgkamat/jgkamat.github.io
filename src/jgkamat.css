@@ -56,7 +56,8 @@ a:visited {
 
 /* footer */
 footer {
-	background-color: #2B2B2C;
+  height: auto;
+  background-color: #2B2B2C;
 }
 
 /* I'm not planning on actually having code here ;/ */

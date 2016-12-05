@@ -12,15 +12,18 @@
         :title nil
         :with-headline-numbers nil
         :toc 3
+        :with-date nil
         :publishing-function org-twbs-publish-to-html))))
-(setq orgtwbs-postamble 't)
+(setq org-twbs-postamble 't)
 (setq org-twbs-postamble-format
   '(("en" "
 <div>
 <p class=\"author\">Author: %a</p>
-<p class=\"date\">Updated: %d</p>
+<p class=\"date\">Published: %d</p>
 <p class=\"creator\">%c</p>
 </div>")))
+;; Export format of DATE:
+(setq org-export-date-timestamp-format "%Y-%m-%d")
 
 ;; Blog generators
 (defun org-timestamp-to-str (stamp)
@@ -47,9 +50,11 @@
       '(lambda (one two)
          (let ((x (org-timestamp-to-str (first (second one))))
                 (y (org-timestamp-to-str (first (second two)))))
-           (when (or (eql 0 (org-2ft x)) (eql 0 (org-2ft y)))
+           ;; (print (concat x " " y))
+           (when (and (not (or (eql x nil) (eql y nil)))
+                   (or (eql 0 (org-2ft x)) (eql 0 (org-2ft y))))
              (error (concat "Org parsing error found: "
-                      x " " y)))
+                      x ":" y)))
            (org-time< x y))))))
 
 (defun org-property-to-link (x)

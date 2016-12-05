@@ -2,6 +2,6 @@
 #+TITLE: Old Blog Entry
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
-#+DATE: <2016-12-02 Sun>
+#+DATE: <2016-12-02>
 
 * Old blog entry

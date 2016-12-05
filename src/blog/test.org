@@ -2,12 +2,10 @@
 #+TITLE: Test Blog Entry
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
-#+DATE: <2016-12-04 Sun>
-
+#+DATE: <2016-12-03>
 
 # Add css to this page relative so it works locally too.
 #+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="../src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-#+MACRO: html-only (eval (if (org-export-derived-backend-p org-export-current-backend 'html) "$1" ""))
 
 * Test
 
@@ -28,6 +26,5 @@ Magic One
 Cool one
 #+end_div-right
 
-* Tese2
-# TODO FIGURE OUT WHY THIS Two is leaking
+* After section
 two
