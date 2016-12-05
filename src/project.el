@@ -90,7 +90,7 @@
         (org-property-to-link prev)
         "#+end_div-left\n"
         "#+begin_div-center\n"
-        (format "[[file:%s][Home]]\n" (file-relative-name blog-homepage))
+        (format "[[file:%s][Blog Home]]\n" (file-relative-name blog-homepage))
         "#+end_div-center\n"
         "#+begin_div-right\n"
         (org-property-to-link next)

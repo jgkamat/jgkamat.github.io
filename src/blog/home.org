@@ -1,19 +1,22 @@
 
-#+TITLE: Test Blog Entry
+#+TITLE: Blog Home
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
 #+DATE: <2016-12-03>
 
-
-
 # Add css to this page relative so it works locally too.
 #+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="../src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
-* Test
 
-This is a test blog entry to demonstrate how easy org mode is! ~=)~
+* Welcome
+Hi, welcome to my blog. 
 
-* Test Links
+[[file:../index.org][Website Home]]
+
+* Archives
+
+Sorted by date, newest first
+
 #+BEGIN_SRC emacs-lisp :exports results :results raw
 (gen-links)
 #+END_SRC
