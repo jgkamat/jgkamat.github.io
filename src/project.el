@@ -13,6 +13,7 @@
         :with-headline-numbers nil
         :toc 3
         :with-date nil
+        :time-stamp-file nil
         :publishing-function org-twbs-publish-to-html))))
 (setq org-twbs-postamble 't)
 (setq org-twbs-postamble-format
