@@ -15,7 +15,6 @@
 #   (fbountp 'org-link-to-str)
 # #+END_SRC
 
-
 * Introduction
 Hi! I'm {{{author}}}, an undergraduate computer science student at Georgia Tech, and I'm interested in everything related to science, technology, computers, engineering, and space!
 

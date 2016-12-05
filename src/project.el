@@ -1,6 +1,9 @@
 
 (require 'ox-publish)
 
+
+;; I reccomend you publish with FORCE on to avoid loosing changes in history files
+;; (org-publish-current-project t)
 (let ((proj-base (file-name-directory load-file-name)))
   (setq project-base proj-base)
   (setq org-publish-project-alist
