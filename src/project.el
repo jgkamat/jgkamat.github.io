@@ -60,19 +60,22 @@
                       x ":" y)))
            (org-time< x y))))))
 
-(defun org-property-to-link (x)
+(defun org-property-to-link (x &optional pre post)
   "Turns a property genrated by gen-org-properties into an org link"
-  (format "[[file:%s][%s]]\n" (first x) (first (first (last x)))))
+  (let ((pre (or pre "")) (post (or post "")))
+    (format "[[file:%s][%s%s%s]]\n" (first x) pre (first (first (last x))) post)))
 ;; The directory you pass in must be the relative directory to work from (and must be relative to this file)
 (defun gen-links (&optional directory)
   "Generates a list of links from a directory"
   (interactive)
   ;; Reduce everything into a string
   (reduce #'concat
-    ;; Map properties to strings
-    (mapcar '(lambda (x)
-               (format "1. %s" (org-property-to-link x)))
-      (gen-links-properties directory))))
+    ;; Get desired sorting order
+    (reverse
+      ;; Map properties to strings
+      (mapcar '(lambda (x)
+                 (format "1. %s" (org-property-to-link x)))
+        (gen-links-properties directory)))))
 
 
 (defun gen-prev-next (&optional directory)
@@ -87,13 +90,13 @@
       (concat
         "#+begin_div-wrap\n"
         "#+begin_div-left\n"
-        (org-property-to-link prev)
+        (org-property-to-link prev "\\leftarrow ")
         "#+end_div-left\n"
         "#+begin_div-center\n"
-        (format "[[file:%s][Blog Home]]\n" (file-relative-name blog-homepage))
+        (format "[[file:%s][\\langle{}Blog Home\\rangle]]\n" (file-relative-name blog-homepage))
         "#+end_div-center\n"
         "#+begin_div-right\n"
-        (org-property-to-link next)
+        (org-property-to-link next nil " \\rightarrow")
         "\n#+end_div-right"
         "\n#+end_div-wrap"))))
 

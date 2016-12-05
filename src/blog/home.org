@@ -2,14 +2,13 @@
 #+TITLE: Blog Home
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
-#+DATE: <2016-12-03>
+#+DATE: <2016-12-05>
 
 # Add css to this page relative so it works locally too.
 #+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="../src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
-
 * Welcome
-Hi, welcome to my blog. 
+Hi, welcome to my blog. It's under construction now.
 
 [[file:../index.org][Website Home]]
 
