@@ -1,10 +1,85 @@
 
-#+TITLE: Creating This Blog
+#+TITLE: Creating This Blog - 1
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
 #+DATE: <2016-12-05 Mon>
 
+* Overview
+
+Org is a very powerful tool, but most of the org setups I've seen hasn't used it to its full potential.
+This website is one example of a complex, multi-page project built in org.
+
+This blog was created with:
+
+- [[https://www.gnu.org/software/emacs/][Emacs]]
+- [[http://orgmode.org/][org-mode]]
+- [[https://github.com/marsmining/ox-twbs][ox-twbs]]
+
+Features:
+- Homepage
+- Blogging Engine
+  - Prev/Next Links
+  - Archive Page (sorted)
+  - Automatically add new org files to blog/archive
+
+This post will go over everything you need to set up a complex, customized, and dynamic org project like this one. It assumes you are familiar with org, and that you know elisp.
+
+* Org Projects
+** Basic Setup
+
+Org projects are a simple way to combine and link multiple org files together into one complete export. The complete docs are [[http://orgmode.org/manual/Publishing.html][here]].
+
+To create an org project, all you need to do is set ~org-publish-project-alist~. Here's a simple example.
+
+#+BEGIN_SRC emacs-lisp
+  ;; Setup
+  (setq org-publish-project-alist
+	`(("project-name"
+	   :base-directory "~/org-project"
+	   :recursive t
+	   :publishing-directory "/var/www/html"
+	   :publishing-function org-html-publish-to-html)))
+
+  ;; Publish with
+  (org-publish-current-project) ;; While having a file in your project open
+  ;; OR
+  ;; M-x org-publish <RET> project-name <RET>
+#+END_SRC
+
+Once this is run, you'll have a new org project with those following parameters, and you can publish the project using ~org-publish-project~.
+Just place your org files in ~~/org-project~, and org will export them to HTML (using ~org-html-publish-to-html~) and place the root of your files in ~/var/www/html~.
+
+Running the export again will cache the output files, if they have not changed, which can be useful. If you want to trigger a full rebuild, you can run ~(org-publish "project-name" t)~.
+
+Files that are linked with ~org-insert-link~ will link fine in the export, as long as they are /realtive links/. This should happen automatically, but occasionally, you have to tweak a few links.
+
+** Customization
+
+While the above setup works, there's a lot we might want to change. For instance, we might want to turn of table of contents for the entire project.
+For a single file, we would put ~#+OPTIONS: toc:nil~, but to apply this to every file in our project, we can add ~:with-toc nil~ to the project above. [[http://orgmode.org/manual/Publishing-options.html#Publishing-options][Here are the rest of the default org project options.]]
+
+** Making this Sharable
+
+Some people might want to put this ~setq~ call in your Emacs dotfiles, but I prefer to place it in a [[https://github.com/jgkamat/jgkamat.github.io/blob/master/src/project.el][project.el]] file instead, which lets others get the same function definition. It also lets you put other changes you make in this file as well, since all those changes will be elisp. Anyone who wants to work with your project simply needs to source this file, instead of setting up the project again.
+
+In order to make sure others can use this flawlessly, we need to remove these absolute links from our project, such as ~/var/www/html~ and ~~/org-project~, since we can't expect everyone to have the same directory structure as we do. Since we are loading the static file ~project.el~, we can define the root/export in terms of this file. This is one way to do that, assuming that project.el is in the root:
+
+#+BEGIN_SRC emacs-lisp
+  (let ((proj-base (file-name-directory load-file-name)))
+    (setq org-publish-project-alist
+	  `(("project-name"
+	     :base-directory ,(concat proj-base ".")
+	     :recursive t
+	     :publishing-directory ,(concat proj-base  "../export")
+	     :publishing-function org-html-publish-to-html))))
+#+END_SRC
+
+The org project definition for this blog (in [[https://github.com/jgkamat/jgkamat.github.io/blob/master/src/project.el][project.el]]) is not much more complicated than this one.
+The main difference is it has a bunch of org project cusomizations turned on, and it's using ~ox-twbs~ instead of the native html exporter.
+This is done by changing the ~:publishing-function~ to ~org-twbs-publish-to-html~, which is in the ~ox-twbs~ docs.
+
 * Navigation
+
 #+BEGIN_SRC emacs-lisp :exports results :results raw
 (gen-prev-next)
 #+END_SRC

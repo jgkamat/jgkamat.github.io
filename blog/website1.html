@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Creating This Blog</title>
+<title>Creating This Blog - 1</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -191,11 +191,142 @@ $(function() {
 </head>
 <body>
 <div id="content" class="container">
-<div class="row"><div class="col-md-9"><h1 class="title">Creating This Blog</h1>
+<div class="row"><div class="col-md-9"><h1 class="title">Creating This Blog - 1</h1>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Navigation</h2>
+<h2 id="sec-1">Overview</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+Org is a very powerful tool, but most of the org setups I've seen hasn't used it to its full potential.
+This website is one example of a complex, multi-page project built in org.
+</p>
+
+<p>
+This blog was created with:
+</p>
+
+<ul class="org-ul">
+<li><a href="https://www.gnu.org/software/emacs/">Emacs</a>
+</li>
+<li><a href="http://orgmode.org/">org-mode</a>
+</li>
+<li><a href="https://github.com/marsmining/ox-twbs">ox-twbs</a>
+</li>
+</ul>
+
+<p>
+Features:
+</p>
+<ul class="org-ul">
+<li>Homepage
+</li>
+<li>Blogging Engine
+<ul class="org-ul">
+<li>Prev/Next Links
+</li>
+<li>Archive Page (sorted)
+</li>
+<li>Automatically add new org files to blog/archive
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+This post will go over everything you need to set up a complex, customized, and dynamic org project like this one. It assumes you are familiar with org, and that you know elisp.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Org Projects</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">Basic Setup</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Org projects are a simple way to combine and link multiple org files together into one complete export. The complete docs are <a href="http://orgmode.org/manual/Publishing.html">here</a>.
+</p>
+
+<p>
+To create an org project, all you need to do is set <code>org-publish-project-alist</code>. Here's a simple example.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #5e6263; font-style: italic;">;; </span><span style="color: #5e6263; font-style: italic;">Setup</span>
+(<span style="color: #598249;">setq</span> org-publish-project-alist
+      `((<span style="color: #15968D;">"project-name"</span>
+         <span style="color: #598249;">:base-directory</span> <span style="color: #15968D;">"~/org-project"</span>
+         <span style="color: #598249;">:recursive</span> t
+         <span style="color: #598249;">:publishing-directory</span> <span style="color: #15968D;">"/var/www/html"</span>
+         <span style="color: #598249;">:publishing-function</span> org-html-publish-to-html)))
+
+<span style="color: #5e6263; font-style: italic;">;; </span><span style="color: #5e6263; font-style: italic;">Publish with</span>
+(org-publish-current-project) <span style="color: #5e6263; font-style: italic;">;; </span><span style="color: #5e6263; font-style: italic;">While having a file in your project open</span>
+<span style="color: #5e6263; font-style: italic;">;; </span><span style="color: #5e6263; font-style: italic;">OR</span>
+<span style="color: #5e6263; font-style: italic;">;; </span><span style="color: #5e6263; font-style: italic;">M-x org-publish &lt;RET&gt; project-name &lt;RET&gt;</span>
+</pre>
+</div>
+
+<p>
+Once this is run, you'll have a new org project with those following parameters, and you can publish the project using <code>org-publish-project</code>.
+Just place your org files in <code>~/org-project</code>, and org will export them to HTML (using <code>org-html-publish-to-html</code>) and place the root of your files in <code>/var/www/html</code>.
+</p>
+
+<p>
+Running the export again will cache the output files, if they have not changed, which can be useful. If you want to trigger a full rebuild, you can run <code>(org-publish "project-name" t)</code>.
+</p>
+
+<p>
+Files that are linked with <code>org-insert-link</code> will link fine in the export, as long as they are <i>realtive links</i>. This should happen automatically, but occasionally, you have to tweak a few links.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">Customization</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+While the above setup works, there's a lot we might want to change. For instance, we might want to turn of table of contents for the entire project.
+For a single file, we would put <code>#+OPTIONS: toc:nil</code>, but to apply this to every file in our project, we can add <code>:with-toc nil</code> to the project above. <a href="http://orgmode.org/manual/Publishing-options.html#Publishing-options">Here are the rest of the default org project options.</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">Making this Sharable</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Some people might want to put this <code>setq</code> call in your Emacs dotfiles, but I prefer to place it in a <a href="https://github.com/jgkamat/jgkamat.github.io/blob/master/src/project.el">project.el</a> file instead, which lets others get the same function definition. It also lets you put other changes you make in this file as well, since all those changes will be elisp. Anyone who wants to work with your project simply needs to source this file, instead of setting up the project again.
+</p>
+
+<p>
+In order to make sure others can use this flawlessly, we need to remove these absolute links from our project, such as <code>/var/www/html</code> and <code>~/org-project</code>, since we can't expect everyone to have the same directory structure as we do. Since we are loading the static file <code>project.el</code>, we can define the root/export in terms of this file. This is one way to do that, assuming that project.el is in the root:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span style="color: #598249;">let</span> ((proj-base (file-name-directory load-file-name)))
+  (<span style="color: #598249;">setq</span> org-publish-project-alist
+        `((<span style="color: #15968D;">"project-name"</span>
+           <span style="color: #598249;">:base-directory</span> ,(concat proj-base <span style="color: #15968D;">"."</span>)
+           <span style="color: #598249;">:recursive</span> t
+           <span style="color: #598249;">:publishing-directory</span> ,(concat proj-base  <span style="color: #15968D;">"../export"</span>)
+           <span style="color: #598249;">:publishing-function</span> org-html-publish-to-html))))
+</pre>
+</div>
+
+<p>
+The org project definition for this blog (in <a href="https://github.com/jgkamat/jgkamat.github.io/blob/master/src/project.el">project.el</a>) is not much more complicated than this one.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Navigation</h2>
+<div class="outline-text-2" id="text-3">
 <div class="div-wrap">
 <div class="div-left">
 <p>
@@ -211,7 +342,7 @@ $(function() {
 </div>
 <div class="div-right">
 <p>
-<a href="website1.html">Creating This Blog &rarr;</a>
+<a href="website1.html">Creating This Blog - 1 &rarr;</a>
 </p>
 
 </div>
@@ -222,7 +353,15 @@ $(function() {
 </div><div class="col-md-3"><nav id="table-of-contents">
 <div id="text-table-of-contents" class="bs-docs-sidebar">
 <ul class="nav">
-<li><a href="#sec-1">Navigation</a></li>
+<li><a href="#sec-1">Overview</a></li>
+<li><a href="#sec-2">Org Projects</a>
+<ul class="nav">
+<li><a href="#sec-2-1">Basic Setup</a></li>
+<li><a href="#sec-2-2">Customization</a></li>
+<li><a href="#sec-2-3">Making this Sharable</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">Navigation</a></li>
 </ul>
 </div>
 </nav>

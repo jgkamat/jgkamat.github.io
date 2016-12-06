@@ -50,7 +50,7 @@
 (defun gen-links-properties (&optional directory)
   "Gens a sorted (by date) (filename . properties) from an org directory"
   (let* ((directory (or directory (concat project-base "/blog")))
-          (files (directory-files-recursively directory ".*\.org")))
+          (files (directory-files-recursively directory "^.*\.org$")))
     (sort
       ;; Map environments to (filename . property titles)
       (mapcar #'gen-org-property files)
@@ -85,8 +85,8 @@
 (defun gen-prev-next (&optional directory)
   (interactive)
   (let* ((current-property (gen-org-property buffer-file-name))
-         (properties (gen-links-properties directory))
-         (index (position current-property properties :test #'equal)))
+          (properties (gen-links-properties directory))
+          (index (position current-property properties :test #'equal)))
     (when (eql index nil)
       (error "This org file was not part of this project"))
     (let* ((next (elt properties (min (1- (length properties)) (+ index 1))))

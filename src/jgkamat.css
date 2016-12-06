@@ -98,7 +98,7 @@ code {
 .div-wrap {
 	display: inline-block;
 	width: 100%;
-	position: relative;
+	position: absolute;
 	text-align: center;
 }
 
