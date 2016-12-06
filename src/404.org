@@ -6,7 +6,8 @@
 Sorry, this page doesn't exist. Perhaps you wanted to go to one of these?
 
 * Root Pages
-- [[file:/index.org][Website Home]]
-- [[file:/blog/home.org][Blog Home]]
+# TODO find a better way to represent these links than hard coding them.
+- [[message:/index.html][Website Home]]
+- [[message:/blog/home.html][Blog Home]]
 - [[https://www.github.com/jgkamat][GitHub]]
 - [[message:javascript:history.back()][\leftarrow Go Back]]
