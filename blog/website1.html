@@ -319,6 +319,8 @@ In order to make sure others can use this flawlessly, we need to remove these ab
 
 <p>
 The org project definition for this blog (in <a href="https://github.com/jgkamat/jgkamat.github.io/blob/master/src/project.el">project.el</a>) is not much more complicated than this one.
+The main difference is it has a bunch of org project cusomizations turned on, and it's using <code>ox-twbs</code> instead of the native html exporter.
+This is done by changing the <code>:publishing-function</code> to <code>org-twbs-publish-to-html</code>, which is in the <code>ox-twbs</code> docs.
 </p>
 </div>
 </div>
