@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Creating This Blog - 1</title>
+<title>Creating A Blog in Org Mode</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -191,14 +191,14 @@ $(function() {
 </head>
 <body>
 <div id="content" class="container">
-<div class="row"><div class="col-md-9"><h1 class="title">Creating This Blog - 1</h1>
+<div class="row"><div class="col-md-9"><h1 class="title">Creating A Blog in Org Mode</h1>
 
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">Overview</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Org is a very powerful tool, but most of the org setups I've seen hasn't used it to its full potential.
-This website is one example of a complex, multi-page project built in org.
+This website is one example of a complex, multi-page project built in org. This post is a 'brief' overview of how it was created.
 </p>
 
 <p>
@@ -271,7 +271,7 @@ To create an org project, all you need to do is set <code>org-publish-project-al
 
 <p>
 Once this is run, you'll have a new org project with those following parameters, and you can publish the project using <code>org-publish-project</code>.
-Just place your org files in <code>~/org-project</code>, and org will export them to HTML (using <code>org-html-publish-to-html</code>) and place the root of your files in <code>/var/www/html</code>.
+Just place your org files in <code>~/org-project</code>, and org will export them to HTML (using <code>org-html-publish-to-html</code>) and place them in <code>/var/www/html</code>.
 </p>
 
 <p>
@@ -295,10 +295,10 @@ For a single file, we would put <code>#+OPTIONS: toc:nil</code>, but to apply th
 </div>
 
 <div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">Making this Sharable</h3>
+<h3 id="sec-2-3">Making this Shareable</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
-Some people might want to put this <code>setq</code> call in your Emacs dotfiles, but I prefer to place it in a <a href="https://github.com/jgkamat/jgkamat.github.io/blob/master/src/project.el">project.el</a> file instead, which lets others get the same function definition. It also lets you put other changes you make in this file as well, since all those changes will be elisp. Anyone who wants to work with your project simply needs to source this file, instead of setting up the project again.
+Some people might want to put this <code>setq</code> call in your Emacs dotfiles, but I prefer to place it in a <a href="https://github.com/jgkamat/jgkamat.github.io/blob/master/src/project.el">project.el</a> file instead, which lets others get the same project definition. It also lets you put other changes you make in this file as well, since all those changes will be elisp. Anyone who wants to work with your project simply needs to source this file, instead of setting up the project again.
 </p>
 
 <p>
@@ -327,8 +327,152 @@ This is done by changing the <code>:publishing-function</code> to <code>org-twbs
 </div>
 
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Navigation</h2>
+<h2 id="sec-3">Custom CSS on HTML Exports</h2>
 <div class="outline-text-2" id="text-3">
+<p>
+We've got a nice website now, but it looks pretty bare bones. How do we provide our own CSS?
+</p>
+
+<p>
+The easiest way to apply a CSS file to your org project (with exporters based on the html one) is to add this to your <code>org-publish-project-alist</code> directive:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #598249;">:html-head-extra</span> <span style="color: #15968D;">"&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"./myfile.css\"&gt;"</span>
+</pre>
+</div>
+
+<p>
+Another option is to set <code>#+HTML_HEAD_EXTRA</code> at the top of your org files.
+</p>
+
+<p>
+I'm very new to 'webdev', so actually creating the CSS was a struggle for me. <a href="https://github.com/jgkamat/jgkamat.github.io/blob/master/src/jgkamat.css">This is the final result.</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Dynamic Org Exports</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+We've got our nice org project for easy export, custom CSS styling, and maybe even a custom org exporter to get our website looking just how we want it, but how can we get dynamic exports?
+In my case, I wanted an <a href="home.html#org6fac03b">aggregation of all my (sorted) blog posts</a>, and <a href="#sec-7">previous/next links on all my blog entries</a>.
+</p>
+
+<p>
+The solution I found to this really showed me the power and flexibility of org mode. Placing this block in org source:
+</p>
+
+
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #5e6263; font-style: italic;">#+BEGIN_SRC emacs-lisp :exports results :results raw</span>
+<span style="color: #5e6263;">(print </span><span style="color: #15968D;">"hello world! *bold* /slant/ +strikethrough+"</span><span style="color: #5e6263;">)</span>
+<span style="color: #5e6263; font-style: italic;">#+END_SRC</span>
+</pre>
+</div>
+
+<p>
+Results in this output:
+</p>
+
+<p>
+hello world! <b>bold</b> <i>slant</i> <del>strikethrough</del>
+</p>
+
+<p>
+By using the <code>:exports results :results raw</code> directive to source code blocks, we can evaluate them when building our org file, and their result will be inserted into the org document <i>as if we wrote it ourselves</i>!
+</p>
+
+<p>
+To generate the dynamic content I want, I just created elisp functions for whatever I needed.
+After creating a <code>(gen-links)</code> to generate a sorted list of org blog posts, and a <code>(gen-prev-next)</code> to generate previous and next links, all I needed to do was:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #5e6263; font-style: italic;"># For sorted list of posts</span>
+<span style="color: #5e6263; font-style: italic;">#+BEGIN_SRC emacs-lisp :exports results :results raw</span>
+<span style="color: #5e6263;">(gen-links)</span>
+<span style="color: #5e6263; font-style: italic;">#+END_SRC</span>
+
+<span style="color: #5e6263; font-style: italic;"># For prev/next links</span>
+<span style="color: #5e6263; font-style: italic;">#+BEGIN_SRC emacs-lisp :exports results :results raw</span>
+<span style="color: #5e6263;">(gen-prev-next)</span>
+<span style="color: #5e6263; font-style: italic;">#+END_SRC</span>
+</pre>
+</div>
+
+<p>
+I put the source for these functions in my <a href="https://github.com/jgkamat/jgkamat.github.io/blob/master/src/project.el">project.el</a>. These functions work by parsing all my org files in <code>/blog</code> and sorting them by the <code>#+DATE</code>, and displaying the relevant information.
+They need some work, but they works pretty well for now. I might post about how I made those functions later&#x2026;
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Side Note: Divs</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+It might be nice to generate divs in your html file from your org source. I use this to get my prev/next links into a nice 3 part table. You can insert a div with class <code>classname</code> like this:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #5e6263; font-style: italic;">#+begin_classname</span>
+Content inside your div
+<span style="color: #5e6263; font-style: italic;">#+end_classname</span>
+</pre>
+</div>
+
+<p>
+I created divs called <code>div-wrap</code>, <code>div-left</code>, <code>div-right</code>, and <code>div-center</code> for this purpose, and referenced them in CSS to get them to fit properly. The actual divs are generated in the elisp source code blocks.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">Wrapping Up</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Creating an org blog is a lot easier than it seems, if you know how to use org's features to your advantage.
+</p>
+
+<p>
+Let me know via a <a href="https://github.com/jgkamat/jgkamat.github.io/issues">github issue</a> (or a PR) if you find anything wrong on this post/website/anything, and I'll get on it!
+</p>
+
+<p>
+Here are some other successful org blogs:
+</p>
+<ul class="org-ul">
+<li><a href="http://endlessparentheses.com/how-i-blog-one-year-of-posts-in-a-single-org-file.html">Endless Parentheses</a> (Jekyll Based)
+</li>
+<li><a href="https://ogbe.net/blog/blogging_with_org.html">Dennis Ogbe</a> (Plain org)
+</li>
+</ul>
+
+<p>
+The source code for all of this is <a href="https://github.com/jgkamat/jgkamat.github.io">at this github repo</a>.
+</p>
+
+<p>
+Lastly, here's an obligatory screenshot of me editing this post. <code>=)</code>
+</p>
+
+
+<figure>
+<p><a href="http://i.imgur.com/5fyRVaw.png"><img src="http://i.imgur.com/5fyRVaw.png" class="img-responsive" alt="5fyRVaw.png"></a>
+</p>
+</figure>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">Navigation</h2>
+<div class="outline-text-2" id="text-7">
 <div class="div-wrap">
 <div class="div-left">
 <p>
@@ -344,7 +488,7 @@ This is done by changing the <code>:publishing-function</code> to <code>org-twbs
 </div>
 <div class="div-right">
 <p>
-<a href="website1.html">Creating This Blog - 1 &rarr;</a>
+<a href="website1.html">Creating A Blog in Org Mode &rarr;</a>
 </p>
 
 </div>
@@ -360,10 +504,14 @@ This is done by changing the <code>:publishing-function</code> to <code>org-twbs
 <ul class="nav">
 <li><a href="#sec-2-1">Basic Setup</a></li>
 <li><a href="#sec-2-2">Customization</a></li>
-<li><a href="#sec-2-3">Making this Sharable</a></li>
+<li><a href="#sec-2-3">Making this Shareable</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">Navigation</a></li>
+<li><a href="#sec-3">Custom CSS on HTML Exports</a></li>
+<li><a href="#sec-4">Dynamic Org Exports</a></li>
+<li><a href="#sec-5">Side Note: Divs</a></li>
+<li><a href="#sec-6">Wrapping Up</a></li>
+<li><a href="#sec-7">Navigation</a></li>
 </ul>
 </div>
 </nav>
@@ -372,7 +520,7 @@ This is done by changing the <code>:publishing-function</code> to <code>org-twbs
 
 <div>
 <p class="author">Author: Jay Kamat</p>
-<p class="date">Published: 2016-12-05</p>
+<p class="date">Published: 2016-12-06</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org-mode</a> 9.0.1)</p>
 </div>
 </footer>

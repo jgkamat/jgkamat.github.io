@@ -1,13 +1,13 @@
 
-#+TITLE: Creating This Blog - 1
+#+TITLE: Creating A Blog in Org Mode
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
-#+DATE: <2016-12-05 Mon>
+#+DATE: <2016-12-06 Tue>
 
 * Overview
 
 Org is a very powerful tool, but most of the org setups I've seen hasn't used it to its full potential.
-This website is one example of a complex, multi-page project built in org.
+This website is one example of a complex, multi-page project built in org. This post is a 'brief' overview of how it was created.
 
 This blog was created with:
 
@@ -47,7 +47,7 @@ To create an org project, all you need to do is set ~org-publish-project-alist~.
 #+END_SRC
 
 Once this is run, you'll have a new org project with those following parameters, and you can publish the project using ~org-publish-project~.
-Just place your org files in ~~/org-project~, and org will export them to HTML (using ~org-html-publish-to-html~) and place the root of your files in ~/var/www/html~.
+Just place your org files in ~~/org-project~, and org will export them to HTML (using ~org-html-publish-to-html~) and place them in ~/var/www/html~.
 
 Running the export again will cache the output files, if they have not changed, which can be useful. If you want to trigger a full rebuild, you can run ~(org-publish "project-name" t)~.
 
@@ -58,9 +58,9 @@ Files that are linked with ~org-insert-link~ will link fine in the export, as lo
 While the above setup works, there's a lot we might want to change. For instance, we might want to turn of table of contents for the entire project.
 For a single file, we would put ~#+OPTIONS: toc:nil~, but to apply this to every file in our project, we can add ~:with-toc nil~ to the project above. [[http://orgmode.org/manual/Publishing-options.html#Publishing-options][Here are the rest of the default org project options.]]
 
-** Making this Sharable
+** Making this Shareable
 
-Some people might want to put this ~setq~ call in your Emacs dotfiles, but I prefer to place it in a [[https://github.com/jgkamat/jgkamat.github.io/blob/master/src/project.el][project.el]] file instead, which lets others get the same function definition. It also lets you put other changes you make in this file as well, since all those changes will be elisp. Anyone who wants to work with your project simply needs to source this file, instead of setting up the project again.
+Some people might want to put this ~setq~ call in your Emacs dotfiles, but I prefer to place it in a [[https://github.com/jgkamat/jgkamat.github.io/blob/master/src/project.el][project.el]] file instead, which lets others get the same project definition. It also lets you put other changes you make in this file as well, since all those changes will be elisp. Anyone who wants to work with your project simply needs to source this file, instead of setting up the project again.
 
 In order to make sure others can use this flawlessly, we need to remove these absolute links from our project, such as ~/var/www/html~ and ~~/org-project~, since we can't expect everyone to have the same directory structure as we do. Since we are loading the static file ~project.el~, we can define the root/export in terms of this file. This is one way to do that, assuming that project.el is in the root:
 
@@ -75,8 +75,90 @@ In order to make sure others can use this flawlessly, we need to remove these ab
 #+END_SRC
 
 The org project definition for this blog (in [[https://github.com/jgkamat/jgkamat.github.io/blob/master/src/project.el][project.el]]) is not much more complicated than this one.
-The main difference is it has a bunch of org project cusomizations turned on, and it's using ~ox-twbs~ instead of the native html exporter.
+The main difference is it has a bunch of org project customizations turned on, and it's using ~ox-twbs~ instead of the native html exporter.
 This is done by changing the ~:publishing-function~ to ~org-twbs-publish-to-html~, which is in the ~ox-twbs~ docs.
+
+* Custom CSS on HTML Exports
+
+We've got a nice website now, but it looks pretty bare bones. How do we provide our own CSS?
+
+The easiest way to apply a CSS file to your org project (with exporters based on the html one) is to add this to your ~org-publish-project-alist~ directive:
+
+#+BEGIN_SRC emacs-lisp
+  :html-head-extra "<link rel=\"stylesheet\" type=\"text/css\" href=\"./myfile.css\">"
+#+END_SRC
+
+Another option is to set ~#+HTML_HEAD_EXTRA~ at the top of your org files.
+
+I'm very new to 'webdev', so actually creating the CSS was a struggle for me. [[https://github.com/jgkamat/jgkamat.github.io/blob/master/src/jgkamat.css][This is the final result.]]
+
+* Dynamic Org Exports
+
+We've got our nice org project for easy export, custom CSS styling, and maybe even a custom org exporter to get our website looking just how we want it, but how can we get dynamic exports?
+In my case, I wanted an [[file:home.org::*Archives][aggregation of all my (sorted) blog posts]], and [[*Navigation][previous/next links on all my blog entries]].
+
+The solution I found to this really showed me the power and flexibility of org mode. Placing this block in org source:
+
+
+#+BEGIN_SRC org
+  ,#+BEGIN_SRC emacs-lisp :exports results :results raw
+  (print "hello world! *bold* /slant/ +strikethrough+")
+  ,#+END_SRC
+#+END_SRC
+
+Results in this output:
+
+#+BEGIN_SRC emacs-lisp :exports results :results raw
+  (print "hello world! *bold* /slant/ +strikethrough+")
+#+END_SRC
+
+By using the ~:exports results :results raw~ directive to source code blocks, we can evaluate them when building our org file, and their result will be inserted into the org document /as if we wrote it ourselves/!
+
+To generate the dynamic content I want, I just created elisp functions for whatever I needed.
+After creating a ~(gen-links)~ to generate a sorted list of org blog posts, and a ~(gen-prev-next)~ to generate previous and next links, all I needed to do was:
+
+#+BEGIN_SRC org
+  # For sorted list of posts
+  ,#+BEGIN_SRC emacs-lisp :exports results :results raw
+  (gen-links)
+  ,#+END_SRC
+
+  # For prev/next links
+  ,#+BEGIN_SRC emacs-lisp :exports results :results raw
+  (gen-prev-next)
+  ,#+END_SRC
+#+END_SRC
+
+I put the source for these functions in my [[https://github.com/jgkamat/jgkamat.github.io/blob/master/src/project.el][project.el]]. These functions work by parsing all my org files in ~/blog~ and sorting them by the ~#+DATE~, and displaying the relevant information.
+They need some work, but they works pretty well for now. I might post about how I made those functions later...
+
+* Side Note: Divs
+
+It might be nice to generate divs in your html file from your org source. I used this to get my prev/next links into a nice 3 part table. You can insert a div with class ~classname~ like this:
+
+#+BEGIN_SRC org
+  ,#+begin_classname
+  Content inside your div
+  ,#+end_classname
+#+END_SRC
+
+I created divs called ~div-wrap~, ~div-left~, ~div-right~, and ~div-center~ for this purpose, and referenced them in CSS to get them to fit properly. The actual divs are generated in the elisp source code blocks.
+
+* Wrapping Up
+
+Creating an org blog is a lot easier than it seems, if you know how to use org's features to your advantage.
+
+Let me know via a [[https://github.com/jgkamat/jgkamat.github.io/issues][github issue]] (or a PR) if you find anything wrong on this post/website/anything, and I'll get on it!
+
+Here are some other successful org blogs:
+- [[http://endlessparentheses.com/how-i-blog-one-year-of-posts-in-a-single-org-file.html][Endless Parentheses]] (Jekyll Based)
+- [[https://ogbe.net/blog/blogging_with_org.html][Dennis Ogbe]] (Plain org)
+
+The source code for all of this is [[https://github.com/jgkamat/jgkamat.github.io][at this github repo]].
+
+Lastly, here's an obligatory screenshot of me editing this post. ~=)~
+
+[[http://i.imgur.com/5fyRVaw.png][http://i.imgur.com/5fyRVaw.png]]
 
 * Navigation
 
