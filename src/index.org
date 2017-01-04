@@ -1,7 +1,7 @@
 #+TITLE: Jay Kamat
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
-#+DATE: <2016-12-05>
+#+DATE: <2017-01-03 Tue>
 
 # Add css to this page relative so we can develop css locally with this page
 #+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -84,6 +84,7 @@ These are projects that I have created purely for fun, or for improvements in my
   + Deb Based
   + RPM Based
   + Arch Linux
+  + Gentoo Linux
 - Vim/Emacs Editing
   + [[https://github.com/jgkamat/dotfiles][My Personal Configs]]
 - Docker /({{{age-years(2013)}}} years)/
