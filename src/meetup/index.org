@@ -1,0 +1,11 @@
+#+TITLE: Meet Up With Jay!
+#+AUTHOR: Jay Kamat
+#+EMAIL: jaygkamat@gmail.com
+#+DATE: <2017-01-17 Tue>
+
+* Really?
+
+You don't want to meet up with me. Meet up with these people instead, and they'll answer any questions you might have.
+
+- [[http://meetwith.ryan.str.at/][Ryan Strat]]
+- [[http://meet.kberzin.ch/][Kristaps Berzinch]]
