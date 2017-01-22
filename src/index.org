@@ -1,7 +1,7 @@
 #+TITLE: Jay Kamat
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
-#+DATE: <2016-12-05>
+#+DATE: <2017-01-22 Sun>
 
 # Add css to this page relative so we can develop css locally with this page
 #+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -57,12 +57,10 @@ These are projects that I have created purely for fun, or for improvements in my
 ** Contributions to OSS
 - Major Contributions
   1. [[https://github.com/RoboJackets/robocup-software][robocup-software]]
-
-     Actively contributing through undergrad. See [[https://github.com/RoboJackets/robocup-software/pulls?q=is%3Apr+author%3Ajgkamat+is%3Aclosed][my merged pull requests]] for details.
+     - Maintainer and Software Lead for 2016-2017
+     - Actively contributing through undergrad. See [[https://github.com/RoboJackets/robocup-software/pulls?q=is%3Apr+author%3Ajgkamat+is%3Aclosed][my merged pull requests]] for details.
   2. [[https://github.com/alda-lang/alda][Alda]]
-
      Contributed the Alda auto-updater. See ~alda update~
-
 - Minor Contributions
   1. [[https://github.com/TricksterGuy/complx][Complx]] docker support
   2. [[https://github.com/dpayne/cli-visualizer][cli-visulizer]] xdg home support
@@ -84,6 +82,7 @@ These are projects that I have created purely for fun, or for improvements in my
   + Deb Based
   + RPM Based
   + Arch Linux
+  + Gentoo Linux
 - Vim/Emacs Editing
   + [[https://github.com/jgkamat/dotfiles][My Personal Configs]]
 - Docker /({{{age-years(2013)}}} years)/

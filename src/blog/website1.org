@@ -95,7 +95,7 @@ I'm very new to 'webdev', so actually creating the CSS was a struggle for me. [[
 * Dynamic Org Exports
 
 We've got our nice org project for easy export, custom CSS styling, and maybe even a custom org exporter to get our website looking just how we want it, but how can we get dynamic exports?
-In my case, I wanted an [[file:home.org::*Archives][aggregation of all my (sorted) blog posts]], and [[*Navigation][previous/next links on all my blog entries]].
+In my case, I wanted an [[file:home.org][aggregation of all my (sorted) blog posts]] and [[*Navigation][previous/next links on all my blog entries]]
 
 The solution I found to this really showed me the power and flexibility of org mode. Placing this block in org source:
 
