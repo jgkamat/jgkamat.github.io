@@ -2,7 +2,7 @@
 #+TITLE: Productivity and Applications
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
-#+DATE: <2017-01-13 Fri>
+#+DATE: <2017-01-22 Sun>
 
 * Why Even Bother?
 
@@ -59,18 +59,17 @@ much faster to use. Minimalist software also has the added benefit that you can
 reasonably understand the entire program quickly, and modify it to suit your
 needs, which adds immense customizability.
 
-For me, I ended up ditching Eclipse because it was much too heavy for my
-needs. It has a immense amount of features, which is nice, but Eclipse on my
-computer was unbearably slow when compared to a simple text editor. While the
-features of an IDE are very appealing, I can probably never go back to using one
-due to this point.
+For me, I ended up ditching Eclipse because it was much too heavy. It has a
+immense amount of features, which is nice, but Eclipse on my computer was
+unbearably slow when compared to a simple text editor. While the features of an
+IDE are very appealing, I can probably never go back to using one due to this
+point.
 
 * Wrapping Up
 
-Hopefully this post can help you become more productive when doing your work. I
-find that even small changes to workflow can improve productivity a lot, and
-reviewing the applications you use every day can help you have much more free
-time in the future!
+Hopefully this post can help you become more productive. I find that even small
+changes to workflow can improve productivity immensely, and reviewing the
+applications you use every day can help you have more free time in the future!
 
 * Navigation
 
