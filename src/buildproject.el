@@ -18,6 +18,9 @@
 (package-install 'ox-twbs)
 (package-install 'htmlize)
 
+;; Must have html dir in the root
+(setq website-publish-dir (concat (file-name-directory load-file-name) "../html"))
+
 ;; Load the current directory
 (print (concat (file-name-directory load-file-name) "project.el"))
 (load-file (concat (file-name-directory load-file-name) "project.el"))

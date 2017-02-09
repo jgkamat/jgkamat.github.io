@@ -10,14 +10,15 @@ dependencies:
 # The test phase dosen't actually run tests. We need the caching from the deploy step.
 compile:
   override:
+    - git clone "$CIRCLE_REPOSITORY_URL" html
     - docker run -ti -v `pwd`:/root/website ubuntu:zesty 'bash' '-c' 'cd ~/website/src && apt update && apt install -y emacs25-nox && emacs -nw -q --script buildproject.el'
 
 deployment:
   github:
     branch: sources
     commands:
-      - git config --global user.name "$GIT_USERNAME" && git config --global user.email "$GIT_EMAIL" && git fetch
-      - git reset --soft master
+      - git config --global user.name "$GIT_USERNAME" && git config --global user.email "$GIT_EMAIL"
+      - cd html
       - git add $(find . -name '*.html')
       - git commit -m 'Autoupdate html sources'
       - git push https://$GH_TOKEN@github.com/jgkamat/jgkamat.github.io master
