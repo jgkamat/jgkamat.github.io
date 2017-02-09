@@ -10,7 +10,7 @@
     `(("jgkamat.github.io"
         :base-directory ,(concat proj-base ".")
         :recursive t
-        :publishing-directory ,(concat proj-base  "../")
+        :publishing-directory ,(or (and (boundp 'website-publish-dir) website-publish-dir) (concat proj-base  "../"))
         :html-head-extra "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://jgkamat.github.io/src/jgkamat.css\"> <link href=\"https://fonts.googleapis.com/css?family=Open+Sans\" rel=\"stylesheet\">"
         :title nil
         :with-headline-numbers nil
