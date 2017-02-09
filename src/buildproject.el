@@ -21,9 +21,20 @@
 ;; Must have html dir in the root
 (setq website-publish-dir (concat (file-name-directory load-file-name) "../html"))
 
+;; Nice colors!
+(global-font-lock-mode t)
+(setq font-lock-maximum-decoration '((c++-mode . 2) (c-mode . 2) (t . t)))
+(setq font-lock-support-mode 'jit-lock-mode)
+
+(setq org-cycle-include-plain-lists 'integrate ;; Cycle through plain lists
+  org-pretty-entities t
+  org-src-fontify-natively t)
+(load-theme 'misterioso t)
+
 ;; Load the current directory
 (print (concat (file-name-directory load-file-name) "project.el"))
 (load-file (concat (file-name-directory load-file-name) "project.el"))
+
 
 ;; Don't prompt for build stuff
 (defun my-org-confirm-babel-evaluate (lang body)
