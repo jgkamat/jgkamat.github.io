@@ -18,7 +18,7 @@ deployment:
     branch: sources
     commands:
       - git config --global user.name "$GIT_USERNAME" && git config --global user.email "$GIT_EMAIL"
-      - cd html && git add $(find . -name '*.html') && git commit -m 'Autoupdate html sources' && git push https://$GH_TOKEN@github.com/jgkamat/jgkamat.github.io master
+      - cd html && git add $(find . -name '*.html') && git commit -m 'Autoupdate html sources' || true && git push https://$GH_TOKEN@github.com/jgkamat/jgkamat.github.io master
 # experimental:
 #   notify:
 #     branches:
