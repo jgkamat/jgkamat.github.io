@@ -188,6 +188,32 @@ $(function() {
     $('.bs-docs-sidebar').affix();
 });
 </script><link rel="stylesheet" type="text/css" href="../src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  displayAlign: "center",
+  displayIndent: "2em",
+  messageStyle: "none",
+  "HTML-CSS": {
+    scale: 100,
+    styles: {
+      ".MathJax_Display": {
+        "font-size": "100%"
+      }
+    }
+  },
+  "SVG": {
+    scale: 100,
+    styles: {
+      ".MathJax_SVG_Display": {
+        "font-size": "100%",
+        "margin-left": "-2.281em"
+      }
+    }
+  }
+});
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"></script>
 </head>
 <body>
 <div id="content" class="container">
@@ -236,7 +262,7 @@ Sorted by date, newest first
 </div>
 <div class="div-center">
 <p>
-<a href="home.html">&lang;Blog Home&rang;</a>
+<a href="home.html">\langle{}Blog Home\rangle</a>
 </p>
 
 </div>
@@ -265,7 +291,7 @@ Sorted by date, newest first
 <div>
 <p class="author">Author: Jay Kamat</p>
 <p class="date">Published: 2016-12-04</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org-mode</a> 9.0.3)</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org-mode</a> 8.2.10)</p>
 </div>
 </footer>
 </body>
