@@ -8,7 +8,7 @@ dependencies:
     - docker pull ubuntu:zesty
 
 # The test phase dosen't actually run tests. We need the caching from the deploy step.
-compile:
+test:
   override:
     - git clone "$CIRCLE_REPOSITORY_URL" html && cd html && git checkout master && cd ..
     - docker run -ti -v `pwd`:/root/website ubuntu:zesty 'bash' '-c' 'cd ~/website/src && apt update && apt install -y emacs25-nox && emacs -nw -q --script buildproject.el'
