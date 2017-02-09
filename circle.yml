@@ -2,16 +2,11 @@ machine:
   services:
     - docker
 
-dependencies:
-  pre:
-      # get ubuntu zenial
-    - docker pull ubuntu:zesty
-
 # The test phase dosen't actually run tests. We need the caching from the deploy step.
 test:
   override:
     - git clone "$CIRCLE_REPOSITORY_URL" html && cd html && git checkout master && cd ..
-    - docker run -ti -v `pwd`:/root/website ubuntu:zesty 'bash' '-c' 'cd ~/website/src && apt update && apt install -y emacs25-nox && emacs -nw -q --eval "(progn (load-file \"buildproject.el\") (save-buffers-kill-terminal))"'
+    - docker run -ti -v `pwd`:/root/website ubuntu:zesty 'bash' '-c' 'cd ~/website/src && apt-get update && export TERM="xterm-256color" && apt-get install -y emacs25-nox && emacs -nw -q --eval "(progn (load-file \"buildproject.el\") (save-buffers-kill-terminal))"'
 
 deployment:
   github:
@@ -19,8 +14,3 @@ deployment:
     commands:
       - git config --global user.name "$GIT_USERNAME" && git config --global user.email "$GIT_EMAIL"
       - cd html && git add $(find . -name '*.html') && git commit -m 'Autoupdate html sources' || true && git push https://$GH_TOKEN@github.com/jgkamat/jgkamat.github.io master || true
-# experimental:
-#   notify:
-#     branches:
-#       only:
-#         - master
