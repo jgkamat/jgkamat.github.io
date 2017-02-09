@@ -2,5 +2,5 @@
 test:
   override:
     # Also run webhooks
-    - true
+    - sh -c true
 
