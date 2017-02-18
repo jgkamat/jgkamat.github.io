@@ -3,7 +3,7 @@
 ;; This will install everything needed to build my website, so it's meant to be run in a completely clean eamcs
 
 ;; To run:
-;; emacs -nw -q --script buildproject.el
+;; emacs -nw -q --eval "(progn (load-file \"buildproject.el\") (save-buffers-kill-terminal))"
 ;; REQUIRES EMACS 25.1 OR LATER
 
 (package-initialize)
@@ -32,7 +32,6 @@
 (load-theme 'misterioso t)
 
 ;; Load the current directory
-(print (concat (file-name-directory load-file-name) "project.el"))
 (load-file (concat (file-name-directory load-file-name) "project.el"))
 
 
