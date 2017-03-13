@@ -1,19 +1,13 @@
 #+TITLE: Jay Kamat
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
-#+DATE: <2017-02-08 Wed>
+#+DATE: <2017-03-13 Mon>
 
 # Add css to this page relative so we can develop css locally with this page
 #+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 # Macro to determine age of things (years). Input the start year and it will return its age.
 #+MACRO: age-years src_emacs-lisp[:results raw :cache yes]{(- (string-to-number (format-time-string "%Y")) (elt (parse-time-string "$1") 5))}
-
-# #+BEGIN_SRC emacs-lisp :exports none :results output
-#   ;; Found in project.el
-#   (fboundp 'gh-stars)
-#   (fbountp 'org-link-to-str)
-# #+END_SRC
 
 * Introduction
 Hi! I'm {{{author}}}, an undergraduate computer science student at Georgia Tech, and I'm interested in everything related to science, technology, computers, engineering, and space!
@@ -63,8 +57,12 @@ These are projects that I have created purely for fun, or for improvements in my
      - Created the Alda auto-updater. See ~alda update~.
      - Created the new Java REPL. See ~alda repl~.
 - Minor Contributions
+  # TODO should this entire section be deleted?
+  # Should probably be a table at any rate.
   1. [[https://github.com/TricksterGuy/complx][Complx]] docker support
   2. [[https://github.com/dpayne/cli-visualizer][cli-visulizer]] xdg home support
+  3. [[https://github.com/editorconfig/editorconfig-emacs][editorconfig]] verilog support
+  4. [[https://github.com/larstvei/ox-gfm][ox-gfm]] publishing support
 ** School Projects
 1. [[https://github.com/MountainRange/MULE][MULE Clone]]
 
@@ -75,16 +73,23 @@ These are projects that I have created purely for fun, or for improvements in my
 + Java /(7 Years)/
 + Shell /({{{age-years(2013)}}} years)/
 + Python /({{{age-years(2014)}}} years)/
-+ C /({{{age-years(2014)}}} years)/
+  # since 2014
++ C /(2 years)/
   # Since 2015
 + Common Lisp /(2 years)/
+  # Since 2017
++ GoLang (minimal)
 ** Skills
+# My first distro was OpenSuse!
+# Followed by ubuntu followed by fedora followed by...........too many.
 - Linux /({{{age-years(2010)}}} years)/
   + Deb Based
   + RPM Based
+    # Since 2015
   + Arch Linux
+    # Since 2016
   + Gentoo Linux
-- Vim/Emacs Editing
+- Emacs/Vim Editing
   + [[https://github.com/jgkamat/dotfiles][My Personal Configs]]
 - Docker /({{{age-years(2013)}}} years)/
   + Plain Docker
@@ -96,7 +101,7 @@ These are projects that I have created purely for fun, or for improvements in my
   + GoCD
   + Travis
 - Robotics
-  + [[http://homesteadrobotics.com/][Homestead HRT]] - FRC Team 670 /(2012-2014)/
   + [[https://www.robojackets.org/][Georgia Tech RoboJackets]] - RoboCup /(2014-Present)/
+  + [[http://homesteadrobotics.com/][Homestead HRT]] - FRC Team 670 /(2012-2014)/
 * Contact
 - [[mailto:jaygkamat@gmail.com][Email]]
