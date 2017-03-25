@@ -78,7 +78,7 @@ These are projects that I have created purely for fun, or for improvements in my
   # Since 2015
 + Common Lisp /(2 years)/
   # Since 2017
-+ GoLang (minimal)
++ GoLang /(minimal)/
 ** Skills
 # My first distro was OpenSuse!
 # Followed by ubuntu followed by fedora followed by...........too many.

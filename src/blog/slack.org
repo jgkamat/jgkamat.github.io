@@ -1,0 +1,140 @@
+
+#+TITLE: Breaking Slack
+#+AUTHOR: Jay Kamat
+#+EMAIL: jaygkamat@gmail.com
+#+DATE: <2017-03-25 Sat>
+
+* Preface
+
+Communication is a tricky problem, because it's hard to do, and it's hard to
+make everyone happy. When communications started out, we had lots of choices
+about how to communicate, due to the existence of standards that allowed
+multiple servers to talk to each other ([[https://xmpp.org/][XMPP]] federation) and standards that
+allowed a single client to talk to multiple servers (IRC). In recent years, we
+have backtracked away from these standards in favor of hundreds of closed
+standards, forcing users to install yet another client for every service they
+use (hangouts, messenger, signal, telegram, riot, groupme, weechat). This means
+that if you *love* a particular chat app, you simply won't be able to use it for
+all your chats!
+
+** Slack
+
+Slack is a particularly bad example of the above, since it's a tool targeted
+towards /team/ communication. Usually, a team consists of many more people than
+the average chat, and that makes the above even more relevant, since the more
+people you need to connect, the more flexibility you must have to keep the team
+happy and running smoothly. Slack disallows features that even IRC has had for
+decades, such as ignoring, message filtering, and knocking, which makes it a
+terrible tool for team communication. Unfortunately, I have been forced into
+using slack in a few places I 'work', which will hopefully no longer be necessary
+in the long term.
+
+However, Slack goes even further by also being terribly designed under the hood,
+making it extremely easy to 'break'. While these are 'not security problems',
+they do cause serious problems to team communication, and are impossible for
+moderators to fix without slack support intervening.
+
+I do have code for most of these 'exploits', but I will not be linking to them
+directly to make them 'harder to use'. They are /somewhere/ in my GitHub
+namespace though. I have not done anything with a TODO myself, but it shouldn't
+be too hard.
+
+*TL;DR:* This is a guide to making your fellow slack user's lives as painful as
+ possible.
+
+* Message Limits
+
+Message limits are the first core problem of slack. Since most slack users use a
+web client, and don't store any messages locally, 'clearing' the message history
+causes a bunch of problems.
+
+Slack message limits are shared across dms, mpdms, public channels, and private
+channels. Slack message limits include both human and bot messages.
+
+** TODO Message Bomb (finish reference to other bot things)
+
+Slack has very generous throttling rates, even for extended periods of
+time. It's incredibly easy to make a bot that keeps posting something in a
+private channel. Since bots and DM's count to the message limit, we can speed
+this up even more by getting a bot to do half our work!
+
+[[file:http://i.imgur.com/qHOSsMi.png]]
+
+We can speed this up even more by exploiting other bot features, which I'll talk
+about later.
+
+The message limit is 10,000 messages. Assuming we're posting at a *very
+conservative* one message per second, that comes up to us clearing the message
+history in about 3 hours. With slackbot replying to all of our messages as well,
+that comes down to 1.5 hours. This is crazy for such a slow rate. At higher
+rates (or with multiple accounts), we can clear the message history in a matter
+of minutes, meaning that people won't be able to see any messages if they are
+more than a couple minutes late.
+
+Deleting messages DOES NOT FREE UP HISTORY, so deleted history is GONE FOREVER.
+
+*BONUS:* Since we're clearing messages so quickly, DM's or other notifications
+that show up won't be able to be cleared with default settings in the web ui.
+
+* Slack Namespace
+
+Unlike any other self respecting (modern) chat application, it is *impossible*
+to create two channels with the same name. As if this isn't bad enough, this
+namespace is shared among users, public channels, private channels, and user
+groups.
+
+It's impossible for admins to see who's hoarding the channel namespace.
+
+** Channel Hoarding
+
+This is especially effective when joining a new slack team. Simply by creating
+tons and tons of private channels with popular names such as ~leads~, ~dev~,
+~beta~, etc. Even better, make channels that conflict with /users/ and /user
+groups/ that could be made in the future.
+
+Private channels are also very useful, since they are needed for many of the
+other 'exploits' and private channel creation can be turned off by your
+admin. However, admins are unable to delete /existing/ private slack channels,
+so hoard up!
+
+** TODO Channel Creation Bot
+
+I have not attempted it yet, but it wouldn't be too hard to make a bot that
+creates private channels with every possible name. It probably would be a good
+idea to start with a wordlist, to maximize the effect.
+
+Another idea would be to detect a username change, and create a private channel
+with the old username. This would prevent any user from re-using their old
+username
+
+* Lack of Permissions
+
+A lot of issues come up when mixing some of the more restrictive permissions
+options with 'unconventional' usage.
+
+** TODO Channel Jail Bot
+
+For example, a common (but not default) setting is to restrict archiving
+channels. This means that when you create a private channel, you'll be unable to
+delete it until someone else joins (who in-turn will be jailed). The web UI does
+not make this clear at all though, and it confuses everyone who is jailed at first.
+
+TODO: ADD PICTURE HERE
+
+It wouldn't be too hard to detect when someone says something you don't like,
+and create a private channel for them, add them to that channel, and leave the
+channel. This is a huge annoyance for the recipient, since it clutters their
+channel list and gives them an unneeded notification (which cannot be disabled
+in the slack app). They can decide to jail the bot instead, so the bot should be
+programmed to leave any 'jail' channel immediately. Other than that, it
+guarentees that at least one member will be jailed, until an admin is added.
+
+Unfortunately, it's easy to see who's doing this in the logs, but there's no way
+an admin can prevent this from happening besides banning private channels (stock
+up while you can), or by banning you from the team.
+
+* Navigation
+
+#+BEGIN_SRC emacs-lisp :exports results :results raw
+(gen-prev-next)
+#+END_SRC
