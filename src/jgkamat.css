@@ -4,12 +4,7 @@
 body {
 	background-color: #262626;
 }
-::selection, ::-webkit-selection {
-	background:rgba(57, 60, 63, 0.99);
-	/* color: #393c3f; */
-}
-
-::-moz-selection {
+::selection, ::-moz-selection {
 	background:rgba(57, 60, 63, 0.99);
 	/* color: #393c3f; */
 }

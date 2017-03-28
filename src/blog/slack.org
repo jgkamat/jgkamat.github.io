@@ -7,15 +7,14 @@
 * Preface
 
 Communication is a tricky problem, because it's hard to do, and it's hard to
-make everyone happy. When communications started out, we had lots of choices
-about how to communicate, due to the existence of standards that allowed
-multiple servers to talk to each other ([[https://xmpp.org/][XMPP]] federation) and standards that
-allowed a single client to talk to multiple servers (IRC). In recent years, we
-have backtracked away from these standards in favor of hundreds of closed
-standards, forcing users to install yet another client for every service they
-use (hangouts, messenger, signal, telegram, riot, groupme, weechat). This means
-that if you *love* a particular chat app, you simply won't be able to use it for
-all your chats!
+make everyone happy. When internet messaging started out, we had lots of
+choices, due to the existence of standards that allowed multiple servers to talk
+to each other ([[https://xmpp.org/][XMPP]] federation) and standards that allowed a single client to
+talk to multiple servers (IRC). In recent years, we have backtracked away from
+these standards in favor of hundreds of closed standards, forcing users to
+install yet another client for every service they use (hangouts, messenger,
+signal, telegram, riot, groupme, whatsapp). This means that if you *love* a
+particular chat app, you simply won't be able to use it for all your chats!
 
 ** Slack
 
@@ -133,7 +132,15 @@ Unfortunately, it's easy to see who's doing this in the logs, but there's no way
 an admin can prevent this from happening besides banning private channels (stock
 up while you can), or by banning you from the team.
 
-* Navigation
+* TODO Notification Spam
+
+* TODO SlackBot
+
+* TODO PlusPlus
+
+* TODO Polly
+
+* TODO Navigation
 
 #+BEGIN_SRC emacs-lisp :exports results :results raw
 (gen-prev-next)
