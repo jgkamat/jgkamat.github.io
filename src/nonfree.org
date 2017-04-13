@@ -1,0 +1,62 @@
+#+TITLE: NonFree Blog Testing
+#+AUTHOR: Jay Kamat
+#+EMAIL: jaygkamat@gmail.com
+#+DATE: <2017-04-13 Thu>
+
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+* NonFree Software
+This page is mostly for testing out their usage, and evaluating whether it is worth including it into the rest of the blog.
+* [[https://txtpen.com/][txtpen]]
+Seems to be an easy to use highlighting tool
+** Pros
+1. Easy installation
+2. Allows users to comment and interact with page
+3. Requires no infrastructure on website's part
+** Cons
+1. Breaks footer colors
+   - I'll probably report this at some point, but ~!important~ fixes it for now
+2. Request to website must track users in some way
+3. Dosen't seem to work always (when highlighting quickly)
+4. Requires users use a google or txtpen account to highlight content
+5. Requires javascript
+
+* TODO Test
+Here's some testing stuff to see if this will break!
+
+- Source code blocks
+  #+BEGIN_SRC sh :exports both :results output
+  #!/bin/bash
+  echo "My name is Jay" | sed 's/Jay/& Kamat/'
+  if false; then
+      echo hi
+  fi
+  #+END_SRC
+- Tables
+  | One   | Two  |
+  |-------+------|
+  | three | four |
+  | five  | six  |
+- Quotes
+  #+BEGIN_QUOTE
+  "There is no such thing as a typical user, and if there were, it wouldn't be you"
+
+  #usability
+  #+END_QUOTE
+- $\LaTeX$
+
+  Assume $\alpha=9$, $n=16$ and $x=0$.
+
+  Stack grows until base case $2^{x}=n$.
+- Some org Special Chars
+
+  \alpha \beta \rightarrow \leftarrow \le \ge \sigma \Sigma
+
+* Conclusion
+
+Let me know via email or the txtpen highlights if you have any comments or concerns!
+
+
+# We'll see if this is worth it eventually
+#+HTML:<script src="https://txtpen.com/embed.js?site=jgkamat"></script>

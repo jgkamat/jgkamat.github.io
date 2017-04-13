@@ -86,7 +86,8 @@ a:visited {
 /* footer */
 footer {
 	height: auto;
-	background-color: #2B2B2C;
+	/* Hack for txtpen, remove when ending testing */
+	background-color: #2B2B2C !important;
 }
 
 /* I'm not planning on actually having code here ;/ */
