@@ -4,12 +4,7 @@
 body {
 	background-color: #262626;
 }
-::selection, ::-webkit-selection {
-	background:rgba(57, 60, 63, 0.99);
-	/* color: #393c3f; */
-}
-
-::-moz-selection {
+::selection, ::-moz-selection {
 	background:rgba(57, 60, 63, 0.99);
 	/* color: #393c3f; */
 }
@@ -76,17 +71,18 @@ p, th, td {
 
 /* links */
 a:link, a:hover, a:active {
-	color: #bd3832;
+	color: #d6372f;
 }
 
 a:visited {
-	color: #a52f29;
+	color: #bf332b;
 }
 
 /* footer */
 footer {
-  height: auto;
-  background-color: #2B2B2C;
+	height: auto;
+	/* Hack for txtpen, remove when ending testing */
+	background-color: #2B2B2C !important;
 }
 
 /* I'm not planning on actually having code here ;/ */
@@ -103,20 +99,20 @@ code {
 }
 
 .div-left {
-    position: relative;
+	position: relative;
 	width: auto;
 	float: left;
 	z-index: 1;
 }
 .div-right {
-    position: relative;
+	position: relative;
 	float:right;
 	z-index: 1;
 }
 
 .div-center {
 	float: left;
-    position: absolute;
+	position: absolute;
 	width: 100%;
 	text-align: center;
 }
