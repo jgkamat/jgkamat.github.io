@@ -1,7 +1,5 @@
-[jgkamat.github.io](http://jgkamat.github.io)
+[jgkamat.github.io](http://jgkamat.github.io) [![CircleCI](https://circleci.com/gh/jgkamat/jgkamat.github.io.svg?style=shield)](https://circleci.com/gh/jgkamat/jgkamat.github.io)
 =================
-
-[![CircleCI](https://circleci.com/gh/jgkamat/jgkamat.github.io.svg?style=svg)](https://circleci.com/gh/jgkamat/jgkamat.github.io)
 
 My Personal Website!
 
