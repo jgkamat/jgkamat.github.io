@@ -1,0 +1,20 @@
+* jgkamat.github.io [[https://circleci.com/gh/jgkamat/jgkamat.github.io][file:https://circleci.com/gh/jgkamat/jgkamat.github.io.svg?style=shield]]
+
+My Personal Website!
+
+This website was built with [[org-mode][http://orgmode.org/]], and [[ox-twbs][https://github.com/marsmining/ox-twbs]]
+
+** Building
+
+To build it:
+
+#+BEGIN_SRC sh
+cask install
+make
+#+END_SRC
+
+Output will be placed in ~./html~
+
+** Structure
+
+Please go to '[[https://jgkamat.github.io/blog/website1.html][Creating A Blog in Org Mode]]'
