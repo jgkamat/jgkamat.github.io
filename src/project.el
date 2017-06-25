@@ -22,7 +22,7 @@
 (setq org-twbs-postamble-format
   '(("en" "
 <div>
-<p class=\"author\">Author: %a</p>
+<p class=\"author\">Author: <a href=\"https://github.com/jgkamat/jgkamat.github.io\">%a</a></p>
 <p class=\"date\">Published: %d</p>
 <p class=\"creator\">%c</p>
 </div>")))
