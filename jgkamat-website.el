@@ -1,16 +1,56 @@
+;;; jgkamat-website.el --- generation scripts for jgkamat's website
+
+;; Copyright (C) 2016-present Jay Kamat
+;; Author: Jay Kamat <jaygkamat@gmail.com>
+;; Version: 1.0
+;; Keywords: jgkamat
+;; URL: https://github.com/jgkamat/jgkamat.github.io
+;; Package-Requires: ((emacs "25.0") (htmlize) (ox-twbs))
+
+;;; Commentary:
+;;Creates and builds org project files for my website
+
+;; To run: cask eval "(progn (require 'jgkamat-website) (jgkamat-publish))" in the root of the project.
+
+
+;;; Code:
 
 (require 'ox-publish)
+(require 'ox-twbs)
+
+(defvar website-publish-dir (concat (file-name-directory load-file-name) "./html"))
+
+;; Force htmlize to activate even in nogui mode:
+;; https://stackoverflow.com/questions/3591337/emacs-htmlize-in-batch-mode
+;; http://sebastien.kirche.free.fr/emacs_stuff/elisp/my-htmlize.el
+;; Get fancy colors! (but this will screw up your native emacs install)
+(when noninteractive
+  ;; Don't run in interactive mode to avoid breaking your colors
+  (custom-set-faces
+    ;; Draculized minimal: https://github.com/jgkamat/darculized
+    ;; TODO find out why default face is not applying.
+    '(default                      ((t (:foreground "#909396" :background "#262626"))))
+    '(font-lock-builtin-face       ((t (:foreground "#598249"))))
+    '(font-lock-comment-face       ((t (:foreground "#5e6263"))))
+    '(font-lock-constant-face      ((t (:foreground "#15968D"))))
+    '(font-lock-function-name-face ((t (:foreground "#2F7BDE"))))
+    '(font-lock-keyword-face       ((t (:foreground "#598249"))))
+    '(font-lock-string-face        ((t (:foreground "#15968D"))))
+    '(font-lock-type-face		       ((t (:foreground "#598249"))))
+    '(font-lock-variable-name-face ((t (:foreground "#2F7BDE"))))
+    '(font-lock-warning-face       ((t (:foreground "#bd3832" :weight bold)))))
+	(setq htmlize-use-rgb-map 'force)
+	(require 'htmlize))
 
 
 ;; I reccomend you publish with FORCE on to avoid loosing changes in history files
-;; (org-publish-current-project t)
 (let ((proj-base (file-name-directory load-file-name)))
-  (setq project-base proj-base)
+  (setq project-base (concat proj-base "src/"))
   (setq org-publish-project-alist
     `(("jgkamat.github.io"
-        :base-directory ,(concat proj-base ".")
+        :base-directory ,project-base
         :recursive t
-        :publishing-directory ,(or (and (boundp 'website-publish-dir) website-publish-dir) (concat proj-base  "../"))
+        :publishing-directory ,(or (and (boundp 'website-publish-dir) website-publish-dir) (concat project-base  "../html/"))
         :html-head-extra "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://jgkamat.github.io/src/jgkamat.css\"> <link href=\"https://fonts.googleapis.com/css?family=Open+Sans\" rel=\"stylesheet\">"
         :title nil
         :with-headline-numbers nil
@@ -54,7 +94,7 @@
     (sort
       ;; Map environments to (filename . property titles)
       (mapcar #'gen-org-property files)
-      '(lambda (one two)
+      (lambda (one two)
          (let ((x (org-timestamp-to-str (first (second one))))
                 (y (org-timestamp-to-str (first (second two)))))
            ;; (print (concat x " " y))
@@ -77,7 +117,7 @@
     ;; Get desired sorting order
     (reverse
       ;; Map properties to strings
-      (mapcar '(lambda (x)
+      (mapcar (lambda (x)
                  (format "1. %s" (org-property-to-link x)))
         (gen-links-properties directory)))))
 
@@ -104,36 +144,21 @@
         "\n#+end_div-right"
         "\n#+end_div-wrap"))))
 
-;; (require 'request)
-;; (defun gh-stars (repo-string)
-;;   (if (string= "-" repo-string)
-;;     "-"
-;;     (progn (require 'request)
-;;       (defvar result nil)
-;;       (request (concat  "https://api.github.com/repos/" repo-string "/stargazers?per_page=1")
-;;         :parser 'json-read
-;;         :sync t
-;;         :success
-;;         (cl-function
-;;           (lambda (&key response &allow-other-keys)
-;;             (setq result response))))
-;;       result)))
 
-;; (defun parse-gh-str (url-string)
-;;   "Parses a github url and returns a nice representation like: jgkamat/alda-mode"
-;;   (let* ((var (split-string url-string "/"))
-;;           (len (length var)))
-;;     (when (string= (elt (last var) 0) "")
-;;       (setq len (- len 1)))
-;;     (concat (elt var (- len 2)) "/" (elt var (- len 1)))))
+;; Don't prompt for build stuff
+(defun my-org-confirm-babel-evaluate (lang body)
+  (not (member lang '("emacs-lisp" "python" "sh" "dot"))))
+(setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
 
-;; (defun parse-org-link (org-link)
-;;   "takes in an org link and returns a string link"
-;;   (symbol-name (elt (elt org-link 0) 0)))
+(setq org-cycle-include-plain-lists 'integrate ;; Cycle through plain lists
+	org-pretty-entities t
+	org-src-fontify-natively t)
 
-;; (defun org-link-to-str (link)
-;;   "Turns org links to jgkamat/alda-mode format"
-;;   (let ((str-link (parse-org-link link)))
-;;     (if (string-match "github" str-link)
-;;       (parse-gh-str str-link)
-;;       "-")))
+(defun jgkamat-publish ()
+	"Export this website.  Assumes this file has set up the projects already."
+	(let ((make-backup-files nil))
+		(org-publish-all t)))
+
+(provide 'jgkamat-website)
+
+;;; jgkamat-website.el ends here

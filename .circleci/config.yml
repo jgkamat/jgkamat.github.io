@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/jgkamat-website
+    docker:
+      - image: silex/emacs:25.2
+    steps:
+        # Install cask
+      - run: curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
+      - checkout
+      - run: git config --global user.name "$GIT_USERNAME" && git config --global user.email "$GIT_EMAIL"
+      - run: git clone "$CIRCLE_REPOSITORY_URL" html && cd html && git checkout master && cd ..
+      - run: ~/.cask/bin/cask install
+        # Generate build files to /html
+      - run: ~/.cask/bin/cask eval "(progn (require 'jgkamat-website) (jgkamat-publish))"
+      - deploy:
+          name: Deploy website
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "sources" ]; then
+            cd html && git add $(find . \( -iname \*.css -o -iname \*.html \)) && git commit -m "Autoupdate html sources" || true && git push https://$GH_TOKEN@github.com/jgkamat/jgkamat.github.io master || true
+            fi

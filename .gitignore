@@ -16,3 +16,5 @@ coverage
 tmp/stackprof-*
 
 *.html
+html/
+.cask/

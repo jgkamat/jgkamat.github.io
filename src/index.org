@@ -107,6 +107,7 @@ These are projects that I have created purely for fun, or for improvements in my
   + Jenkins
   + GoCD
   + Travis
+- Performance Analysis via ~perf~
 - Robotics
   + [[https://www.robojackets.org/][Georgia Tech RoboJackets]] - RoboCup /(2014-Present)/
   + [[http://homesteadrobotics.com/][Homestead HRT]] - FRC Team 670 /(2012-2014)/

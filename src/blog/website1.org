@@ -60,9 +60,9 @@ For a single file, we would put ~#+OPTIONS: toc:nil~, but to apply this to every
 
 ** Making this Shareable
 
-Some people might want to put this ~setq~ call in your Emacs dotfiles, but I prefer to place it in a [[https://github.com/jgkamat/jgkamat.github.io/blob/sources/src/project.el][project.el]] file instead, which lets others get the same project definition. It also lets you put other changes you make in this file as well, since all those changes will be elisp. Anyone who wants to work with your project simply needs to source this file, instead of setting up the project again.
+Some people might want to put this ~setq~ call in your Emacs dotfiles, but I prefer to place it in a [[https://github.com/jgkamat/jgkamat.github.io/blob/sources/jgkamat-website.el][seperate emacs lisp file]] file instead, which lets others get the same project definition. It also lets you put other changes you make in this file as well, since all those changes will be elisp. Anyone who wants to work with your project simply needs to source this file, instead of setting up the project again.
 
-In order to make sure others can use this flawlessly, we need to remove these absolute links from our project, such as ~/var/www/html~ and ~~/org-project~, since we can't expect everyone to have the same directory structure as we do. Since we are loading the static file ~project.el~, we can define the root/export in terms of this file. This is one way to do that, assuming that project.el is in the root:
+In order to make sure others can use this flawlessly, we need to remove these absolute links from our project, such as ~/var/www/html~ and ~~/org-project~, since we can't expect everyone to have the same directory structure as we do. Since we are loading the static file ~jgkamat-website.el~, we can define the root/export in terms of this file. This is one way to do that, assuming that ~jgkamat-website.el~ is in the root:
 
 #+BEGIN_SRC emacs-lisp
   (let ((proj-base (file-name-directory load-file-name)))
@@ -74,7 +74,7 @@ In order to make sure others can use this flawlessly, we need to remove these ab
 	     :publishing-function org-html-publish-to-html))))
 #+END_SRC
 
-The org project definition for this blog (in [[https://github.com/jgkamat/jgkamat.github.io/blob/master/src/project.el][project.el]]) is not much more complicated than this one.
+The org project definition for this blog (in [[https://github.com/jgkamat/jgkamat.github.io/blob/sources/jgkamat-website.el][jgkamat-website.el]] is not much more complicated than this one.
 The main difference is it has a bunch of org project customizations turned on, and it's using ~ox-twbs~ instead of the native html exporter.
 This is done by changing the ~:publishing-function~ to ~org-twbs-publish-to-html~, which is in the ~ox-twbs~ docs.
 
@@ -129,7 +129,7 @@ After creating a ~(gen-links)~ to generate a sorted list of org blog posts, and 
   ,#+END_SRC
 #+END_SRC
 
-I put the source for these functions in my [[https://github.com/jgkamat/jgkamat.github.io/blob/master/src/project.el][project.el]]. These functions work by parsing all my org files in ~/blog~ and sorting them by the ~#+DATE~, and displaying the relevant information.
+I put the source for these functions in my [[https://github.com/jgkamat/jgkamat.github.io/blob/sources/jgkamat-website.el][jgkamat-website.el]]. These functions work by parsing all my org files in ~/blog~ and sorting them by the ~#+DATE~, and displaying the relevant information.
 They need some more work, but they are usable for now. I might post about how I made those functions later...
 
 * Side Note: Divs
