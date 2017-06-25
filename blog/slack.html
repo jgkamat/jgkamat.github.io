@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Breaking Slack</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="Jay Kamat">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script type="text/javascript">
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script><link rel="stylesheet" type="text/css" href="https://jgkamat.github.io/src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-9"><h1 class="title">Breaking Slack</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Preface</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Communication is a tricky problem, because it's hard to make everyone
+happy. When internet messaging started out, we had lots of choices, due to the
+existence of standards that allowed multiple servers to talk to each other (<a href="https://xmpp.org/">XMPP</a>
+federation) and standards that allowed a single client to talk to multiple
+servers (IRC). In recent years, we have backtracked away from that model in
+favor of hundreds of closed protocols, forcing users to install <i><a href="https://xkcd.com/1810/">yet another
+client</a></i> for every service they use (hangouts, messenger, signal, telegram,
+groupme, whatsapp, skype, tox, SMS, &#x2026;). This means that if you <b>love</b> a
+particular chat app, you simply won't be able to use it everywhere!
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Slack</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Slack is a particularly bad example of the above, since it's a tool 'targeted'
+towards <i>team</i> communication, rather than just direct messages. Usually, a team
+consists of many more people than the average chat, and that makes the above
+even more relevant, since the more people you need to connect, the more
+flexibility you must have to keep the team happy and running smoothly. Slack
+disallows features that even IRC has had for decades, such as ignoring,
+blocking, message filtering, and knocking, which makes it a terrible tool for
+any team that is actually trying to get things done. Unfortunately, I have been forced
+into using slack in a few places that I 'work' at, which will hopefully no
+longer be necessary in the long term.
+</p>
+
+<p>
+However, Slack goes even further by also being terribly designed under the hood,
+making it extremely easy to 'break'. While these are 'not security problems',
+they do cause serious problems to team communication, and are impossible for
+moderators to fix without slack admins intervening.
+</p>
+
+<p>
+I do have code for most of these 'exploits', but I will not be linking to them
+directly to make them 'harder to use'. They are <i>somewhere</i> in my GitHub
+namespace though. I have not done anything with a TODO on my own, but it
+shouldn't be too hard.
+</p>
+
+<p>
+<b>TL;DR:</b> This is a guide to making your fellow slack user's lives as painful as
+ possible, ideally while staying anonymous.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Message Limits</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Message limits are the first core problem of slack. Since most slack users use a
+web client, and don't store any messages locally, 'clearing' the message history
+causes a bunch of problems.
+</p>
+
+<p>
+Slack message limits are shared across dms, mpdms, public channels, and private
+channels. Slack message limits include both human and bot messages.
+</p>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">Message Bomb</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Slack has very generous throttling rates, even for extended periods of
+time. It's incredibly easy to make a bot that keeps posting something in a
+private channel. Since bots and DM's count to the message limit, we can speed
+this up even more by getting a bot to do half our work!
+</p>
+
+
+<figure>
+<p><a href="https://i.imgur.com/qHOSsMi.png"><img src="https://i.imgur.com/qHOSsMi.png" class="img-responsive" alt="qHOSsMi.png"></a>
+</p>
+</figure>
+
+<p>
+We can speed this up even more by exploiting other bot features, which I'll talk
+about later.
+</p>
+
+<p>
+The message limit is 10,000 messages. Assuming we're posting at a <b>very
+conservative</b> one message per second, that lets us clear the message history in
+about 3 hours. With slackbot replying to all of our messages as well, that comes
+down to 1.5 hours. This is crazy for such a slow rate. At higher rates (or with
+multiple accounts), we can clear the message history in a matter of minutes or
+seconds, meaning that people won't be able to see any messages if they are more
+than a couple minutes old.
+</p>
+
+<p>
+Deleting messages DOES NOT FREE UP HISTORY, so deleted history is GONE
+FOREVER. The only way to get a team's messages back is to pay slack support (or
+have them stored locally).
+</p>
+
+<p>
+<b>BONUS:</b> Since we're clearing messages so quickly, DM's or other notifications
+that show up won't be able to be cleared with default settings in the ui. This
+means people will be stuck with unread notification markers they won't be able
+to clear without some extra effort!
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Slack Namespace</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Unlike any other self respecting (modern) chat application, it is <b>impossible</b>
+to create two channels with the same name. As if this isn't bad enough, this
+namespace is <b>shared</b> among users, public channels, private channels, and user
+groups.
+</p>
+
+<p>
+It's impossible for moderators to see who's hoarding the channel namespace.
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">Channel Hoarding</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+This is especially effective when joining a new slack team. Simply by creating
+tons and tons of private channels with popular names such as <code>leads</code>, <code>dev</code>, and
+<code>beta</code>, we can make logical channel unavailable for public. Even better, make
+channels that conflict with <i>users</i> and <i>user groups</i> that could be made in the
+future.
+</p>
+
+<p>
+Private channels are also very useful, since they are needed for many of the
+other 'exploits'. Private channel creation can be turned off by your
+moderator. However, moderators are unable to delete <i>existing</i> private slack
+channels, so hoard private channels early!
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="label label-primary TODO">TODO</span> Channel Creation Bot</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+It wouldn't be too hard to make a bot that creates private channels with every
+possible name. It probably would be a good idea to start with a wordlist,
+tailored to the team being targeted, to maximize the effect.
+</p>
+
+<p>
+Another idea is to detect any username change from posts in #general (which you
+cannot leave), and create a private channel with the old username. This would
+prevent any user from re-using their old username.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Lack of Permissions</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+A lot of issues come up when mixing some of the more restrictive permissions
+options with 'unconventional' usage.
+</p>
+</div>
+
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="label label-primary TODO">TODO</span> Channel Jail Bot</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+For example, a common (but not default) setting is to restrict archiving
+channels. This means that when you create a private channel, you'll be unable to
+delete or even leave it until someone else joins (who in-turn will be
+jailed). The web UI does not make this clear at all though, and it confuses
+everyone who is jailed for their first time.
+</p>
+
+<p>
+It wouldn't be too hard to detect when someone says something you don't like,
+create a private channel for them, add them to said channel, and leave said
+channel. This is a huge annoyance for the recipient, since it clutters their
+channel list and gives them an unneeded notification (which cannot be disabled
+by any means in the slack app). If they attempt to jail the bot itself, the bot
+could immediately leave the channel. Other than that, it guarantees that at
+least one member will be jailed, until a moderator is added.
+</p>
+
+<p>
+Unfortunately, it's easy to see who's doing this in the logs, but there's no way
+an moderator can prevent this from happening besides banning private channels
+(stock up while you can), or by disabling your account.
+</p>
+
+<p>
+If you combine this with the Message bomb method above, we can quickly clear our
+invite/part logs as well, which can hide your tracks to some extent.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Notification Spam</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Notification spam is unfortunately hard to achieve without getting noticed,
+because notifications usually have the sender's name attached. There are ways to
+get around this though&hellip;
+</p>
+
+<p>
+Since no one can leave #general, (and most slack moderators don't change settings
+about <code>@everyone/@here/@channel</code>), it is extremely easy to send the entire team a
+notification with a quick <code>@channel/@everyone</code>. If you delete the post immediately
+after that, the only thing linking you to the notification is direct
+eyewitnesses or the notification popup itself.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">Bots</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Bots let you take some of the burden off of your own infrastructure, and make
+breaking slack easier than ever for everyone!
+</p>
+</div>
+<div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1">PlusPlus</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+<a href="https://plusplus.chat/">PlusPlus</a> is a very popular extension for slack, and is installed on many
+teams. However, it's very easy to exploit PlusPlus for evil. Because PlusPlus is
+installed on a team, rather than on a channel (like IRC), it's trivially easy to
+exploit, <a href="https://plusplus.chat/things/leaderboard">as the leaderboards of plusplus show</a>.
+</p>
+
+<p>
+First of all, we can trigger plusplus in a couple ways:
+</p>
+
+<ul class="org-ul">
+<li><code>@username++</code>
+</li>
+<li><code>username+++</code>
+</li>
+<li><code>@anything++</code>
+</li>
+</ul>
+
+<p>
+I found that if one method of voting did not work in my automation, a different
+one would work, so I was able to trigger plusplus from anywhere (that isn't a
+'true slack bot', as slack bots cannot talk to each other).
+</p>
+
+<p>
+PlusPlus replies like this:
+</p>
+
+<ul class="org-ul">
+<li><code>Woot! [@username++, now at # points]</code>
+</li>
+<li><code>Ouch! [@username--, now at # points]</code>
+</li>
+</ul>
+
+<p>
+This means that in addition to the notification you get when someone initially
+++'s you, you get another one when the bot replies (which can improve the
+section above)!
+</p>
+
+<p>
+You can pair this with <code>@channel</code> or <code>@everyone</code> to notify everyone on the team
+twice. If your team has the <code>username:</code> style of notification turned off, you
+can exploit this by sending a <code>username+++</code>, which will <i>not</i> trigger a
+notification on your message, but <i>will</i> trigger one in the reply.
+</p>
+
+<p>
+A bot that posts a <code>+++</code> style of plussing, and immediately deletes it's post
+will trigger a notification with no trace back to the bot, other than an
+eyewitness testimony.
+</p>
+
+<p>
+PlusPlus has the ability to add/subtract multiple people at once, like so:
+</p>
+
+<ul class="org-ul">
+<li><code>username+++ username2+++</code>
+</li>
+</ul>
+
+<p>
+Even better, it sends an individual message for <b>every single one</b>.
+</p>
+
+<p>
+It's incredibly easy to build a file full of <code>@1-- @2-- @3--...</code>, post a single
+message, and delete your initial post. Once a wave like this starts, it can go
+on for a couple minutes before slack begins trottling PlusPlus. By the time this
+happens, PlusPlus will have posed about 1,000 messages, which means with a
+measly 10 messages, you can wipe an entire team's history.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2">SlackBot</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Slackbot is the king of all bots in slack. Not only is it a bot (and therefore
+can easily be exploited), but it's got <b>higher permissions than any other bot</b>. That
+means it's able to trigger bots itself (although it does not respond to bots),
+as well as notify people. By exploiting slackbot, we can make our own automation
+more powerful than slack lets us do directly.
+</p>
+
+<p>
+Slackbot has two 'killer' features we can take advantage of, slackbot responses
+and reminders. Slackbot responses are great because they're enabled by default
+(meaning they're enabled almost everywhere) and you can customize them to say
+whatever you want. Reminders are great because they let us effectively remove
+our own infrastructure when we want to host a bot, and let slack tear itself
+apart instead.
+</p>
+
+<p>
+If for some reason, you find you can't access bots at all (ie: accessing slack
+over the client API), you can take advantage of slackbot to solve your problems
+by simply setting up a slackbot response to act like a proxy.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3">SlackBot and PlusPlus</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+If you have both slackbot and plusplus on your slack server, you can exploit
+them together for profit. Simply set up a reccuring reminder to <code>@1-- @2--
+@3--...</code> every day or so, add plusplus, and watch the fireworks.
+</p>
+
+
+<figure>
+<p><a href="https://i.imgur.com/uwzeQav.png"><img src="https://i.imgur.com/uwzeQav.png" class="img-responsive" alt="uwzeQav.png"></a>
+</p>
+</figure>
+
+<p>
+You don't ever need to log into slack again, people will loose their messages
+for 'unexplained reasons'.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">Room For Improvement</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1">Threads</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+Threads are incredibly buggy and I guarantee you can exploit them (to hide your
+messages, to cause notifications, etc), but I wasn't able to explore that in
+much detail before I left slack.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2">Evolution</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+As slack ads more misfeatures, it's likely these problems will get worse, not
+better.
+</p>
+
+<p>
+<a href="https://github.com/jgkamat/jgkamat.github.io">Pull Requests</a> are appreciated if you find a problem with this post, or a
+new slack exploit.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8">Conclusion</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+It's incredibly easy to break slack! But why?
+</p>
+
+<p>
+It boils down to a couple points, which slack could easily fix to solve all
+these problems. These basic features have been requested many times, but slack
+seems to be ignoring these requests.
+</p>
+
+<ol class="org-ol">
+<li>Message/File Limits
+</li>
+<li>Lack of fine grained notification control
+</li>
+<li>Inability to block/ignore users
+</li>
+<li>Lack of chanop (<code>+o</code>)
+</li>
+<li>Inability of moderators to see secret channels
+</li>
+</ol>
+</div>
+
+<div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1">Mitigation</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+If you are a slack moderator, and you are concerned about these threats, you should immediately:
+</p>
+
+<ol class="org-ol">
+<li>Disallow user creation of all channels
+</li>
+<li>Disallow all bots
+</li>
+<li>Disallow deletion or editing of any messages
+</li>
+<li>Disallow any domain from automatically joining your slack channel (manual
+invites only)
+</li>
+<li>Disallow <code>@everyone</code>, <code>@here</code>, and <code>@channel</code>.
+</li>
+<li>Disallow setting slackbot replies, and delete any present replies
+</li>
+<li>Ensure you <b>personally</b> know everyone in your slack team, and are able to
+hold all of them accountable.
+</li>
+</ol>
+
+<p>
+Even with these steps, there are risks (ie: posting in a DM to slackbot cannot
+be disabled, as slackbot cannot be disabled). If you would like a better
+solution you can:
+</p>
+
+<ol class="org-ol">
+<li>Pay slack for premium (which solves half of these issues)
+</li>
+<li>Switch to a better designed chat platform
+<ul class="org-ul">
+<li>Please pick something that your team can use, not something that uses your
+team.
+</li>
+<li>IRC (still going strong)
+</li>
+<li>XMPP (if you really want 'modern features')
+</li>
+<li>Matrix (if you really really want 'modern features')
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2">Related Posts</h3>
+<div class="outline-text-3" id="text-8-2">
+<ol class="org-ol">
+<li><a href="https://drewdevault.com/2015/11/01/Please-stop-using-slack.html">Please don't use Slack for FOSS projects</a>
+</li>
+<li><a href="https://medium.freecodecamp.com/so-yeah-we-tried-slack-and-we-deeply-regretted-it-391bcc714c81">So yeah, we tried slack&#x2026;</a>
+</li>
+<li><a href="https://ux.useronboard.com/slack-i-m-breaking-up-with-you-54600ace03ea">Slack, I’m Breaking Up with You</a>
+</li>
+<li><a href="https://medium.com/@quinnnorton/the-problem-with-slack-854adeef9154">The Problem With Slack</a>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9">Navigation</h2>
+<div class="outline-text-2" id="text-9">
+<div class="div-wrap">
+<div class="div-left">
+<p>
+<a href="applications.html">&larr; Productivity and Applications</a>
+</p>
+
+</div>
+<div class="div-center">
+<p>
+<a href="home.html">⟨Blog Home⟩</a>
+</p>
+
+</div>
+<div class="div-right">
+<p>
+<a href="slack.html">Breaking Slack &rarr;</a>
+</p>
+
+</div>
+
+</div>
+</div>
+</div>
+</div><div class="col-md-3"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">Preface</a>
+<ul class="nav">
+<li><a href="#sec-1-1">Slack</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">Message Limits</a>
+<ul class="nav">
+<li><a href="#sec-2-1">Message Bomb</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">Slack Namespace</a>
+<ul class="nav">
+<li><a href="#sec-3-1">Channel Hoarding</a></li>
+<li><a href="#sec-3-2">Channel Creation Bot</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">Lack of Permissions</a>
+<ul class="nav">
+<li><a href="#sec-4-1">Channel Jail Bot</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">Notification Spam</a></li>
+<li><a href="#sec-6">Bots</a>
+<ul class="nav">
+<li><a href="#sec-6-1">PlusPlus</a></li>
+<li><a href="#sec-6-2">SlackBot</a></li>
+<li><a href="#sec-6-3">SlackBot and PlusPlus</a></li>
+</ul>
+</li>
+<li><a href="#sec-7">Room For Improvement</a>
+<ul class="nav">
+<li><a href="#sec-7-1">Threads</a></li>
+<li><a href="#sec-7-2">Evolution</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">Conclusion</a>
+<ul class="nav">
+<li><a href="#sec-8-1">Mitigation</a></li>
+<li><a href="#sec-8-2">Related Posts</a></li>
+</ul>
+</li>
+<li><a href="#sec-9">Navigation</a></li>
+</ul>
+</div>
+</nav>
+</div></div></div>
+<footer id="postamble" class="">
+
+<div>
+<p class="author">Author: <a href="https://github.com/jgkamat/jgkamat.github.io">Jay Kamat</a></p>
+<p class="date">Published: 2017-06-24</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.2.1 (<a href="http://orgmode.org">Org-mode</a> 8.2.10)</p>
+</div>
+</footer>
+</body>
+</html>

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Productivity and Applications</title>
+<title>NonFree Blog Testing</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -187,165 +187,191 @@ $(function() {
 
     $('.bs-docs-sidebar').affix();
 });
-</script><link rel="stylesheet" type="text/css" href="https://jgkamat.github.io/src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</script><link rel="stylesheet" type="text/css" href="src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  displayAlign: "center",
+  displayIndent: "2em",
+  messageStyle: "none",
+  "HTML-CSS": {
+    scale: 100,
+    styles: {
+      ".MathJax_Display": {
+        "font-size": "100%"
+      }
+    }
+  },
+  "SVG": {
+    scale: 100,
+    styles: {
+      ".MathJax_SVG_Display": {
+        "font-size": "100%",
+        "margin-left": "-2.281em"
+      }
+    }
+  }
+});
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"></script>
 </head>
 <body>
 <div id="content" class="container">
-<div class="row"><div class="col-md-9"><h1 class="title">Productivity and Applications</h1>
+<div class="row"><div class="col-md-9"><h1 class="title">NonFree Blog Testing</h1>
+
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Why Even Bother?</h2>
+<h2 id="sec-1">NonFree Software</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-I'm really picky about the applications I use, mainly to make sure I'm
-maximizing my productivity.
-</p>
-
-<p>
-Vim was the first example I had of how much productivity matters (at least to a
-programmer). A common action such as 'append text to the current line' is
-<i>extremely</i> common and saving 5 seconds or so on it adds up to a <i>lot</i> of saved
-time in the long run.
+This page is mostly for testing out their usage, and evaluating whether it is worth including it into the rest of the blog.
 </p>
 </div>
 </div>
-
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Core</h2>
+<h2 id="sec-2"><a href="https://txtpen.com/">txtpen</a></h2>
 <div class="outline-text-2" id="text-2">
 <p>
-In general, I look for 3 things in any application before I begin relying on it.
+Seems to be an easy to use highlighting tool
 </p>
-
-<p>
-Is the program:
-</p>
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">Pros</h3>
+<div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
-<li>Stable
+<li>Easy installation
 </li>
-<li>Customizable
+<li>Allows users to comment and interact with page
 </li>
-<li>Lightweight
+<li>Requires no infrastructure on website's part
 </li>
 </ol>
-
-<p>
-I'll talk about a few instances where I switched applications to give you a
-better idea of what I'm talking about.
-</p>
-</div>
-
-<div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">Stability</h3>
-<div class="outline-text-3" id="text-2-1">
-<p>
-Stability is important for obvious reasons.
-If a program crashes, freezes, or stops working, you loose productivity in the
-worst way possible, leaving you unable to work at all. Using older versions of
-software can help with this as well, but occasionally there is software that is
-completely unusable due to it's instability, which I can never use.
-</p>
-
-<p>
-An example of this is <code>apvlv</code>, which I couldn't get running without segfaults
-(even on multiple environments). Even older versions seemed to have the same
-issue for me. Despite fitting well into my workflow otherwise, I'm unable to use
-<code>apvlv</code> due to stability.
-</p>
 </div>
 </div>
-
 <div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">Customizability</h3>
+<h3 id="sec-2-2">Cons</h3>
 <div class="outline-text-3" id="text-2-2">
-<p>
-Software that is customizable helps with productivity because it makes it easy
-to change the program to do exactly what you need with the least amount of
-effort on your end. Customizable software also lends itself extremely well to
-automation, which improves productivity immensely.
-</p>
-
-<p>
-I used to use GNOME as my primary desktop environment/window manager, until
-GNOME 3 was released. GNOME 3 is nice in terms of ease of use and it is very
-well polished, but it lacks customizability. It's very hard to get the <i>exact</i>
-behavior you want on GNOME 3, and that's why I ditched it for KDE at the time.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">Being Lightweight</h3>
-<div class="outline-text-3" id="text-2-3">
-<p>
-Minimalist applications lend to productivity, simply because they are doing
-less. Especially when on limited hardware, lightweight applications end up being
-much faster to use. Minimalist software also has the added benefit that you can
-reasonably understand the entire program quickly, and modify it to suit your
-needs, which adds immense customizability.
-</p>
-
-<p>
-For me, I ended up ditching Eclipse because it was much too heavy. It has a
-immense amount of features, which is nice, but Eclipse on my computer was
-unbearably slow when compared to a simple text editor. While the features of an
-IDE are very appealing, I can probably never go back to using one due to this
-point.
-</p>
+<ol class="org-ol">
+<li>Breaks footer colors
+<ul class="org-ul">
+<li>I'll probably report this at some point, but <code>!important</code> fixes it for now
+</li>
+</ul>
+</li>
+<li>Request to website must track users in some way
+</li>
+<li>Dosen't seem to work always (when highlighting quickly)
+</li>
+<li>Requires users use a google or txtpen account to highlight content
+</li>
+<li>Requires javascript
+</li>
+</ol>
 </div>
 </div>
 </div>
 
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Wrapping Up</h2>
+<h2 id="sec-3"><span class="label label-primary TODO">TODO</span> Test</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-Hopefully this post can help you become more productive. I find that even small
-changes to workflow can improve productivity immensely, and reviewing the
-applications you use every day can help you have more free time in the future!
+Here's some testing stuff to see if this will break!
 </p>
+
+<ul class="org-ul">
+<li>Source code blocks
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #5e6263;">#</span><span style="color: #5e6263;">!/bin/</span><span style="color: #598249;">bash</span>
+<span style="color: #598249;">echo</span> <span style="color: #15968D;">"My name is Jay"</span> | sed <span style="color: #15968D;">'s/Jay/&amp; Kamat/'</span>
+<span style="color: #598249;">if</span> false; <span style="color: #598249;">then</span>
+    <span style="color: #598249;">echo</span> hi
+<span style="color: #598249;">fi</span>
+</pre>
+</div>
+</li>
+<li>Tables
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="text-left">One</th>
+<th scope="col" class="text-left">Two</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="text-left">three</td>
+<td class="text-left">four</td>
+</tr>
+
+<tr>
+<td class="text-left">five</td>
+<td class="text-left">six</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>Quotes
+<blockquote>
+<p>
+"There is no such thing as a typical user, and if there were, it wouldn't be you"
+</p>
+
+<p>
+#usability
+</p>
+</blockquote>
+</li>
+<li>\(\LaTeX\)
+
+<p>
+Assume \(\alpha=9\), \(n=16\) and \(x=0\).
+</p>
+
+<p>
+Stack grows until base case \(2^{x}=n\).
+</p>
+</li>
+<li>Some org Special Chars
+
+<p>
+&alpha; &beta; &rarr; &larr; &le; &ge; &sigma; &Sigma;
+</p>
+</li>
+</ul>
 </div>
 </div>
 
 <div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">Navigation</h2>
+<h2 id="sec-4">Conclusion</h2>
 <div class="outline-text-2" id="text-4">
-<div class="div-wrap">
-<div class="div-left">
 <p>
-<a href="website1.html">&larr; Creating A Blog in Org Mode</a>
+Let me know via email or the txtpen highlights if you have any comments or concerns!
 </p>
 
-</div>
-<div class="div-center">
-<p>
-<a href="home.html">⟨Blog Home⟩</a>
-</p>
 
-</div>
-<div class="div-right">
-<p>
-<a href="slack.html">Breaking Slack &rarr;</a>
-</p>
-
-</div>
-
-</div>
+<script src="https://txtpen.com/embed.js?site=jgkamat"></script>
 </div>
 </div>
 </div><div class="col-md-3"><nav id="table-of-contents">
 <div id="text-table-of-contents" class="bs-docs-sidebar">
 <ul class="nav">
-<li><a href="#sec-1">Why Even Bother?</a></li>
-<li><a href="#sec-2">Core</a>
+<li><a href="#sec-1">NonFree Software</a></li>
+<li><a href="#sec-2">txtpen</a>
 <ul class="nav">
-<li><a href="#sec-2-1">Stability</a></li>
-<li><a href="#sec-2-2">Customizability</a></li>
-<li><a href="#sec-2-3">Being Lightweight</a></li>
+<li><a href="#sec-2-1">Pros</a></li>
+<li><a href="#sec-2-2">Cons</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">Wrapping Up</a></li>
-<li><a href="#sec-4">Navigation</a></li>
+<li><a href="#sec-3">Test</a></li>
+<li><a href="#sec-4">Conclusion</a></li>
 </ul>
 </div>
 </nav>
@@ -354,7 +380,7 @@ applications you use every day can help you have more free time in the future!
 
 <div>
 <p class="author">Author: <a href="https://github.com/jgkamat/jgkamat.github.io">Jay Kamat</a></p>
-<p class="date">Published: 2017-01-22</p>
+<p class="date">Published: 2017-04-13</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.2.1 (<a href="http://orgmode.org">Org-mode</a> 8.2.10)</p>
 </div>
 </footer>
