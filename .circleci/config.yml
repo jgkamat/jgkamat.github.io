@@ -1,0 +1,8 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/jgkamat-website
+    docker:
+      - image: alpine:latest
+    steps:
+      - run: sh -c true

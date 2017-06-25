@@ -1,6 +1,0 @@
-# Always pass html sources
-test:
-  override:
-    # Also run webhooks
-    - sh -c true
-
