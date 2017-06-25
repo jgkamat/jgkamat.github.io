@@ -17,5 +17,6 @@ jobs:
           name: Deploy website
           command: |
             if [ "${CIRCLE_BRANCH}" == "sources" ]; then
+            cp -r src/ html/
             cd html && git add $(find . \( -iname \*.css -o -iname \*.html \)) && git commit -m "Autoupdate html sources" || true && git push https://$GH_TOKEN@github.com/jgkamat/jgkamat.github.io master || true
             fi
