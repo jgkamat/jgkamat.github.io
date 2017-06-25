@@ -117,6 +117,13 @@ code {
 	text-align: center;
 }
 
+/* to-do labels */
+
+.label {
+	color: #000000;
+}
+
+
 /* .footer-cont{
 	padding-top:5px;
 	padding-bottom:5px;
