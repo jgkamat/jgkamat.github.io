@@ -4,12 +4,11 @@
 body {
 	background-color: #262626;
 }
-::selection, {
+::selection {
 	background:rgba(57, 60, 63, 0.99);
-	/* color: #393c3f; */
 }
 ::-moz-selection  {
-	background: #393c3f;
+	background:rgba(57, 60, 63, 0.99);
 }
 
 h1 {
