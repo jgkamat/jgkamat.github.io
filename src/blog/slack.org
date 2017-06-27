@@ -241,7 +241,7 @@ much detail before I left slack.
 
 ** Evolution
 
-As slack ads more misfeatures, it's likely these problems will get worse, not
+As slack adds more misfeatures, it's likely these problems will get worse, not
 better.
 
 [[https://github.com/jgkamat/jgkamat.github.io][Pull Requests]] are appreciated if you find a problem with this post, or a
