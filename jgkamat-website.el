@@ -51,7 +51,10 @@
         :base-directory ,project-base
         :recursive t
         :publishing-directory ,(or (and (boundp 'website-publish-dir) website-publish-dir) (concat project-base  "../html/"))
+				;; Add my CSS and fonts
         :html-head-extra "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://jgkamat.github.io/src/jgkamat.css\"> <link href=\"https://fonts.googleapis.com/css?family=Open+Sans\" rel=\"stylesheet\">"
+				;; Remove all JS from website, only leave bootstrap CSS
+				:html-head "<link href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css\" rel=\"stylesheet\">"
         :title nil
         :with-headline-numbers nil
         :toc 3
