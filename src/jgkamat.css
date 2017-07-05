@@ -87,10 +87,14 @@ footer {
 	background-color: #2B2B2C !important;
 }
 
-/* I'm not planning on actually having code here ;/ */
 code {
 	background-color: #303030;
 	color: #909396;
+}
+
+/* Allow nav-box to stay while user scrolls */
+.nav {
+	position: fixed;
 }
 
 .div-wrap {
