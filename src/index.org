@@ -10,7 +10,9 @@
 #+MACRO: age-years src_emacs-lisp[:results raw :cache yes]{(- (string-to-number (format-time-string "%Y")) (elt (parse-time-string "$1") 5))}
 
 * Introduction
-Hi! I'm {{{author}}}, an undergraduate computer science student at Georgia Tech, and I'm interested in everything related to science, technology, computers, engineering, and space!
+Hi! I'm {{{author}}}, an undergraduate computer science student at Georgia Tech,
+and I'm interested in everything related to science, technology, computers,
+engineering, and space!
 
 ** Links
 - [[https://www.github.com/jgkamat][GitHub]]
@@ -60,16 +62,8 @@ These are projects that I have created purely for fun, or for improvements in my
   3. [[https://github.com/qutebrowser/qutebrowser][qutebrowser]]
      - [[https://github.com/qutebrowser/qutebrowser/pull/2583][Add support]] for ~:follow-selected~ in qtwebengine
      - [[https://github.com/qutebrowser/qutebrowser/pull/2627][Final push]] on tab pinning
-- Minor Contributions
-  # TODO should this entire section be deleted?
-
-  | Project       | Contribution                  |
-  |---------------+-------------------------------|
-  | [[https://github.com/TricksterGuy/complx][Complx]]        | docker support                |
-  | [[https://github.com/dpayne/cli-visualizer][cli-visulizer]] | xdg home support              |
-  | [[https://github.com/editorconfig/editorconfig-emacs][editorconfig]]  | verilog, feature mode support |
-  | [[https://github.com/larstvei/ox-gfm][ox-gfm]]        | publishing support            |
-
+  4. [[https://github.com/vector-im/riot-android][riot-android]]
+     - [[https://github.com/vector-im/riot-android/pull/1240][Created]] the first revision of a theme switcher and a dark theme.
 ** School Projects
 1. [[https://github.com/MountainRange/MULE][MULE Clone]]
 
