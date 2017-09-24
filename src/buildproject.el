@@ -11,6 +11,7 @@
 (require 'package)
 (require 'org)
 (require 'cl)
+(require 'subr)
 (setq package-archives `(("gnu" . "http://elpa.gnu.org/packages/")
                           ("melpa" . "http://melpa.org/packages/")))
 

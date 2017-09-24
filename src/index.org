@@ -8,6 +8,7 @@
 
 # Macro to determine age of things (years). Input the start year and it will return its age.
 #+MACRO: age-years src_emacs-lisp[:results raw :cache yes]{(- (string-to-number (format-time-string "%Y")) (elt (parse-time-string "$1") 5))}
+#+MACRO: age-years-range src_emacs-lisp[:results raw :cache yes]{(- (string-to-number (format-time-string "$2")) (elt (parse-time-string "$1") 5))}
 
 * Introduction
 Hi! I'm {{{author}}}, an undergraduate computer science student at Georgia Tech,
@@ -69,8 +70,8 @@ These are projects that I have created purely for fun, or for improvements in my
    Created for a project based class for CS2340 at Georgia Tech
 * About
 ** Languages
-# Since 2009
-+ Java /(7 Years)/
+# Since 2009, then slowed down at 2016
++ Java /({{{age-years-range(2009, 2016)}}} years)/
 + Shell /({{{age-years(2013)}}} years)/
 + Python /({{{age-years(2014)}}} years)/
   # since 2014
@@ -91,13 +92,14 @@ These are projects that I have created purely for fun, or for improvements in my
   + Gentoo Linux
 - Emacs/Vim Editing
   + [[https://github.com/jgkamat/dotfiles][My Personal Configs]]
-- Docker /({{{age-years(2013)}}} years)/
+# Started in 2013, not too active in 2017.
+- Docker /({{{age-years-range(2013,2017)}}} years)/
   + Plain Docker
   + Docker Swarm
   + Advanced Docker Networking
 - Testing and CI
-  + CircleCI
   + Jenkins
+  + CircleCI
   + GoCD
   + Travis
 - Performance Analysis via ~perf~
@@ -106,3 +108,5 @@ These are projects that I have created purely for fun, or for improvements in my
   + [[http://homesteadrobotics.com/][Homestead HRT]] - FRC Team 670 /(2012-2014)/
 * Contact
 - [[mailto:jaygkamat@gmail.com][Email]]
+# IRC links don't seem to export properly in ox-html
+# - [[irc:irc.freenode.net/jgkamat][Irc (freenode)]]
