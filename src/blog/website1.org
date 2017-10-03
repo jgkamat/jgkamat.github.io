@@ -153,6 +153,7 @@ Let me know via a [[https://github.com/jgkamat/jgkamat.github.io/issues][github 
 Here are some other successful org blogs:
 - [[http://endlessparentheses.com/how-i-blog-one-year-of-posts-in-a-single-org-file.html][Endless Parentheses]] (Jekyll Based)
 - [[https://ogbe.net/blog/blogging_with_org.html][Dennis Ogbe]] (Plain org)
+- [[https://gjhenrique.com/meta.html][gjhenrique]] (Plain Org)
 
 The source code for all of this is [[https://github.com/jgkamat/jgkamat.github.io][at this github repo]].
 
