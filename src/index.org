@@ -4,7 +4,7 @@
 #+DATE: <2017-03-13 Mon>
 
 # Add css to this page relative so we can develop css locally with this page
-#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="src/jgkamat.css">
 
 # Macro to determine age of things (years). Input the start year and it will return its age.
 #+MACRO: age-years src_emacs-lisp[:results raw :cache yes]{(- (string-to-number (format-time-string "%Y")) (elt (parse-time-string "$1") 5))}

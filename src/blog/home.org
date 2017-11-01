@@ -4,7 +4,7 @@
 #+DATE: <2016-12-04>
 
 # Add css to this page relative so we can develop css locally with this page
-#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="../src/jgkamat.css"> <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="../src/jgkamat.css">
 
 * Welcome
 Hi, welcome to my blog. It's under construction now.
