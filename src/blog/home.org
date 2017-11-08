@@ -19,6 +19,10 @@ Sorted by date, newest first
 (gen-links)
 #+END_SRC
 
+* Misc
+
+[[file:../misc/favorites.org::*Favorites][My Favorites]]
+
 * Navigation
 #+BEGIN_SRC emacs-lisp :exports results :results raw
 (gen-prev-next)

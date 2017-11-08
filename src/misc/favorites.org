@@ -1,0 +1,9 @@
+#+TITLE: Favorites
+#+AUTHOR: Jay Kamat
+#+DATE: <2017-11-08 Wed>
+
+* Favorites
+
+Here's a list of some of my favorite posts, mostly so I don't loose them.
+
+1. [[http://www.howardism.org/Technical/Emacs/literate-devops.html][Literate DevOps with Org]]
