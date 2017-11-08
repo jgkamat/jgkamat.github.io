@@ -61,10 +61,11 @@ These are projects that I have created purely for fun, or for improvements in my
    - [[https://github.com/alda-lang/alda-client-java/pull/9][Created]] the new Java REPL. See ~alda repl~.
 3. [[https://github.com/qutebrowser/qutebrowser][qutebrowser]]
    - [[https://github.com/qutebrowser/qutebrowser/pull/2583][Add support]] for ~:follow-selected~ in qtwebengine
-   - [[https://github.com/qutebrowser/qutebrowser/pull/2627][Final push]] on tab pinning
+   - [[https://github.com/qutebrowser/qutebrowser/pull/2627][Final push]] and maintenance on tab pinning
+   - [[https://github.com/qutebrowser/qutebrowser/pulls?q=is%253Apr+is%253Aclosed+author%253Ajgkamat][Misc smaller contributions]]
 4. [[https://github.com/vector-im/riot-android][riot-android]]
-     - [[https://github.com/vector-im/riot-android/pull/1240][Created]] the first revision of a theme switcher and a dark theme.
-** School Projects
+   - [[https://github.com/vector-im/riot-android/pull/1240][Created]] the first revision of a theme switcher and a dark theme.
+** School Projects                                                :noexport:
 1. [[https://github.com/MountainRange/MULE][MULE Clone]]
 
    Created for a project based class for CS2340 at Georgia Tech
@@ -100,7 +101,6 @@ These are projects that I have created purely for fun, or for improvements in my
 - Testing and CI
   + Jenkins
   + CircleCI
-  + GoCD
   + Travis
 - Performance Analysis via ~perf~
 - Robotics
@@ -110,3 +110,4 @@ These are projects that I have created purely for fun, or for improvements in my
 - [[mailto:jaygkamat@gmail.com][Email]]
 # IRC links don't seem to export properly in ox-html
 # - [[irc:irc.freenode.net/jgkamat][Irc (freenode)]]
+# [[http://lists.gnu.org/archive/html/emacs-orgmode/2017-09/msg00553.html][http://lists.gnu.org/archive/html/emacs-orgmode/2017-09/msg00553.html]]
