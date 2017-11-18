@@ -158,7 +158,7 @@ breaking slack easier than ever for everyone!
 ** PlusPlus
 
 [[https://plusplus.chat/][PlusPlus]] is a very popular extension for slack, and is installed on many
-teams. However, it's very easy to exploit PlusPlus for evil. Because PlusPlus is
+teams. However, it's very easy to exploit PlusPlus for evil, as PlusPlus is
 installed on a team, rather than on a channel (like IRC), it's trivially easy to
 exploit, [[https://plusplus.chat/things/leaderboard][as the leaderboards of plusplus show]].
 
