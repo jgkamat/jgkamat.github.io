@@ -69,7 +69,12 @@ These are projects that I have created purely for fun, or for improvements in my
 1. [[https://github.com/MountainRange/MULE][MULE Clone]]
 
    Created for a project based class for CS2340 at Georgia Tech
-* About
+
+2. [[https://github.com/RoboJackets/beekeeper][BeeKeeper Inventory]]
+
+   Created a lightweight cli inventory system
+* TODO About                                                       :noexport:
+# Find out if this is actually needed, probably not
 ** Languages
 # Since 2009, then slowed down at 2016
 + Java /({{{age-years-range(2009, 2016)}}} years)/
