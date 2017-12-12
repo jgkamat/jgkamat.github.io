@@ -85,7 +85,7 @@ We've got a nice website now, but it looks pretty bare bones. How do we provide 
 The easiest way to apply a CSS file to your org project (with exporters based on the html one) is to add this to your ~org-publish-project-alist~ directive:
 
 #+BEGIN_SRC emacs-lisp
-  :html-head-extra "<link rel=\"stylesheet\" type=\"text/css\" href=\"./myfile.css\">"
+  :html-head-extra "<link rel=\"stylesheet\" href=\"./myfile.css\">"
 #+END_SRC
 
 Another option is to set ~#+HTML_HEAD_EXTRA~ at the top of your org files.
