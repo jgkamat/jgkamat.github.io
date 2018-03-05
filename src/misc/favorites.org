@@ -7,3 +7,4 @@
 Here's a list of some of my favorite posts, mostly so I don't loose them.
 
 1. [[http://www.howardism.org/Technical/Emacs/literate-devops.html][Literate DevOps with Org]]
+2. [[http://enki-editor.org/2014/08/23/Pyqt_mem_mgmt.html][PyQt5 Memory Management]]

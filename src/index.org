@@ -62,7 +62,7 @@ These are projects that I have created purely for fun, or for improvements in my
 3. [[https://github.com/qutebrowser/qutebrowser][qutebrowser]]
    - [[https://github.com/qutebrowser/qutebrowser/pull/2583][Add support]] for ~:follow-selected~ in qtwebengine
    - [[https://github.com/qutebrowser/qutebrowser/pull/2627][Final push]] and maintenance on tab pinning
-   - [[https://github.com/qutebrowser/qutebrowser/pulls?q=is%253Apr+is%253Aclosed+author%253Ajgkamat][Misc smaller contributions]]
+   - [[https://github.com/qutebrowser/qutebrowser/pulls?q=is%3Apr+is%3Aclosed+author%3Ajgkamat][Misc smaller contributions]]
 4. [[https://github.com/vector-im/riot-android][riot-android]]
    - [[https://github.com/vector-im/riot-android/pull/1240][Created]] the first revision of a theme switcher and a dark theme.
 ** School Projects                                                :noexport:
