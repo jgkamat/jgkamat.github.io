@@ -292,6 +292,7 @@ solution you can:
 2. [[https://medium.freecodecamp.com/so-yeah-we-tried-slack-and-we-deeply-regretted-it-391bcc714c81][So yeah, we tried slack...]]
 3. [[https://ux.useronboard.com/slack-i-m-breaking-up-with-you-54600ace03ea][Slack, I’m Breaking Up with You]]
 4. [[https://medium.com/@quinnnorton/the-problem-with-slack-854adeef9154][The Problem With Slack]]
+5. [[https://drewdevault.com/2018/03/10/How-to-write-an-IRC-bot.html][How to write an IRC Bot]]
 
 * Navigation
 
