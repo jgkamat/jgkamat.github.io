@@ -16,8 +16,8 @@ and I'm interested in everything related to science, technology, computers,
 engineering, and space!
 
 ** Links
-- [[https://www.github.com/jgkamat][GitHub]]
-- [[https://gitlab.com/u/jgkamat][GitLab]]
+- [[https://github.com/jgkamat][GitHub]]
+- [[https://gitlab.com/jgkamat][GitLab]]
 - [[file:blog/home.org][Blog]]
 - [[https://hub.docker.com/u/jgkamat/][DockerHub]]
 - [[https://www.linkedin.com/in/jaykamat][Linkedin]]
