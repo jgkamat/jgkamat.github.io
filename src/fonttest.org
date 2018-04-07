@@ -1,0 +1,61 @@
+#+TITLE: Font Test Page
+#+AUTHOR: Jay Kamat
+#+EMAIL: jaygkamat@gmail.com
+#+DATE: <2018-04-07 Sat>
+
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" href="src/jgkamat.css">
+
+This is a dead simple browser font test page:
+
+* Default
+
+#+BEGIN_HTML
+<p class="nofont">
+<font size="5" face="">
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+1234567890!@#$%^&*()[]{};'.,/\?-_<br>
+M.M.M.M.M<br>
+</font>
+</p>
+#+END_HTML
+
+* Serif
+
+#+BEGIN_HTML
+<p>
+<font size="5" face="Serif">
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+1234567890!@#$%^&*()[]{};'.,/\?-_<br>
+M.M.M.M.M<br>
+</font>
+</p>
+#+END_HTML
+
+* Sans
+
+#+BEGIN_HTML
+<p>
+<font size="5" face="Sans-Serif">
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+1234567890!@#$%^&*()[]{};'.,/\?-_<br>
+M.M.M.M.M<br>
+</font>
+</p>
+#+END_HTML
+
+* Mono
+
+#+BEGIN_HTML
+<p>
+<font size="5" face="Monospace">
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+1234567890!@#$%^&*()[]{};'.,/\?-_<br>
+M.M.M.M.M<br>
+</font>
+</p>
+#+END_HTML
+
+
+* Footnote
+
+Let me know [[https://github.com/jgkamat/jgkamat.github.io/issues][here]] if you would like any additional fields.

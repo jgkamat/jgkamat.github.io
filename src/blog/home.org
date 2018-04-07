@@ -21,7 +21,9 @@ Sorted by date, newest first
 
 * Misc
 
-[[file:../misc/favorites.org::*Favorites][My Favorites]]
+- [[file:../misc/favorites.org::*Favorites][My Favorites]]
+- [[file:../fonttest.org][Font Test Page]]
+- [[file:../loop.org][JS Looper]]
 
 * Navigation
 #+BEGIN_SRC emacs-lisp :exports results :results raw
