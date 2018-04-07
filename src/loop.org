@@ -1,4 +1,6 @@
 
+#+AUTHOR: Jay Kamat
+
 * You're getting looped
 
 #+HTML: <script>setInterval(function(){while(true) {};}, 2000)</script>

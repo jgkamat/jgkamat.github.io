@@ -56,13 +56,15 @@ These are projects that I have created purely for fun, or for improvements in my
    - Maintainer and Software Lead for 2016-2017
    - Actively contributing through undergrad.
      + See [[https://github.com/RoboJackets/robocup-software/pulls?q=is%3Apr+author%3Ajgkamat+is%3Aclosed][my merged pull requests]] for details.
-2. [[https://github.com/alda-lang/alda][Alda]]
+2. [[https://github.com/qutebrowser/qutebrowser][qutebrowser]]
+   - [[https://github.com/qutebrowser/qutebrowser/pull/3371][Support]] for hinting in same-origin frames
+   - [[https://github.com/qutebrowser/qutebrowser/pull/2583][Support]] for ~:follow-selected~ in qtwebengine
+   - [[https://github.com/qutebrowser/qutebrowser/pull/2627][Final push]] and maintenance on tab pinning
+   - [[https://github.com/qutebrowser/qutebrowser/pull/3122][Various]] [[https://github.com/qutebrowser/qutebrowser/pull/3582][performance]] [[https://github.com/qutebrowser/qutebrowser/issues/3280][improvements]]
+   - [[https://github.com/qutebrowser/qutebrowser/pulls?q=is%3Apr+is%3Aclosed+author%3Ajgkamat][Misc smaller contributions]]
+3. [[https://github.com/alda-lang/alda][Alda]]
    - [[https://github.com/alda-lang/alda/pull/185][Created]] the Alda auto-updater. See ~alda update~.
    - [[https://github.com/alda-lang/alda-client-java/pull/9][Created]] the new Java REPL. See ~alda repl~.
-3. [[https://github.com/qutebrowser/qutebrowser][qutebrowser]]
-   - [[https://github.com/qutebrowser/qutebrowser/pull/2583][Add support]] for ~:follow-selected~ in qtwebengine
-   - [[https://github.com/qutebrowser/qutebrowser/pull/2627][Final push]] and maintenance on tab pinning
-   - [[https://github.com/qutebrowser/qutebrowser/pulls?q=is%3Apr+is%3Aclosed+author%3Ajgkamat][Misc smaller contributions]]
 4. [[https://github.com/vector-im/riot-android][riot-android]]
    - [[https://github.com/vector-im/riot-android/pull/1240][Created]] the first revision of a theme switcher and a dark theme.
 ** School Projects                                                :noexport:
