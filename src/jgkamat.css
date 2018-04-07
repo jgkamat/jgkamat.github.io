@@ -53,7 +53,7 @@ p, th, td {
 }
 
 .nofont {
-	font-family: nofont;
+	font-family: unset;
 }
 
 /* Tables (dammit bootstrap) */
