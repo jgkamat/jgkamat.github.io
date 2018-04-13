@@ -66,6 +66,7 @@
       :time-stamp-file nil
       :auto-sitemap t
       :sitemap-sort-folders first
+      :exclude "blog/rss.org"
       :sitemap-sort-files anti-chronologically
       :publishing-function org-twbs-publish-to-html)
      ("jgkamat.github.io-blogmap"
@@ -112,6 +113,7 @@
 (setq org-export-date-timestamp-format "%Y-%m-%d")
 
 (setq blog-homepage (concat project-base "/blog/home.org"))
+(setq overview-exclude-files '("rss.org"))
 
 
 ;; Blog generators
@@ -142,7 +144,13 @@
          (files (directory-files-recursively directory "^.*\.org$")))
     (sort
      ;; Map environments to (filename . property titles)
-     (mapcar #'gen-org-property files)
+     (mapcar #'gen-org-property
+             (seq-remove
+              (lambda (test-file)
+                (cl-find-if (lambda (exclude-file)
+                              (file-equal-p test-file exclude-file))
+                            overview-exclude-files))
+              files))
      (lambda (one two)
        (let ((x (org-timestamp-to-str (first (second one))))
              (y (org-timestamp-to-str (first (second two)))))
@@ -173,25 +181,28 @@
 
 (defun gen-prev-next (&optional directory)
   (interactive)
-  (let* ((current-property (gen-org-property buffer-file-name))
-         (properties (gen-links-properties directory))
-         (index (position current-property properties :test #'equal)))
-    (when (eql index nil)
-      (error "This org file was not part of this project"))
-    (let* ((next (elt properties (min (1- (length properties)) (+ index 1))))
-           (prev (elt properties (max 0 (- index 1)))))
-      (concat
-       "#+begin_div-wrap\n"
-       "#+begin_div-left\n"
-       (org-property-to-link prev "\\leftarrow ")
-       "#+end_div-left\n"
-       "#+begin_div-center\n"
-       (format "[[file:%s][⟨Blog Home⟩]]\n" (file-relative-name blog-homepage))
-       "#+end_div-center\n"
-       "#+begin_div-right\n"
-       (org-property-to-link next nil " \\rightarrow")
-       "\n#+end_div-right"
-       "\n#+end_div-wrap"))))
+  (unless (cl-find-if (lambda (exclude-file)
+                        (file-equal-p buffer-file-name exclude-file))
+                      overview-exclude-files)
+    (let* ((current-property (gen-org-property buffer-file-name))
+           (properties (gen-links-properties directory))
+           (index (position current-property properties :test #'equal)))
+      (when (eql index nil)
+        (error "This org file was not part of this project"))
+      (let* ((next (elt properties (min (1- (length properties)) (+ index 1))))
+             (prev (elt properties (max 0 (- index 1)))))
+        (concat
+         "#+begin_div-wrap\n"
+         "#+begin_div-left\n"
+         (org-property-to-link prev "\\leftarrow ")
+         "#+end_div-left\n"
+         "#+begin_div-center\n"
+         (format "[[file:%s][⟨Blog Home⟩]]\n" (file-relative-name blog-homepage))
+         "#+end_div-center\n"
+         "#+begin_div-right\n"
+         (org-property-to-link next nil " \\rightarrow")
+         "\n#+end_div-right"
+         "\n#+end_div-wrap")))))
 
 
 ;; Don't prompt for build stuff

@@ -58,7 +58,7 @@ time. It's incredibly easy to make a bot that keeps posting something in a
 private channel. Since bots and DM's count to the message limit, we can speed
 this up even more by getting a bot to do half our work!
 
-[[https://user-images.githubusercontent.com/4349709/27512954-84c7a0f0-5908-11e7-9f57-85540333644a.png][https://user-images.githubusercontent.com/4349709/27512954-84c7a0f0-5908-11e7-9f57-85540333644a.png]]
+[[https://user-images.githubusercontent.com/4349709/27512954-84c7a0f0-5908-11e7-9f57-85540333644a.png]]
 
 We can speed this up even more by exploiting other bot features, which I'll talk
 about later.
@@ -227,7 +227,7 @@ If you have both slackbot and plusplus on your slack server, you can exploit
 them together for profit. Simply set up a reccuring reminder to ~@1-- @2--
 @3--...~ every day or so, add plusplus, and watch the fireworks.
 
-[[https://user-images.githubusercontent.com/4349709/27512955-84c87e94-5908-11e7-90de-6c32f602c222.png][https://user-images.githubusercontent.com/4349709/27512955-84c87e94-5908-11e7-90de-6c32f602c222.png]]
+[[https://user-images.githubusercontent.com/4349709/27512955-84c87e94-5908-11e7-90de-6c32f602c222.png]]
 
 You don't ever need to log into slack again, people will loose their messages
 for 'unexplained reasons'.

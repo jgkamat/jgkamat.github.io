@@ -159,7 +159,7 @@ The source code for all of this is [[https://github.com/jgkamat/jgkamat.github.i
 
 Lastly, here's an obligatory screenshot of me editing this post. ~=)~
 
-[[https://user-images.githubusercontent.com/4349709/27512957-922c8724-5908-11e7-81a6-866dcf54245b.png][https://user-images.githubusercontent.com/4349709/27512957-922c8724-5908-11e7-81a6-866dcf54245b.png]]
+[[https://user-images.githubusercontent.com/4349709/27512957-922c8724-5908-11e7-81a6-866dcf54245b.png]]
 
 * Navigation
 
