@@ -11,6 +11,8 @@ Hi, welcome to my blog. It's under construction now.
 
 [[file:../index.org][Website Home]]
 
+[[file:rss.xml][RSS Feed (Beta)]]
+
 * Archives
 
 Sorted by date, newest first

@@ -65,6 +65,7 @@
       :with-date nil
       :time-stamp-file nil
       :auto-sitemap t
+      :sitemap-sort-folders first
       :sitemap-sort-files anti-chronologically
       :publishing-function org-twbs-publish-to-html)
      ("jgkamat.github.io-blogmap"
@@ -74,9 +75,11 @@
       :title nil
       :table-of-contents nil
       :auto-sitemap t
+      :exclude "home.org"
       :sitemap-filename "rss.org"
       :sitemap-title "Blog Rss"
       :sitemap-function jay-publish-sitemap-expand
+      :sitemap-sort-folders first
       :sitemap-sort-files anti-chronologically
       :publishing-function dummy-fun)
      ("jgkamat.github.io-rss"
