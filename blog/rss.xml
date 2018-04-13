@@ -1,0 +1,1063 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+     xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+     xmlns:georss="http://www.georss.org/georss"
+     xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:media="http://search.yahoo.com/mrss/"><channel>
+  <title></title>
+  <atom:link href="https://jgkamat.github.io/blog/rss.xml" rel="self" type="application/rss+xml" />
+  <link>https://jgkamat.github.io/blog/</link>
+  <description><![CDATA[]]></description>
+  <language>en</language>
+  <pubDate>Fri, 13 Apr 2018 20:42:46 +0000</pubDate>
+  <lastBuildDate>Fri, 13 Apr 2018 20:42:46 +0000</lastBuildDate>
+  <generator>Emacs 25.3 Org-mode 9.1.9</generator>
+  <webMaster>jaygkamat@gmail.com (root)</webMaster>
+  <image>
+    <url>https://jgkamat.github.io/favicon.ico</url>
+    <title></title>
+    <link>https://jgkamat.github.io/blog/</link>
+  </image>
+
+  <item>
+    <title>Breaking Slack</title>
+    <link>https://jgkamat.github.io/blog/slack.html</link>
+    <author>jaygkamat@gmail.com (root)</author>
+    <guid isPermaLink="false">https://jgkamat.github.io/blog/slack.html</guid>
+    <pubDate>Sat, 24 Jun 2017 00:00:00 +0000</pubDate>
+
+    <description><![CDATA[
+    <div id="outline-container-org143a78c" class="outline-3">
+    <h3 id="org143a78c">Preface</h3>
+    <div class="outline-text-3" id="text-org143a78c">
+    <p>
+    Communication is a tricky problem, because it's hard to make everyone
+    happy. When internet messaging started out, we had lots of choices, due to the
+    existence of standards that allowed multiple servers to talk to each other (<a href="https://xmpp.org/">XMPP</a>
+    federation) and standards that allowed a single client to talk to multiple
+    servers (IRC). In recent years, we have backtracked away from that model in
+    favor of hundreds of closed protocols, forcing users to install <i><a href="https://xkcd.com/1810/">yet another
+    client</a></i> for every service they use (hangouts, messenger, signal, telegram,
+    groupme, whatsapp, skype, tox, SMS, &#x2026;). This means that if you <b>love</b> a
+    particular chat app, you simply won't be able to use it everywhere!
+    </p>
+    </div>
+
+    <div id="outline-container-org49e5b19" class="outline-4">
+    <h4 id="org49e5b19">Slack</h4>
+    <div class="outline-text-4" id="text-org49e5b19">
+    <p>
+    Slack is a particularly bad example of the above, since it's a tool 'targeted'
+    towards <i>team</i> communication, rather than just direct messages. Usually, a team
+    consists of many more people than the average chat, and that makes the above
+    even more relevant, since the more people you need to connect, the more
+    flexibility you must have to keep the team happy and running smoothly. Slack
+    disallows features that even IRC has had for decades, such as ignoring,
+    blocking, message filtering, and knocking, which makes it a terrible tool for
+    any team that is actually trying to get things done. Unfortunately, I have been forced
+    into using slack in a few places that I 'work' at, which will hopefully no
+    longer be necessary in the long term.
+    </p>
+
+    <p>
+    However, Slack goes even further by also being terribly designed under the hood,
+    making it extremely easy to 'break'. While these are 'not security problems',
+    they do cause serious problems to team communication, and are impossible for
+    moderators to fix without slack admins intervening.
+    </p>
+
+    <p>
+    I do have code for most of these 'exploits', but I will not be linking to them
+    directly to make them 'harder to use'. They are <i>somewhere</i> in my GitHub
+    namespace though. I have not done anything with a TODO on my own, but it
+    shouldn't be too hard.
+    </p>
+
+    <p>
+    <b>TL;DR:</b> This is a guide to making your fellow slack user's lives as painful as
+    possible, ideally while staying anonymous.
+    </p>
+    </div>
+    </div>
+    </div>
+
+    <div id="outline-container-orgc9aa01a" class="outline-3">
+    <h3 id="orgc9aa01a">Message Limits</h3>
+    <div class="outline-text-3" id="text-orgc9aa01a">
+    <p>
+    Message limits are the first core problem of slack. Since most slack users use a
+    web client, and don't store any messages locally, 'clearing' the message history
+    causes a bunch of problems.
+    </p>
+
+    <p>
+    Slack message limits are shared across dms, mpdms, public channels, and private
+    channels. Slack message limits include both human and bot messages.
+    </p>
+    </div>
+
+    <div id="outline-container-orgc46947e" class="outline-4">
+    <h4 id="orgc46947e">Message Bomb</h4>
+    <div class="outline-text-4" id="text-orgc46947e">
+    <p>
+    Slack has very generous throttling rates, even for extended periods of
+    time. It's incredibly easy to make a bot that keeps posting something in a
+    private channel. Since bots and DM's count to the message limit, we can speed
+    this up even more by getting a bot to do half our work!
+    </p>
+
+
+    <div class="figure">
+    <p><a href="https://user-images.githubusercontent.com/4349709/27512954-84c7a0f0-5908-11e7-9f57-85540333644a.png"><img src="https://user-images.githubusercontent.com/4349709/27512954-84c7a0f0-5908-11e7-9f57-85540333644a.png" alt="27512954-84c7a0f0-5908-11e7-9f57-85540333644a.png" /></a>
+    </p>
+    </div>
+
+    <p>
+    We can speed this up even more by exploiting other bot features, which I'll talk
+    about later.
+    </p>
+
+    <p>
+    The message limit is 10,000 messages. Assuming we're posting at a <b>very
+    conservative</b> one message per second, that lets us clear the message history in
+    about 3 hours. With slackbot replying to all of our messages as well, that comes
+    down to 1.5 hours. This is crazy for such a slow rate. At higher rates (or with
+    multiple accounts), we can clear the message history in a matter of minutes or
+    seconds, meaning that people won't be able to see any messages if they are more
+    than a couple minutes old.
+    </p>
+
+    <p>
+    Deleting messages DOES NOT FREE UP HISTORY, so deleted history is GONE
+    FOREVER. The only way to get a team's messages back is to pay slack support (or
+    have them stored locally).
+    </p>
+
+    <p>
+    <b>BONUS:</b> Since we're clearing messages so quickly, DM's or other notifications
+    that show up won't be able to be cleared with default settings in the ui. This
+    means people will be stuck with unread notification markers they won't be able
+    to clear without some extra effort!
+    </p>
+    </div>
+    </div>
+    </div>
+
+    <div id="outline-container-org3b930f1" class="outline-3">
+    <h3 id="org3b930f1">Slack Namespace</h3>
+    <div class="outline-text-3" id="text-org3b930f1">
+    <p>
+    Unlike any other self respecting (modern) chat application, it is <b>impossible</b>
+    to create two channels with the same name. As if this isn't bad enough, this
+    namespace is <b>shared</b> among users, public channels, private channels, and user
+    groups.
+    </p>
+
+    <p>
+    It's impossible for moderators to see who's hoarding the channel namespace.
+    </p>
+    </div>
+
+    <div id="outline-container-orga3767e7" class="outline-4">
+    <h4 id="orga3767e7">Channel Hoarding</h4>
+    <div class="outline-text-4" id="text-orga3767e7">
+    <p>
+    This is especially effective when joining a new slack team. Simply by creating
+    tons and tons of private channels with popular names such as <code>leads</code>, <code>dev</code>, and
+    <code>beta</code>, we can make logical channel unavailable for public. Even better, make
+    channels that conflict with <i>users</i> and <i>user groups</i> that could be made in the
+    future.
+    </p>
+
+    <p>
+    Private channels are also very useful, since they are needed for many of the
+    other 'exploits'. Private channel creation can be turned off by your
+    moderator. However, moderators are unable to delete <i>existing</i> private slack
+    channels, so hoard private channels early!
+    </p>
+    </div>
+    </div>
+
+    <div id="outline-container-orgc267a8d" class="outline-4">
+    <h4 id="orgc267a8d"><span class="todo TODO">TODO</span> Channel Creation Bot</h4>
+    <div class="outline-text-4" id="text-orgc267a8d">
+    <p>
+    It wouldn't be too hard to make a bot that creates private channels with every
+    possible name. It probably would be a good idea to start with a wordlist,
+    tailored to the team being targeted, to maximize the effect.
+    </p>
+
+    <p>
+    Another idea is to detect any username change from posts in #general (which you
+    cannot leave), and create a private channel with the old username. This would
+    prevent any user from re-using their old username.
+    </p>
+    </div>
+    </div>
+    </div>
+
+    <div id="outline-container-org809afd8" class="outline-3">
+    <h3 id="org809afd8">Lack of Permissions</h3>
+    <div class="outline-text-3" id="text-org809afd8">
+    <p>
+    A lot of issues come up when mixing some of the more restrictive permissions
+    options with 'unconventional' usage.
+    </p>
+    </div>
+
+    <div id="outline-container-org52784c6" class="outline-4">
+    <h4 id="org52784c6"><span class="todo TODO">TODO</span> Channel Jail Bot</h4>
+    <div class="outline-text-4" id="text-org52784c6">
+    <p>
+    For example, a common (but not default) setting is to restrict archiving
+    channels. This means that when you create a private channel, you'll be unable to
+    delete or even leave it until someone else joins (who in-turn will be
+    jailed). The web UI does not make this clear at all though, and it confuses
+    everyone who is jailed for their first time.
+    </p>
+
+    <p>
+    It wouldn't be too hard to detect when someone says something you don't like,
+    create a private channel for them, add them to said channel, and leave said
+    channel. This is a huge annoyance for the recipient, since it clutters their
+    channel list and gives them an unneeded notification (which cannot be disabled
+    by any means in the slack app). If they attempt to jail the bot itself, the bot
+    could immediately leave the channel. Other than that, it guarantees that at
+    least one member will be jailed, until a moderator is added.
+    </p>
+
+    <p>
+    Unfortunately, it's easy to see who's doing this in the logs, but there's no way
+    an moderator can prevent this from happening besides banning private channels
+    (stock up while you can), or by disabling your account.
+    </p>
+
+    <p>
+    If you combine this with the Message bomb method above, we can quickly clear our
+    invite/part logs as well, which can hide your tracks to some extent.
+    </p>
+    </div>
+    </div>
+    </div>
+
+    <div id="outline-container-orgd86f56c" class="outline-3">
+    <h3 id="orgd86f56c">Notification Spam</h3>
+    <div class="outline-text-3" id="text-orgd86f56c">
+    <p>
+    Notification spam is unfortunately hard to achieve without getting noticed,
+    because notifications usually have the sender's name attached. There are ways to
+    get around this though&hellip;
+    </p>
+
+    <p>
+    Since no one can leave #general, (and most slack moderators don't change settings
+    about <code>@everyone/@here/@channel</code>), it is extremely easy to send the entire team a
+    notification with a quick <code>@channel/@everyone</code>. If you delete the post immediately
+    after that, the only thing linking you to the notification is direct
+    eyewitnesses or the notification popup itself.
+    </p>
+    </div>
+    </div>
+
+    <div id="outline-container-orga498211" class="outline-3">
+    <h3 id="orga498211">Bots</h3>
+    <div class="outline-text-3" id="text-orga498211">
+    <p>
+    Bots let you take some of the burden off of your own infrastructure, and make
+    breaking slack easier than ever for everyone!
+    </p>
+    </div>
+    <div id="outline-container-org5eedda5" class="outline-4">
+    <h4 id="org5eedda5">PlusPlus</h4>
+    <div class="outline-text-4" id="text-org5eedda5">
+    <p>
+    <a href="https://plusplus.chat/">PlusPlus</a> is a very popular extension for slack, and is installed on many
+    teams. However, it's very easy to exploit PlusPlus for evil, as PlusPlus is
+    installed on a team, rather than on a channel (like IRC), it's trivially easy to
+    exploit, <a href="https://plusplus.chat/things/leaderboard">as the leaderboards of plusplus show</a>.
+    </p>
+
+    <p>
+    First of all, we can trigger plusplus in a couple ways:
+    </p>
+
+    <ul class="org-ul">
+    <li><code>@username++</code></li>
+    <li><code>username+++</code></li>
+    <li><code>@anything++</code></li>
+    </ul>
+
+    <p>
+    I found that if one method of voting did not work in my automation, a different
+    one would work, so I was able to trigger plusplus from anywhere (that isn't a
+    'true slack bot', as slack bots cannot talk to each other).
+    </p>
+
+    <p>
+    PlusPlus replies like this:
+    </p>
+
+    <ul class="org-ul">
+    <li><code>Woot! [@username++, now at # points]</code></li>
+    <li><code>Ouch! [@username--, now at # points]</code></li>
+    </ul>
+
+    <p>
+    This means that in addition to the notification you get when someone initially
+    ++'s you, you get another one when the bot replies (which can improve the
+    section above)!
+    </p>
+
+    <p>
+    You can pair this with <code>@channel</code> or <code>@everyone</code> to notify everyone on the team
+    twice. If your team has the <code>username:</code> style of notification turned off, you
+    can exploit this by sending a <code>username+++</code>, which will <i>not</i> trigger a
+    notification on your message, but <i>will</i> trigger one in the reply.
+    </p>
+
+    <p>
+    A bot that posts a <code>+++</code> style of plussing, and immediately deletes it's post
+    will trigger a notification with no trace back to the bot, other than an
+    eyewitness testimony.
+    </p>
+
+    <p>
+    PlusPlus has the ability to add/subtract multiple people at once, like so:
+    </p>
+
+    <ul class="org-ul">
+    <li><code>username+++ username2+++</code></li>
+    </ul>
+
+    <p>
+    Even better, it sends an individual message for <b>every single one</b>.
+    </p>
+
+    <p>
+    It's incredibly easy to build a file full of <code>@1-- @2-- @3--...</code>, post a single
+    message, and delete your initial post. Once a wave like this starts, it can go
+    on for a couple minutes before slack begins trottling PlusPlus. By the time this
+    happens, PlusPlus will have posed about 1,000 messages, which means with a
+    measly 10 messages, you can wipe an entire team's history.
+    </p>
+    </div>
+    </div>
+
+    <div id="outline-container-org3739a06" class="outline-4">
+    <h4 id="org3739a06">SlackBot</h4>
+    <div class="outline-text-4" id="text-org3739a06">
+    <p>
+    Slackbot is the king of all bots in slack. Not only is it a bot (and therefore
+    can easily be exploited), but it's got <b>higher permissions than any other bot</b>. That
+    means it's able to trigger bots itself (although it does not respond to bots),
+    as well as notify people. By exploiting slackbot, we can make our own automation
+    more powerful than slack lets us do directly.
+    </p>
+
+    <p>
+    Slackbot has two 'killer' features we can take advantage of, slackbot responses
+    and reminders. Slackbot responses are great because they're enabled by default
+    (meaning they're enabled almost everywhere) and you can customize them to say
+    whatever you want. Reminders are great because they let us effectively remove
+    our own infrastructure when we want to host a bot, and let slack tear itself
+    apart instead.
+    </p>
+
+    <p>
+    If for some reason, you find you can't access bots at all (ie: accessing slack
+    over the client API), you can take advantage of slackbot to solve your problems
+    by simply setting up a slackbot response to act like a proxy.
+    </p>
+    </div>
+    </div>
+
+    <div id="outline-container-org38123df" class="outline-4">
+    <h4 id="org38123df">SlackBot and PlusPlus</h4>
+    <div class="outline-text-4" id="text-org38123df">
+    <p>
+    If you have both slackbot and plusplus on your slack server, you can exploit
+    them together for profit. Simply set up a reccuring reminder to <code>@1-- @2--
+    @3--...</code> every day or so, add plusplus, and watch the fireworks.
+    </p>
+
+
+    <div class="figure">
+    <p><a href="https://user-images.githubusercontent.com/4349709/27512955-84c87e94-5908-11e7-90de-6c32f602c222.png"><img src="https://user-images.githubusercontent.com/4349709/27512955-84c87e94-5908-11e7-90de-6c32f602c222.png" alt="27512955-84c87e94-5908-11e7-90de-6c32f602c222.png" /></a>
+    </p>
+    </div>
+
+    <p>
+    You don't ever need to log into slack again, people will loose their messages
+    for 'unexplained reasons'.
+    </p>
+    </div>
+    </div>
+    </div>
+
+    <div id="outline-container-orga207092" class="outline-3">
+    <h3 id="orga207092">Room For Improvement</h3>
+    <div class="outline-text-3" id="text-orga207092">
+    </div>
+    <div id="outline-container-org55acc3a" class="outline-4">
+    <h4 id="org55acc3a">Threads</h4>
+    <div class="outline-text-4" id="text-org55acc3a">
+    <p>
+    Threads are incredibly buggy and I guarantee you can exploit them (to hide your
+    messages, to cause notifications, etc), but I wasn't able to explore that in
+    much detail before I left slack.
+    </p>
+    </div>
+    </div>
+
+    <div id="outline-container-orgebcf091" class="outline-4">
+    <h4 id="orgebcf091">Evolution</h4>
+    <div class="outline-text-4" id="text-orgebcf091">
+    <p>
+    As slack adds more misfeatures, it's likely these problems will get worse, not
+    better.
+    </p>
+
+    <p>
+    <a href="https://github.com/jgkamat/jgkamat.github.io">Pull Requests</a> are appreciated if you find a problem with this post, or a
+    new slack exploit.
+    </p>
+    </div>
+    </div>
+    </div>
+
+    <div id="outline-container-org438053c" class="outline-3">
+    <h3 id="org438053c">Conclusion</h3>
+    <div class="outline-text-3" id="text-org438053c">
+    <p>
+    It's incredibly easy to break slack! But why?
+    </p>
+
+    <p>
+    It boils down to a couple points, which slack could easily fix to solve all
+    these problems. These basic features have been requested many times, but slack
+    seems to be ignoring these requests.
+    </p>
+
+    <ol class="org-ol">
+    <li>Message/File Limits</li>
+    <li>Lack of fine grained notification control</li>
+    <li>Inability to block/ignore users</li>
+    <li>Lack of chanop (<code>+o</code>)</li>
+    <li>Inability of moderators to see secret channels</li>
+    </ol>
+    </div>
+
+    <div id="outline-container-org390e7d3" class="outline-4">
+    <h4 id="org390e7d3">Mitigation</h4>
+    <div class="outline-text-4" id="text-org390e7d3">
+    <p>
+    If you are a slack moderator, and you are concerned about these threats, you should immediately:
+    </p>
+
+    <ol class="org-ol">
+    <li>Disallow user creation of all channels</li>
+    <li>Disallow all bots</li>
+    <li>Disallow deletion or editing of any messages</li>
+    <li>Disallow any domain from automatically joining your slack channel (manual
+    invites only)</li>
+    <li>Disallow <code>@everyone</code>, <code>@here</code>, and <code>@channel</code>.</li>
+    <li>Disallow setting slackbot replies, and delete any present replies</li>
+    <li>Ensure you <b>personally</b> know everyone in your slack team, and are able to
+    hold all of them accountable.</li>
+    </ol>
+
+    <p>
+    Even with these steps, there are risks (ie: posting in a DM to slackbot cannot
+    be disabled, as slackbot cannot be disabled). If you would like a better
+    solution you can:
+    </p>
+
+    <ol class="org-ol">
+    <li>Pay slack for premium (which solves half of these issues)</li>
+    <li>Switch to a better designed chat platform
+    <ul class="org-ul">
+    <li>Please pick something that your team can use, not something that uses your
+    team.</li>
+    <li>IRC (still going strong)</li>
+    <li>XMPP (if you really want 'modern features')</li>
+    <li>Matrix (if you really really want 'modern features')</li>
+    </ul></li>
+    </ol>
+    </div>
+    </div>
+
+    <div id="outline-container-org2176664" class="outline-4">
+    <h4 id="org2176664">Related Posts</h4>
+    <div class="outline-text-4" id="text-org2176664">
+    <ol class="org-ol">
+    <li><a href="https://drewdevault.com/2015/11/01/Please-stop-using-slack.html">Please don't use Slack for FOSS projects</a></li>
+    <li><a href="https://medium.freecodecamp.com/so-yeah-we-tried-slack-and-we-deeply-regretted-it-391bcc714c81">So yeah, we tried slack&#x2026;</a></li>
+    <li><a href="https://ux.useronboard.com/slack-i-m-breaking-up-with-you-54600ace03ea">Slack, I’m Breaking Up with You</a></li>
+    <li><a href="https://medium.com/@quinnnorton/the-problem-with-slack-854adeef9154">The Problem With Slack</a></li>
+    <li><a href="https://drewdevault.com/2018/03/10/How-to-write-an-IRC-bot.html">How to write an IRC Bot</a></li>
+    </ol>
+    </div>
+    </div>
+    </div>
+
+    <div id="outline-container-org1bce338" class="outline-3">
+    <h3 id="org1bce338">Navigation</h3>
+    <div class="outline-text-3" id="text-org1bce338">
+    <div class="div-wrap">
+    <div class="div-left">
+    <p>
+    <a href="applications.html">&larr; Productivity and Applications</a>
+    </p>
+
+    </div>
+    <div class="div-center">
+    <p>
+    <a href="home.html">⟨Blog Home⟩</a>
+    </p>
+
+    </div>
+    <div class="div-right">
+    <p>
+    <a href="website1.html">Creating A Blog in Org Mode &rarr;</a>
+    </p>
+
+    </div>
+
+    </div>
+    </div>
+    </div>
+    ]]></description>
+</item>
+
+<item>
+  <title>Productivity and Applications</title>
+  <link>https://jgkamat.github.io/blog/applications.html</link>
+  <author>jaygkamat@gmail.com (root)</author>
+  <guid isPermaLink="false">https://jgkamat.github.io/blog/applications.html</guid>
+  <pubDate>Sun, 22 Jan 2017 00:00:00 +0000</pubDate>
+
+  <description><![CDATA[
+  <div id="outline-container-org60c26a3" class="outline-3">
+  <h3 id="org60c26a3">Why Even Bother?</h3>
+  <div class="outline-text-3" id="text-org60c26a3">
+  <p>
+  I'm really picky about the applications I use, mainly to make sure I'm
+  maximizing my productivity.
+  </p>
+
+  <p>
+  Vim was the first example I had of how much productivity matters (at least to a
+  programmer). A common action such as 'append text to the current line' is
+  <i>extremely</i> common and saving 5 seconds or so on it adds up to a <i>lot</i> of saved
+  time in the long run.
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-orgcc5f10a" class="outline-3">
+  <h3 id="orgcc5f10a">Core</h3>
+  <div class="outline-text-3" id="text-orgcc5f10a">
+  <p>
+  In general, I look for 3 things in any application before I begin relying on it.
+  </p>
+
+  <p>
+  Is the program:
+  </p>
+  <ol class="org-ol">
+  <li>Stable</li>
+  <li>Customizable</li>
+  <li>Lightweight</li>
+  </ol>
+
+  <p>
+  I'll talk about a few instances where I switched applications to give you a
+  better idea of what I'm talking about.
+  </p>
+  </div>
+
+  <div id="outline-container-org5a15146" class="outline-4">
+  <h4 id="org5a15146">Stability</h4>
+  <div class="outline-text-4" id="text-org5a15146">
+  <p>
+  Stability is important for obvious reasons.
+  If a program crashes, freezes, or stops working, you loose productivity in the
+  worst way possible, leaving you unable to work at all. Using older versions of
+  software can help with this as well, but occasionally there is software that is
+  completely unusable due to it's instability, which I can never use.
+  </p>
+
+  <p>
+  An example of this is <code>apvlv</code>, which I couldn't get running without segfaults
+  (even on multiple environments). Even older versions seemed to have the same
+  issue for me. Despite fitting well into my workflow otherwise, I'm unable to use
+  <code>apvlv</code> due to stability.
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-org2fdf51a" class="outline-4">
+  <h4 id="org2fdf51a">Customizability</h4>
+  <div class="outline-text-4" id="text-org2fdf51a">
+  <p>
+  Software that is customizable helps with productivity because it makes it easy
+  to change the program to do exactly what you need with the least amount of
+  effort on your end. Customizable software also lends itself extremely well to
+  automation, which improves productivity immensely.
+  </p>
+
+  <p>
+  I used to use GNOME as my primary desktop environment/window manager, until
+  GNOME 3 was released. GNOME 3 is nice in terms of ease of use and it is very
+  well polished, but it lacks customizability. It's very hard to get the <i>exact</i>
+  behavior you want on GNOME 3, and that's why I ditched it for KDE at the time.
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-org0aec572" class="outline-4">
+  <h4 id="org0aec572">Being Lightweight</h4>
+  <div class="outline-text-4" id="text-org0aec572">
+  <p>
+  Minimalist applications lend to productivity, simply because they are doing
+  less. Especially when on limited hardware, lightweight applications end up being
+  much faster to use. Minimalist software also has the added benefit that you can
+  reasonably understand the entire program quickly, and modify it to suit your
+  needs, which adds immense customizability.
+  </p>
+
+  <p>
+  For me, I ended up ditching Eclipse because it was much too heavy. It has a
+  immense amount of features, which is nice, but Eclipse on my computer was
+  unbearably slow when compared to a simple text editor. While the features of an
+  IDE are very appealing, I can probably never go back to using one due to this
+  point.
+  </p>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-org09fcb15" class="outline-3">
+  <h3 id="org09fcb15">Wrapping Up</h3>
+  <div class="outline-text-3" id="text-org09fcb15">
+  <p>
+  Hopefully this post can help you become more productive. I find that even small
+  changes to workflow can improve productivity immensely, and reviewing the
+  applications you use every day can help you have more free time in the future!
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-org30eb497" class="outline-3">
+  <h3 id="org30eb497">Navigation</h3>
+  <div class="outline-text-3" id="text-org30eb497">
+  <div class="div-wrap">
+  <div class="div-left">
+  <p>
+  <a href="applications.html">&larr; Productivity and Applications</a>
+  </p>
+
+  </div>
+  <div class="div-center">
+  <p>
+  <a href="home.html">⟨Blog Home⟩</a>
+  </p>
+
+  </div>
+  <div class="div-right">
+  <p>
+  <a href="website1.html">Creating A Blog in Org Mode &rarr;</a>
+  </p>
+
+  </div>
+
+  </div>
+  </div>
+  </div>
+  ]]></description>
+</item>
+
+<item>
+  <title>Creating A Blog in Org Mode</title>
+  <link>https://jgkamat.github.io/blog/website1.html</link>
+  <author>jaygkamat@gmail.com (root)</author>
+  <guid isPermaLink="false">https://jgkamat.github.io/blog/website1.html</guid>
+  <pubDate>Tue, 06 Dec 2016 00:00:00 +0000</pubDate>
+
+  <description><![CDATA[
+  <div id="outline-container-org6f3d157" class="outline-3">
+  <h3 id="org6f3d157">Overview</h3>
+  <div class="outline-text-3" id="text-org6f3d157">
+  <p>
+  Org is a very powerful tool, but most of the org setups I've seen hasn't used it to its full potential.
+  This website is one example of a complex, multi-page project built in org. This post is a 'brief' overview of how it was created.
+  </p>
+
+  <p>
+  This blog was created with:
+  </p>
+
+  <ul class="org-ul">
+  <li><a href="https://www.gnu.org/software/emacs/">Emacs</a></li>
+  <li><a href="http://orgmode.org/">org-mode</a></li>
+  <li><a href="https://github.com/marsmining/ox-twbs">ox-twbs</a></li>
+  </ul>
+
+  <p>
+  Features:
+  </p>
+  <ul class="org-ul">
+  <li>Homepage</li>
+  <li>Blogging Engine
+  <ul class="org-ul">
+  <li>Prev/Next Links</li>
+  <li>Archive Page (sorted)</li>
+  <li>Automatically add new org files to blog/archive</li>
+  </ul></li>
+  </ul>
+
+  <p>
+  This post will go over everything you need to set up a complex, customized, and dynamic org project like this one. It assumes you are familiar with org, and that you know elisp.
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-orga7cea4e" class="outline-3">
+  <h3 id="orga7cea4e">Org Projects</h3>
+  <div class="outline-text-3" id="text-orga7cea4e">
+  </div>
+  <div id="outline-container-orge45c383" class="outline-4">
+  <h4 id="orge45c383">Basic Setup</h4>
+  <div class="outline-text-4" id="text-orge45c383">
+  <p>
+  Org projects are a simple way to combine and link multiple org files together into one complete export. The complete docs are <a href="http://orgmode.org/manual/Publishing.html">here</a>.
+  </p>
+
+  <p>
+  To create an org project, all you need to do is set <code>org-publish-project-alist</code>. Here's a simple example.
+  </p>
+
+  <div class="org-src-container">
+  <pre class="src src-emacs-lisp"><span style="color: #5e6263;">;; </span><span style="color: #5e6263;">Setup</span>
+  (<span style="color: #598249;">setq</span> org-publish-project-alist
+  `((<span style="color: #15968D;">"project-name"</span>
+  <span style="color: #598249;">:base-directory</span> <span style="color: #15968D;">"~/org-project"</span>
+  <span style="color: #598249;">:recursive</span> t
+  <span style="color: #598249;">:publishing-directory</span> <span style="color: #15968D;">"/var/www/html"</span>
+  <span style="color: #598249;">:publishing-function</span> org-html-publish-to-html)))
+
+  <span style="color: #5e6263;">;; </span><span style="color: #5e6263;">Publish with</span>
+  (org-publish-current-project) <span style="color: #5e6263;">;; </span><span style="color: #5e6263;">While having a file in your project open</span>
+  <span style="color: #5e6263;">;; </span><span style="color: #5e6263;">OR</span>
+  <span style="color: #5e6263;">;; </span><span style="color: #5e6263;">M-x org-publish &lt;RET&gt; project-name &lt;RET&gt;</span>
+  </pre>
+  </div>
+
+  <p>
+  Once this is run, you'll have a new org project with those following parameters, and you can publish the project using <code>org-publish-project</code>.
+  Just place your org files in <code>~/org-project</code>, and org will export them to HTML (using <code>org-html-publish-to-html</code>) and place them in <code>/var/www/html</code>.
+  </p>
+
+  <p>
+  Running the export again will cache the output files, if they have not changed, which can be useful. If you want to trigger a full rebuild, you can run <code>(org-publish "project-name" t)</code>.
+  </p>
+
+  <p>
+  Files that are linked with <code>org-insert-link</code> will link fine in the export, as long as they are <i>realtive links</i>. This should happen automatically, but occasionally, you have to tweak a few links.
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-org7c845f5" class="outline-4">
+  <h4 id="org7c845f5">Customization</h4>
+  <div class="outline-text-4" id="text-org7c845f5">
+  <p>
+  While the above setup works, there's a lot we might want to change. For instance, we might want to turn of table of contents for the entire project.
+  For a single file, we would put <code>#+OPTIONS: toc:nil</code>, but to apply this to every file in our project, we can add <code>:with-toc nil</code> to the project above. <a href="http://orgmode.org/manual/Publishing-options.html#Publishing-options">Here are the rest of the default org project options.</a>
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-org3bfdefe" class="outline-4">
+  <h4 id="org3bfdefe">Making this Shareable</h4>
+  <div class="outline-text-4" id="text-org3bfdefe">
+  <p>
+  Some people might want to put this <code>setq</code> call in your Emacs dotfiles, but I prefer to place it in a <a href="https://github.com/jgkamat/jgkamat.github.io/blob/sources/jgkamat-website.el">seperate emacs lisp file</a> file instead, which lets others get the same project definition. It also lets you put other changes you make in this file as well, since all those changes will be elisp. Anyone who wants to work with your project simply needs to source this file, instead of setting up the project again.
+  </p>
+
+  <p>
+  In order to make sure others can use this flawlessly, we need to remove these absolute links from our project, such as <code>/var/www/html</code> and <code>~/org-project</code>, since we can't expect everyone to have the same directory structure as we do. Since we are loading the static file <code>jgkamat-website.el</code>, we can define the root/export in terms of this file. This is one way to do that, assuming that <code>jgkamat-website.el</code> is in the root:
+  </p>
+
+  <div class="org-src-container">
+  <pre class="src src-emacs-lisp">(<span style="color: #598249;">let</span> ((proj-base (file-name-directory load-file-name)))
+  (<span style="color: #598249;">setq</span> org-publish-project-alist
+  `((<span style="color: #15968D;">"project-name"</span>
+  <span style="color: #598249;">:base-directory</span> ,(concat proj-base <span style="color: #15968D;">"."</span>)
+  <span style="color: #598249;">:recursive</span> t
+  <span style="color: #598249;">:publishing-directory</span> ,(concat proj-base  <span style="color: #15968D;">"../export"</span>)
+  <span style="color: #598249;">:publishing-function</span> org-html-publish-to-html))))
+  </pre>
+  </div>
+
+  <p>
+  The org project definition for this blog (in <a href="https://github.com/jgkamat/jgkamat.github.io/blob/sources/jgkamat-website.el">jgkamat-website.el</a> is not much more complicated than this one.
+  The main difference is it has a bunch of org project customizations turned on, and it's using <code>ox-twbs</code> instead of the native html exporter.
+  This is done by changing the <code>:publishing-function</code> to <code>org-twbs-publish-to-html</code>, which is in the <code>ox-twbs</code> docs.
+  </p>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-org4b4f490" class="outline-3">
+  <h3 id="org4b4f490">Custom CSS on HTML Exports</h3>
+  <div class="outline-text-3" id="text-org4b4f490">
+  <p>
+  We've got a nice website now, but it looks pretty bare bones. How do we provide our own CSS?
+  </p>
+
+  <p>
+  The easiest way to apply a CSS file to your org project (with exporters based on the html one) is to add this to your <code>org-publish-project-alist</code> directive:
+  </p>
+
+  <div class="org-src-container">
+  <pre class="src src-emacs-lisp"><span style="color: #598249;">:html-head-extra</span> <span style="color: #15968D;">"&lt;link rel=\"stylesheet\" href=\"./myfile.css\"&gt;"</span>
+  </pre>
+  </div>
+
+  <p>
+  Another option is to set <code>#+HTML_HEAD_EXTRA</code> at the top of your org files.
+  </p>
+
+  <p>
+  I'm very new to 'webdev', so actually creating the CSS was a struggle for me. <a href="https://github.com/jgkamat/jgkamat.github.io/blob/master/src/jgkamat.css">This is the final result.</a>
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-orga674ead" class="outline-3">
+  <h3 id="orga674ead">Dynamic Org Exports</h3>
+  <div class="outline-text-3" id="text-orga674ead">
+  <p>
+  We've got our nice org project for easy export, custom CSS styling, and maybe even a custom org exporter to get our website looking just how we want it, but how can we get dynamic exports?
+  In my case, I wanted an <a href="home.html">aggregation of all my (sorted) blog posts</a> and <a href="#org1bce338">previous/next links on all my blog entries</a>
+  </p>
+
+  <p>
+  The solution I found to this really showed me the power and flexibility of org mode. Placing this block in org source:
+  </p>
+
+
+  <div class="org-src-container">
+  <pre class="src src-org"><span style="color: #5e6263;">#+BEGIN_SRC emacs-lisp :exports results :results raw</span>
+  (print <span style="color: #15968D;">"hello world! *bold* /slant/ +strikethrough+"</span>)
+  <span style="color: #5e6263;">#+END_SRC</span>
+  </pre>
+  </div>
+
+  <p>
+  Results in this output:
+  </p>
+
+  <p>
+  hello world! <b>bold</b> <i>slant</i> <del>strikethrough</del>
+  </p>
+
+  <p>
+  By using the <code>:exports results :results raw</code> directive to source code blocks, we can evaluate them when building our org file, and their result will be inserted into the org document <i>as if we wrote it ourselves</i>!
+  </p>
+
+  <p>
+  To generate the dynamic content I want, I just created elisp functions for whatever I needed.
+  After creating a <code>(gen-links)</code> to generate a sorted list of org blog posts, and a <code>(gen-prev-next)</code> to generate previous and next links, all I needed to do was:
+  </p>
+
+  <div class="org-src-container">
+  <pre class="src src-org"><span style="color: #5e6263;"># For sorted list of posts</span>
+  <span style="color: #5e6263;">#+BEGIN_SRC emacs-lisp :exports results :results raw</span>
+  (gen-links)
+  <span style="color: #5e6263;">#+END_SRC</span>
+
+  <span style="color: #5e6263;"># For prev/next links</span>
+  <span style="color: #5e6263;">#+BEGIN_SRC emacs-lisp :exports results :results raw</span>
+  (gen-prev-next)
+  <span style="color: #5e6263;">#+END_SRC</span>
+  </pre>
+  </div>
+
+  <p>
+  I put the source for these functions in my <a href="https://github.com/jgkamat/jgkamat.github.io/blob/sources/jgkamat-website.el">jgkamat-website.el</a>. These functions work by parsing all my org files in <code>/blog</code> and sorting them by the <code>#+DATE</code>, and displaying the relevant information.
+  They need some more work, but they are usable for now. I might post about how I made those functions later&#x2026;
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-org389d9cd" class="outline-3">
+  <h3 id="org389d9cd">Side Note: Divs</h3>
+  <div class="outline-text-3" id="text-org389d9cd">
+  <p>
+  It might be nice to generate divs in your html file from your org source. I used this to get my prev/next links into a nice 3 part table. You can insert a div with class <code>classname</code> like this:
+  </p>
+
+  <div class="org-src-container">
+  <pre class="src src-org"><span style="color: #5e6263;">#+begin_classname</span>
+  Content inside your div
+  <span style="color: #5e6263;">#+end_classname</span>
+  </pre>
+  </div>
+
+  <p>
+  I created divs called <code>div-wrap</code>, <code>div-left</code>, <code>div-right</code>, and <code>div-center</code> for this purpose, and referenced them in CSS to get them to fit properly. The actual divs are generated in the elisp source code blocks.
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-org135c9c9" class="outline-3">
+  <h3 id="org135c9c9">Wrapping Up</h3>
+  <div class="outline-text-3" id="text-org135c9c9">
+  <p>
+  Creating an org blog is a lot easier than it seems, if you know how to use org's features to your advantage.
+  </p>
+
+  <p>
+  Let me know via a <a href="https://github.com/jgkamat/jgkamat.github.io/issues">github issue</a> (or a PR) if you find anything wrong on this post/website/anything, and I'll get on it!
+  </p>
+
+  <p>
+  Here are some other successful org blogs:
+  </p>
+  <ul class="org-ul">
+  <li><a href="http://endlessparentheses.com/how-i-blog-one-year-of-posts-in-a-single-org-file.html">Endless Parentheses</a> (Jekyll Based)</li>
+  <li><a href="https://ogbe.net/blog/blogging_with_org.html">Dennis Ogbe</a> (Plain Org)</li>
+  <li><a href="https://gjhenrique.com/meta.html">gjhenrique</a> (Plain Org)</li>
+  </ul>
+
+  <p>
+  The source code for all of this is <a href="https://github.com/jgkamat/jgkamat.github.io">at this github repo</a>.
+  </p>
+
+  <p>
+  Lastly, here's an obligatory screenshot of me editing this post. <code>=)</code>
+  </p>
+
+
+  <div class="figure">
+  <p><a href="https://user-images.githubusercontent.com/4349709/27512957-922c8724-5908-11e7-81a6-866dcf54245b.png"><img src="https://user-images.githubusercontent.com/4349709/27512957-922c8724-5908-11e7-81a6-866dcf54245b.png" alt="27512957-922c8724-5908-11e7-81a6-866dcf54245b.png" /></a>
+  </p>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-orge8d2c1f" class="outline-3">
+  <h3 id="orge8d2c1f">Navigation</h3>
+  <div class="outline-text-3" id="text-orge8d2c1f">
+  <div class="div-wrap">
+  <div class="div-left">
+  <p>
+  <a href="applications.html">&larr; Productivity and Applications</a>
+  </p>
+
+  </div>
+  <div class="div-center">
+  <p>
+  <a href="home.html">⟨Blog Home⟩</a>
+  </p>
+
+  </div>
+  <div class="div-right">
+  <p>
+  <a href="website1.html">Creating A Blog in Org Mode &rarr;</a>
+  </p>
+
+  </div>
+
+  </div>
+  </div>
+  </div>
+  ]]></description>
+</item>
+
+<item>
+  <title>Blog Home</title>
+  <link>https://jgkamat.github.io/blog/home.html</link>
+  <author>jaygkamat@gmail.com (root)</author>
+  <guid isPermaLink="false">https://jgkamat.github.io/blog/home.html</guid>
+  <pubDate>Sun, 04 Dec 2016 00:00:00 +0000</pubDate>
+
+  <description><![CDATA[
+  <div id="outline-container-org9d33cdb" class="outline-3">
+  <h3 id="org9d33cdb">Welcome</h3>
+  <div class="outline-text-3" id="text-org9d33cdb">
+  <p>
+  Hi, welcome to my blog. It's under construction now.
+  </p>
+
+  <p>
+  <a href="../index.html">Website Home</a>
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-orga00c82b" class="outline-3">
+  <h3 id="orga00c82b">Archives</h3>
+  <div class="outline-text-3" id="text-orga00c82b">
+  <p>
+  Sorted by date, newest first
+  </p>
+
+  <ol class="org-ol">
+  <li><a href="slack.html">Breaking Slack</a></li>
+  <li><a href="website1.html">Creating A Blog in Org Mode</a></li>
+  <li><a href="rss.html">nil</a></li>
+  <li><a href="applications.html">Productivity and Applications</a></li>
+  <li><a href="home.html">Blog Home</a></li>
+  </ol>
+  </div>
+  </div>
+
+  <div id="outline-container-org2392bd7" class="outline-3">
+  <h3 id="org2392bd7">Misc</h3>
+  <div class="outline-text-3" id="text-org2392bd7">
+  <ul class="org-ul">
+  <li><a href="../misc/favorites.html#orgacb6ea4">My Favorites</a></li>
+  <li><a href="../fonttest.html">Font Test Page</a></li>
+  <li><a href="../loop.html">JS Looper</a></li>
+  </ul>
+  </div>
+  </div>
+
+  <div id="outline-container-org9535b3f" class="outline-3">
+  <h3 id="org9535b3f">Navigation</h3>
+  <div class="outline-text-3" id="text-org9535b3f">
+  <div class="div-wrap">
+  <div class="div-left">
+  <p>
+  <a href="applications.html">&larr; Productivity and Applications</a>
+  </p>
+
+  </div>
+  <div class="div-center">
+  <p>
+  <a href="home.html">⟨Blog Home⟩</a>
+  </p>
+
+  </div>
+  <div class="div-right">
+  <p>
+  <a href="website1.html">Creating A Blog in Org Mode &rarr;</a>
+  </p>
+
+  </div>
+
+  </div>
+  </div>
+  </div>
+  ]]></description>
+</item>
+</channel>
+</rss>
