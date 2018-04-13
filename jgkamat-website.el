@@ -17,8 +17,11 @@
 
 (require 'ox-publish)
 (require 'ox-twbs)
+(require 'ox-rss)
+(require 'cl-lib)
 
 (defvar website-publish-dir (concat (file-name-directory load-file-name) "./html"))
+(defun dummy-fun (&rest _))
 
 ;; Force htmlize to activate even in nogui mode:
 ;; https://stackoverflow.com/questions/3591337/emacs-htmlize-in-batch-mode
@@ -46,21 +49,53 @@
 ;; I reccomend you publish with FORCE on to avoid loosing changes in history files
 (let ((proj-base (file-name-directory load-file-name)))
   (setq project-base (concat proj-base "src/"))
-  (setq org-publish-project-alist
-        `(("jgkamat.github.io"
-           :base-directory ,project-base
-           :recursive t
-           :publishing-directory ,(or (and (boundp 'website-publish-dir) website-publish-dir) (concat project-base  "../html/"))
-           ;; Add my CSS and fonts
-           :html-head-extra "<link rel=\"stylesheet\" href=\"https://jgkamat.github.io/src/jgkamat.css\">"
-           ;; Remove all JS from website, only leave bootstrap CSS
-           :html-head "<link href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css\" rel=\"stylesheet\">"
-           :title nil
-           :with-headline-numbers nil
-           :toc 3
-           :with-date nil
-           :time-stamp-file nil
-           :publishing-function org-twbs-publish-to-html))))
+  (setq
+   org-publish-project-alist
+   `(("jgkamat.github.io"
+      :base-directory ,project-base
+      :recursive t
+      :publishing-directory ,website-publish-dir
+      ;; Add my CSS and fonts
+      :html-head-extra "<link rel=\"stylesheet\" href=\"https://jgkamat.github.io/src/jgkamat.css\">"
+      ;; Remove all JS from website, only leave bootstrap CSS
+      :html-head "<link href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css\" rel=\"stylesheet\">"
+      :title nil
+      :with-headline-numbers nil
+      :toc 3
+      :with-date nil
+      :time-stamp-file nil
+      :auto-sitemap t
+      :sitemap-sort-files anti-chronologically
+      :publishing-function org-twbs-publish-to-html)
+     ("jgkamat.github.io-blogmap"
+      :base-directory ,(concat project-base "./blog")
+      :recursive t
+      :publishing-directory ,(concat website-publish-dir "./blog")
+      :title nil
+      :table-of-contents nil
+      :auto-sitemap t
+      :sitemap-filename "rss.org"
+      :sitemap-title "Blog Rss"
+      :sitemap-function jay-publish-sitemap-expand
+      :sitemap-sort-files anti-chronologically
+      :publishing-function dummy-fun)
+     ("jgkamat.github.io-rss"
+      :base-directory ,(concat project-base "./blog")
+      :recursive t
+      :publishing-directory ,(concat website-publish-dir "/blog/")
+      :title nil
+      :with-headline-numbers nil
+      :with-date nil
+      :time-stamp-file nil
+      :section-numbers nil
+      :table-of-contents nil
+      :html-link-home "https://jgkamat.github.io/blog/"
+      :rss-image-url "https://jgkamat.github.io/favicon.ico"
+      :exclude ".*"
+      :include ("./rss.org")
+      :rss-extension "xml"
+      :publishing-function (org-rss-publish-to-rss)))))
+
 (setq org-twbs-postamble 't
       org-twbs-head-include-scripts nil)
 (setq org-twbs-postamble-format
@@ -82,6 +117,13 @@
   (if (and (not (stringp stamp)) (eql (first stamp) 'timestamp))
       (plist-get (second stamp) ':raw-value)
     stamp))
+
+(defun gen-raw-org-date (filename)
+  "Generates raw date headers from filenames"
+  (let ((filename (file-relative-name (file-truename filename))))
+    (with-temp-buffer
+      (insert-file-contents filename)
+      (plist-get (org-export-get-environment) ':date))))
 
 (defun gen-org-property (filename)
   "Generates an org property from a filename"
@@ -162,6 +204,34 @@
   "Export this website.  Assumes this file has set up the projects already."
   (let ((make-backup-files nil))
     (org-publish-all t)))
+
+(defun jay-publish-sitemap-expand (title list)
+  "Site map, as a string.
+TITLE is the the title of the site map.  LIST is an internal
+representation for the files to include, as returned by
+`org-list-to-lisp'.  PROJECT is the current project."
+  (with-temp-buffer
+    (org-mode)
+    (insert (org-list-to-subtree list))
+    (org-map-entries
+     (lambda ()
+       (let* (
+              ;; TODO stop hard-coding blog dir here.
+              (default-directory (concat project-base "./blog/"))
+              (line (thing-at-point 'line t))
+              (components (org-heading-components))
+              (title (cl-fifth components))
+              (link-target-raw (and (string-match org-bracket-link-regexp title)
+                                    (match-string 1 title)))
+              (link-target (car-safe (last (split-string link-target-raw ":"))))
+              (rss-permalink (concat (file-name-sans-extension link-target) ".html")))
+
+         (end-of-line)
+         (insert (concat "\n"
+                         "#+INCLUDE: \"" link-target) "\" :only-contents t :lines \"4-\"")
+         (org-set-property "PUBDATE" (org-timestamp-to-str (first (gen-raw-org-date link-target))))
+         (org-set-property "RSS_PERMALINK" rss-permalink))))
+    (buffer-string)))
 
 (provide 'jgkamat-website)
 

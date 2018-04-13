@@ -6,6 +6,6 @@
 
 ;; (files "jgkamat-website.el")
 
-(development
- (depends-on "htmlize")
- (depends-on "ox-twbs"))
+(depends-on "htmlize")
+(depends-on "ox-twbs")
+(depends-on "org-plus-contrib")
