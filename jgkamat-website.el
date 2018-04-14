@@ -247,6 +247,15 @@ representation for the files to include, as returned by
          (org-set-property "RSS_PERMALINK" rss-permalink))))
     (buffer-string)))
 
+;; Make org-twbs links clickable...
+(defun org-twbs--format-image-wrap (fun source attributes info)
+  "Wrap org-twbs--format-image to make all images clickable."
+  (format
+   "<a href=\"%s\">%s</a>"
+   source
+   (apply fun `(,source ,attributes ,info))))
+(advice-add 'org-twbs--format-image :around #'org-twbs--format-image-wrap)
+
 (provide 'jgkamat-website)
 
 ;;; jgkamat-website.el ends here
