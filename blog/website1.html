@@ -1,191 +1,97 @@
-<!doctype html>
-<html lang="en">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Creating A Blog in Org Mode</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="generator" content="Org-mode">
-<meta name="author" content="Jay Kamat">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-<style type="text/css">
-/* org mode styles on top of twbs */
-
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    font-size: 18px;
-    margin-bottom: 105px;
-}
-
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 101px;
-    background-color: #f5f5f5;
-}
-
-footer > div {
-    padding: 10px;
-}
-
-footer p {
-    margin: 0 0 5px;
-    text-align: center;
-    font-size: 16px;
-}
-
-#table-of-contents {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-blockquote p {
-    font-size: 18px;
-}
-
-pre {
-    font-size: 16px;
-}
-
-.footpara {
-    display: inline-block;
-}
-
-figcaption {
-  font-size: 16px;
-  color: #666;
-  font-style: italic;
-  padding-bottom: 15px;
-}
-
-/* from twbs docs */
-
-.bs-docs-sidebar.affix {
-    position: static;
-}
-@media (min-width: 768px) {
-    .bs-docs-sidebar {
-        padding-left: 20px;
-    }
-}
-
-/* All levels of nav */
-.bs-docs-sidebar .nav > li > a {
-    display: block;
-    padding: 4px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #999;
-}
-.bs-docs-sidebar .nav > li > a:hover,
-.bs-docs-sidebar .nav > li > a:focus {
-    padding-left: 19px;
-    color: #A1283B;
-    text-decoration: none;
-    background-color: transparent;
-    border-left: 1px solid #A1283B;
-}
-.bs-docs-sidebar .nav > .active > a,
-.bs-docs-sidebar .nav > .active:hover > a,
-.bs-docs-sidebar .nav > .active:focus > a {
-    padding-left: 18px;
-    font-weight: bold;
-    color: #A1283B;
-    background-color: transparent;
-    border-left: 2px solid #A1283B;
-}
-
-/* Nav: second level (shown on .active) */
-.bs-docs-sidebar .nav .nav {
-    display: none; /* Hide by default, but at >768px, show it */
-    padding-bottom: 10px;
-}
-.bs-docs-sidebar .nav .nav > li > a {
-    padding-top: 1px;
-    padding-bottom: 1px;
-    padding-left: 30px;
-    font-size: 12px;
-    font-weight: normal;
-}
-.bs-docs-sidebar .nav .nav > li > a:hover,
-.bs-docs-sidebar .nav .nav > li > a:focus {
-    padding-left: 29px;
-}
-.bs-docs-sidebar .nav .nav > .active > a,
-.bs-docs-sidebar .nav .nav > .active:hover > a,
-.bs-docs-sidebar .nav .nav > .active:focus > a {
-    padding-left: 28px;
-    font-weight: 500;
-}
-
-/* Nav: third level (shown on .active) */
-.bs-docs-sidebar .nav .nav .nav {
-    padding-bottom: 10px;
-}
-.bs-docs-sidebar .nav .nav .nav > li > a {
-    padding-top: 1px;
-    padding-bottom: 1px;
-    padding-left: 40px;
-    font-size: 12px;
-    font-weight: normal;
-}
-.bs-docs-sidebar .nav .nav .nav > li > a:hover,
-.bs-docs-sidebar .nav .nav .nav > li > a:focus {
-    padding-left: 39px;
-}
-.bs-docs-sidebar .nav .nav .nav > .active > a,
-.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
-.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
-    padding-left: 38px;
-    font-weight: 500;
-}
-
-/* Show and affix the side nav when space allows it */
-@media (min-width: 992px) {
-    .bs-docs-sidebar .nav > .active > ul {
-        display: block;
-    }
-    /* Widen the fixed sidebar */
-    .bs-docs-sidebar.affix,
-    .bs-docs-sidebar.affix-bottom {
-        width: 213px;
-    }
-    .bs-docs-sidebar.affix {
-        position: fixed; /* Undo the static from mobile first approach */
-        top: 20px;
-    }
-    .bs-docs-sidebar.affix-bottom {
-        position: absolute; /* Undo the static from mobile first approach */
-    }
-    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
-        margin-top: 0;
-        margin-bottom: 0
-    }
-}
-@media (min-width: 1200px) {
-    /* Widen the fixed sidebar again */
-    .bs-docs-sidebar.affix-bottom,
-    .bs-docs-sidebar.affix {
-        width: 263px;
-    }
-}
-</style>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Jay Kamat" />
 <link rel="stylesheet" href="https://jgkamat.github.io/src/jgkamat.css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
 </head>
 <body>
-<div id="content" class="container">
-<div class="row"><div class="col-md-9"><h1 class="title">Creating A Blog in Org Mode</h1>
+<div id="content">
+<h1 class="title">Creating A Blog in Org Mode</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#h:ua1fi9s0gyh0">1. Overview</a></li>
+<li><a href="#h:vw6fi9s0gyh0">2. Org Projects</a>
+<ul>
+<li><a href="#h:n3bfi9s0gyh0">2.1. Basic Setup</a></li>
+<li><a href="#h:ifffi9s0gyh0">2.2. Customization</a></li>
+<li><a href="#h:edjfi9s0gyh0">2.3. Making this Shareable</a></li>
+</ul>
+</li>
+<li><a href="#h:7bnfi9s0gyh0">3. Custom CSS on HTML Exports</a></li>
+<li><a href="#h:qyqfi9s0gyh0">4. Dynamic Org Exports</a></li>
+<li><a href="#h:pmufi9s0gyh0">5. Side Note: Divs</a></li>
+<li><a href="#h:u4yfi9s0gyh0">6. Wrapping Up</a></li>
+<li><a href="#h:722gi9s0gyh0">7. Navigation</a></li>
+</ul>
+</div>
+</div>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Overview</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orga0ae683" class="outline-2">
+<h2 id="h:ua1fi9s0gyh0"><a id="orga0ae683"></a><span class="section-number-2">1</span> Overview</h2>
+<div class="outline-text-2" id="text-h:ua1fi9s0gyh0">
 <p>
-Org is a very powerful tool, but most of the org setups I've seen hasn't used it to its full potential.
-This website is one example of a complex, multi-page project built in org. This post is a 'brief' overview of how it was created.
+<b>NOTE:</b> My website used to be build with ox-twbs, now it's built on ox-html.
+Commit <a href="https://github.com/jgkamat/jgkamat.github.io/tree/bb5eadb640f982a0acdc6713dd99bfce64328798">bb5eadb6</a> is one of the last to use ox-twbs.
+</p>
+
+<p>
+Org is a very powerful tool, but most of the org setups I've seen hasn't used it
+to its full potential. This website is one example of a complex, multi-page
+project built in org. This post is a 'brief' overview of how it was created.
 </p>
 
 <p>
@@ -193,44 +99,39 @@ This blog was created with:
 </p>
 
 <ul class="org-ul">
-<li><a href="https://www.gnu.org/software/emacs/">Emacs</a>
-</li>
-<li><a href="http://orgmode.org/">org-mode</a>
-</li>
-<li><a href="https://github.com/marsmining/ox-twbs">ox-twbs</a>
-</li>
+<li><a href="https://www.gnu.org/software/emacs/">Emacs</a></li>
+<li><a href="http://orgmode.org/">org-mode</a></li>
+<li><a href="https://github.com/marsmining/ox-twbs">ox-twbs</a></li>
 </ul>
 
 <p>
 Features:
 </p>
 <ul class="org-ul">
-<li>Homepage
-</li>
+<li>Homepage</li>
 <li>Blogging Engine
 <ul class="org-ul">
-<li>Prev/Next Links
-</li>
-<li>Archive Page (sorted)
-</li>
-<li>Automatically add new org files to blog/archive
-</li>
-</ul>
-</li>
+<li>Prev/Next Links</li>
+<li>Archive Page (sorted)</li>
+<li>Automatically add new org files to blog/archive</li>
+</ul></li>
 </ul>
 
 <p>
-This post will go over everything you need to set up a complex, customized, and dynamic org project like this one. It assumes you are familiar with org, and that you know elisp.
+This post will go over everything you need to set up a complex, customized, and
+dynamic org project like this one. It assumes you are familiar with org, and
+that you know elisp.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Org Projects</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">Basic Setup</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgdc28a8e" class="outline-2">
+<h2 id="h:vw6fi9s0gyh0"><a id="orgdc28a8e"></a><span class="section-number-2">2</span> Org Projects</h2>
+<div class="outline-text-2" id="text-h:vw6fi9s0gyh0">
+</div>
+<div id="outline-container-orgf773a36" class="outline-3">
+<h3 id="h:n3bfi9s0gyh0"><a id="orgf773a36"></a><span class="section-number-3">2.1</span> Basic Setup</h3>
+<div class="outline-text-3" id="text-h:n3bfi9s0gyh0">
 <p>
 Org projects are a simple way to combine and link multiple org files together into one complete export. The complete docs are <a href="http://orgmode.org/manual/Publishing.html">here</a>.
 </p>
@@ -240,7 +141,6 @@ To create an org project, all you need to do is set <code>org-publish-project-al
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #5e6263;">;; </span><span style="color: #5e6263;">Setup</span>
 (<span style="color: #598249;">setq</span> org-publish-project-alist
       `((<span style="color: #15968D;">"project-name"</span>
@@ -271,9 +171,9 @@ Files that are linked with <code>org-insert-link</code> will link fine in the ex
 </div>
 </div>
 
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">Customization</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgeaefacf" class="outline-3">
+<h3 id="h:ifffi9s0gyh0"><a id="orgeaefacf"></a><span class="section-number-3">2.2</span> Customization</h3>
+<div class="outline-text-3" id="text-h:ifffi9s0gyh0">
 <p>
 While the above setup works, there's a lot we might want to change. For instance, we might want to turn of table of contents for the entire project.
 For a single file, we would put <code>#+OPTIONS: toc:nil</code>, but to apply this to every file in our project, we can add <code>:with-toc nil</code> to the project above. <a href="http://orgmode.org/manual/Publishing-options.html#Publishing-options">Here are the rest of the default org project options.</a>
@@ -281,9 +181,9 @@ For a single file, we would put <code>#+OPTIONS: toc:nil</code>, but to apply th
 </div>
 </div>
 
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">Making this Shareable</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-org3acada4" class="outline-3">
+<h3 id="h:edjfi9s0gyh0"><a id="org3acada4"></a><span class="section-number-3">2.3</span> Making this Shareable</h3>
+<div class="outline-text-3" id="text-h:edjfi9s0gyh0">
 <p>
 Some people might want to put this <code>setq</code> call in your Emacs dotfiles, but I prefer to place it in a <a href="https://github.com/jgkamat/jgkamat.github.io/blob/sources/jgkamat-website.el">seperate emacs lisp file</a> file instead, which lets others get the same project definition. It also lets you put other changes you make in this file as well, since all those changes will be elisp. Anyone who wants to work with your project simply needs to source this file, instead of setting up the project again.
 </p>
@@ -293,7 +193,6 @@ In order to make sure others can use this flawlessly, we need to remove these ab
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(<span style="color: #598249;">let</span> ((proj-base (file-name-directory load-file-name)))
   (<span style="color: #598249;">setq</span> org-publish-project-alist
         `((<span style="color: #15968D;">"project-name"</span>
@@ -313,9 +212,9 @@ This is done by changing the <code>:publishing-function</code> to <code>org-twbs
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Custom CSS on HTML Exports</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org6f14ac0" class="outline-2">
+<h2 id="h:7bnfi9s0gyh0"><a id="org6f14ac0"></a><span class="section-number-2">3</span> Custom CSS on HTML Exports</h2>
+<div class="outline-text-2" id="text-h:7bnfi9s0gyh0">
 <p>
 We've got a nice website now, but it looks pretty bare bones. How do we provide our own CSS?
 </p>
@@ -325,7 +224,6 @@ The easiest way to apply a CSS file to your org project (with exporters based on
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #598249;">:html-head-extra</span> <span style="color: #15968D;">"&lt;link rel=\"stylesheet\" href=\"./myfile.css\"&gt;"</span>
 </pre>
 </div>
@@ -340,12 +238,12 @@ I'm very new to 'webdev', so actually creating the CSS was a struggle for me. <a
 </div>
 </div>
 
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">Dynamic Org Exports</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org5f80fe9" class="outline-2">
+<h2 id="h:qyqfi9s0gyh0"><a id="org5f80fe9"></a><span class="section-number-2">4</span> Dynamic Org Exports</h2>
+<div class="outline-text-2" id="text-h:qyqfi9s0gyh0">
 <p>
 We've got our nice org project for easy export, custom CSS styling, and maybe even a custom org exporter to get our website looking just how we want it, but how can we get dynamic exports?
-In my case, I wanted an <a href="home.html">aggregation of all my (sorted) blog posts</a> and <a href="#sec-7">previous/next links on all my blog entries</a>
+In my case, I wanted an <a href="home.html">aggregation of all my (sorted) blog posts</a> and <a href="#h:722gi9s0gyh0">previous/next links on all my blog entries</a>
 </p>
 
 <p>
@@ -354,7 +252,6 @@ The solution I found to this really showed me the power and flexibility of org m
 
 
 <div class="org-src-container">
-
 <pre class="src src-org"><span style="color: #5e6263;">#+BEGIN_SRC emacs-lisp :exports results :results raw</span>
 (print <span style="color: #15968D;">"hello world! *bold* /slant/ +strikethrough+"</span>)
 <span style="color: #5e6263;">#+END_SRC</span>
@@ -379,7 +276,6 @@ After creating a <code>(gen-links)</code> to generate a sorted list of org blog 
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-org"><span style="color: #5e6263;"># For sorted list of posts</span>
 <span style="color: #5e6263;">#+BEGIN_SRC emacs-lisp :exports results :results raw</span>
 (gen-links)
@@ -399,15 +295,14 @@ They need some more work, but they are usable for now. I might post about how I 
 </div>
 </div>
 
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">Side Note: Divs</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-org04af0c7" class="outline-2">
+<h2 id="h:pmufi9s0gyh0"><a id="org04af0c7"></a><span class="section-number-2">5</span> Side Note: Divs</h2>
+<div class="outline-text-2" id="text-h:pmufi9s0gyh0">
 <p>
 It might be nice to generate divs in your html file from your org source. I used this to get my prev/next links into a nice 3 part table. You can insert a div with class <code>classname</code> like this:
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-org"><span style="color: #5e6263;">#+begin_classname</span>
 Content inside your div
 <span style="color: #5e6263;">#+end_classname</span>
@@ -420,9 +315,9 @@ I created divs called <code>div-wrap</code>, <code>div-left</code>, <code>div-ri
 </div>
 </div>
 
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">Wrapping Up</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-org62c0919" class="outline-2">
+<h2 id="h:u4yfi9s0gyh0"><a id="org62c0919"></a><span class="section-number-2">6</span> Wrapping Up</h2>
+<div class="outline-text-2" id="text-h:u4yfi9s0gyh0">
 <p>
 Creating an org blog is a lot easier than it seems, if you know how to use org's features to your advantage.
 </p>
@@ -435,12 +330,9 @@ Let me know via a <a href="https://github.com/jgkamat/jgkamat.github.io/issues">
 Here are some other successful org blogs:
 </p>
 <ul class="org-ul">
-<li><a href="http://endlessparentheses.com/how-i-blog-one-year-of-posts-in-a-single-org-file.html">Endless Parentheses</a> (Jekyll Based)
-</li>
-<li><a href="https://ogbe.net/blog/blogging_with_org.html">Dennis Ogbe</a> (Plain Org)
-</li>
-<li><a href="https://gjhenrique.com/meta.html">gjhenrique</a> (Plain Org)
-</li>
+<li><a href="http://endlessparentheses.com/how-i-blog-one-year-of-posts-in-a-single-org-file.html">Endless Parentheses</a> (Jekyll Based)</li>
+<li><a href="https://ogbe.net/blog/blogging_with_org.html">Dennis Ogbe</a> (Plain Org)</li>
+<li><a href="https://gjhenrique.com/meta.html">gjhenrique</a> (Plain Org)</li>
 </ul>
 
 <p>
@@ -452,16 +344,16 @@ Lastly, here's an obligatory screenshot of me editing this post. <code>=)</code>
 </p>
 
 
-<figure>
-<p><a href="https://user-images.githubusercontent.com/4349709/27512957-922c8724-5908-11e7-81a6-866dcf54245b.png"><img src="https://user-images.githubusercontent.com/4349709/27512957-922c8724-5908-11e7-81a6-866dcf54245b.png" class="img-responsive" alt="27512957-922c8724-5908-11e7-81a6-866dcf54245b.png"></a>
+<div class="figure">
+<p><a href="https://user-images.githubusercontent.com/4349709/27512957-922c8724-5908-11e7-81a6-866dcf54245b.png"><img src="https://user-images.githubusercontent.com/4349709/27512957-922c8724-5908-11e7-81a6-866dcf54245b.png" alt="27512957-922c8724-5908-11e7-81a6-866dcf54245b.png" /></a>
 </p>
-</figure>
+</div>
 </div>
 </div>
 
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7">Navigation</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org28c3dfa" class="outline-2">
+<h2 id="h:722gi9s0gyh0"><a id="org28c3dfa"></a><span class="section-number-2">7</span> Navigation</h2>
+<div class="outline-text-2" id="text-h:722gi9s0gyh0">
 <div class="div-wrap">
 <div class="div-left">
 <p>
@@ -485,33 +377,14 @@ Lastly, here's an obligatory screenshot of me editing this post. <code>=)</code>
 </div>
 </div>
 </div>
-</div><div class="col-md-3"><nav id="table-of-contents">
-<div id="text-table-of-contents" class="bs-docs-sidebar">
-<ul class="nav">
-<li><a href="#sec-1">Overview</a></li>
-<li><a href="#sec-2">Org Projects</a>
-<ul class="nav">
-<li><a href="#sec-2-1">Basic Setup</a></li>
-<li><a href="#sec-2-2">Customization</a></li>
-<li><a href="#sec-2-3">Making this Shareable</a></li>
-</ul>
-</li>
-<li><a href="#sec-3">Custom CSS on HTML Exports</a></li>
-<li><a href="#sec-4">Dynamic Org Exports</a></li>
-<li><a href="#sec-5">Side Note: Divs</a></li>
-<li><a href="#sec-6">Wrapping Up</a></li>
-<li><a href="#sec-7">Navigation</a></li>
-</ul>
 </div>
-</nav>
-</div></div></div>
-<footer id="postamble" class="">
+<div id="postamble" class="status">
 
 <div>
 <p class="author">Author: <a href="https://github.com/jgkamat/jgkamat.github.io">Jay Kamat</a></p>
 <p class="date">Published: 2016-12-06</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org-mode</a> 9.1.9)</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="https://orgmode.org">Org</a> mode 9.1.12)</p>
 </div>
-</footer>
+</div>
 </body>
 </html>
