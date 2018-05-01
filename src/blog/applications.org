@@ -1,4 +1,3 @@
-
 #+TITLE: Productivity and Applications
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com

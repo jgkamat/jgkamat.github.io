@@ -21,7 +21,6 @@
 (require 'cl-lib)
 
 (defvar website-publish-dir (concat (file-name-directory load-file-name) "./html"))
-(defun dummy-fun (&rest _))
 
 ;; Force htmlize to activate even in nogui mode:
 ;; https://stackoverflow.com/questions/3591337/emacs-htmlize-in-batch-mode
@@ -82,7 +81,7 @@
       :sitemap-function jay-publish-sitemap-expand
       :sitemap-sort-folders first
       :sitemap-sort-files anti-chronologically
-      :publishing-function dummy-fun)
+      :publishing-function ignore)
      ("jgkamat.github.io-rss"
       :base-directory ,(concat project-base "./blog")
       :recursive t
@@ -93,6 +92,7 @@
       :time-stamp-file nil
       :section-numbers nil
       :table-of-contents nil
+      :author "Jay Kamat"
       :html-link-home "https://jgkamat.github.io/blog/"
       :rss-image-url "https://jgkamat.github.io/favicon.ico"
       :exclude ".*"

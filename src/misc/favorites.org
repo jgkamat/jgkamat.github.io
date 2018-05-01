@@ -4,7 +4,10 @@
 
 * Favorites
 
-Here's a list of some of my favorite posts, mostly so I don't loose them.
+Here's a list of some of my favorite posts (in order of me discovering them),
+mostly so I don't loose them. Hopefully others will like them as much as I do!
 
 1. [[http://www.howardism.org/Technical/Emacs/literate-devops.html][Literate DevOps with Org]]
 2. [[http://enki-editor.org/2014/08/23/Pyqt_mem_mgmt.html][PyQt5 Memory Management]]
+3. [[https://software.rajivprab.com/2018/04/29/myths-programmers-believe-about-cpu-caches/][Crash Course on Cache Coherency]]
+4. [[https://jamesbvaughan.com/college-advice/][Great College Advice]]
