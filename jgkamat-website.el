@@ -15,6 +15,7 @@
 
 ;;; Code:
 
+
 (require 'ox-publish)
 (require 'ox-twbs)
 (require 'ox-rss)
@@ -55,19 +56,17 @@
       :recursive t
       :publishing-directory ,website-publish-dir
       ;; Add my CSS and fonts
-      :html-head-extra "<link rel=\"stylesheet\" href=\"https://jgkamat.github.io/src/jgkamat.css\">"
-      ;; Remove all JS from website, only leave bootstrap CSS
-      :html-head "<link href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css\" rel=\"stylesheet\">"
+      :html-head "<link rel=\"stylesheet\" href=\"https://jgkamat.github.io/src/jgkamat.css\">"
+      :html-head-include-default-style nil
       :title nil
       :with-headline-numbers nil
-      :toc 3
       :with-date nil
       :time-stamp-file nil
       :auto-sitemap t
       :sitemap-sort-folders first
       :exclude "blog/rss.org"
       :sitemap-sort-files anti-chronologically
-      :publishing-function org-twbs-publish-to-html)
+      :publishing-function org-html-publish-to-html)
      ("jgkamat.github.io-blogmap"
       :base-directory ,(concat project-base "./blog")
       :recursive t

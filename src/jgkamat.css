@@ -2,7 +2,65 @@
 /* Yah, I can't build websites for my life. Nothing to see here. */
 
 body {
+	/* Stolen from boostrap, is this good? */
+	font-size: 18px;
+	color: #909396;
 	background-color: #262626;
+	font-family: sans-serif;
+}
+h1 {
+	margin: 0;
+	font-size: 1.6666666666666667em;
+	margin-bottom: 0.9em;
+	font-family: sans-serif;
+	color: #E05F27;
+}
+h2 {
+	margin: 0;
+	font-size: 1.5em;
+	margin-bottom: 1em;
+	font-family: sans-serif;
+	color: #2F7BDE;
+}
+h3 {
+	margin: 0;
+	font-size: 1.3333333333333333em;
+	margin-bottom: 0.75em;
+	font-family: sans-serif;
+	color: #598249;
+}
+h4 {
+	margin: 0;
+	font-size: 1.1666666666666667em;
+	margin-bottom: 0.5em;
+	font-family: sans-serif;
+}
+p, ul, blockquote, pre, td, th, label {
+	margin: 0;
+	font-size: 1em;
+	margin-bottom: 0.5em;
+	font-family: sans-serif;
+}
+/* Override for source code blocks */
+pre {
+	font-family: monospace;
+}
+
+
+/* Fit images */
+img {
+	max-width:100%;
+	max-height:100%;
+}
+
+/*  Simple colors here */
+h5, h6, h7, li {
+	color: #909396;
+}
+pre {
+	background-color: #2B2B2C;
+	color: #909396;
+	border: 1px solid black;
 }
 ::selection {
 	background:rgba(57, 60, 63, 0.99);
@@ -10,97 +68,168 @@ body {
 ::-moz-selection  {
 	background:rgba(57, 60, 63, 0.99);
 }
-
-h1 {
-	color: #E05F27;
-	font-weight : bold;
-	font-family: sans-serif;
-}
-
-h2 {
-	color: #2F7BDE;
-	font-family: sans-serif;
-}
-
-h3 {
-	color: #598249;
-	font-family: sans-serif;
-}
-
-h4, h5, h6, h7, li {
-	color: #909396;
-	font-family: sans-serif;
-}
-
-/*  Simple colors here */
-/*
-h1, h2, h3, h4, h5, h6, h7, li {
-	color: #909396;
-}
-*/
-
-/* Source code blocks */
-pre {
-	background-color: #2B2B2C;
-	color: #909396;
-	border-color: black;
-	font-family: monospace;
-}
-
-p, th, td {
-	color: #909396;
-	font-family: sans-serif;
-}
-
-.nofont {
-	font-family: unset;
-}
-
-/* Tables (dammit bootstrap) */
-.table {
-	background-color: #262626;
-	border-color: black;
-}
-.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
-	background-color: #2B2B2C;
-}
-.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-	background-color: #363638;
-}
-.table-bordered > thead > tr > th,
-.table-bordered > tbody > tr > th,
-.table-bordered > tfoot > tr > th,
-.table-bordered > thead > tr > td,
-.table-bordered > tbody > tr > td,
-.table-bordered > tfoot > tr > td {
-	border-color: black;
-}
-
-/* links */
 a:link, a:hover, a:active {
 	color: #d6372f;
 }
-
 a:visited {
 	color: #c02119;
 }
 
-/* footer */
-footer {
-	height: auto;
-	/* Hack for txtpen, remove when ending testing */
-	background-color: #2B2B2C !important;
+p.small, #postamble {
+	margin: 0;
+	font-size: 0.8333333333333334em;
+	margin-bottom: 1.8em;
+}
+table {
+	border-collapse: collapse;
+	margin-bottom: 1.5em;
+}
+/* @end */
+
+/* @group Layout */
+
+#content {
+	width: 70em;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-code {
-	background-color: #303030;
-	color: #909396;
+/* #header {
+	height: 10em;
+}
+*/
+
+#table-of-contents {
+	width: 15em;
+	float: right;
+	overflow: auto;
+	font-size: 16px;
 }
 
-/* Allow nav-box to stay while user scrolls */
-.nav {
-	position: fixed;
+/* #main { */
+div.outline-2 {
+	width: 52em;
+	float: left;
+	/* The lines below are useful if the "main" div isn't available and
+	   div.outline-2 has to be used. */
+	position: relative;
 }
+
+#postamble {
+	clear: both;
+	text-align: center;
+}
+
+div.outline-2 pre {
+	overflow: auto;
+}
+
+/* @end */
+
+/* @group Header */
+
+h1.title {
+	margin-top: 10px;
+	text-align: center;
+}
+
+h1.title {
+	font-size: 2.5em;
+	font-weight: bold;
+	margin-bottom: 0.8em;
+}
+
+/* @end */
+
+/* @group Org Keywords */
+
+.todo {
+	color: red;
+}
+
+.done {
+	color: green;
+}
+
+.tag {
+	color: blue;
+	text-transform: lowercase;
+	/* This will be obscured by the surrounding span tag, so blank everything. */
+	background: #fff;
+	border: none;
+/* position: relative;
+	text-align: right;
+	right: 1em; */
+}
+
+.timestamp {
+}
+
+.timestamp-kwd  {
+	/* keyword associated with a time stamp, like SCHEDULED */
+}
+
+.target {
+	/* target for links */
+}
+
+/* @end */
+
+/* @group Table of Contents */
+
+#table-of-contents ul,
+#table-of-contents ol {
+	padding-left: 1em;
+}
+
+/* @end */
+
+/* @group Outline Level 2 */
+
+.outline-2 h2 {
+	background: #2a2a2a;
+	border-bottom: 1px solid black;
+	border-radius: 2px;
+}
+
+.outline-2 {
+	padding: 5px;
+	/* margin-bottom: 10px; */
+	/* border-top: 1px solid #ccc; */
+}
+
+/* @end */
+
+td {
+	border: 1px solid black;
+}
+
+
+h1 span, h2 span, h3 span, h4 span, h5 span, h6 span {
+	background-color: #2d1414;
+	border: 1px solid #161616;
+	border-radius: 2px;
+}
+
+.outline-1, .outline-2, .outline-3, .outline-4, .outline-5, .outline-6 {
+	margin-left: 2em;
+}
+
+
+a {
+	text-decoration: none;
+}
+a:hover {
+	border-bottom: 1px dotted;
+}
+
+#postamble p {
+	margin: 0px;
+}
+
+.footpara { display: inline; }
+
+.footdef { margin-bottom: 3em; font-size: 80%; }
 
 .div-wrap {
 	display: inline-block;
@@ -127,15 +256,3 @@ code {
 	width: 100%;
 	text-align: center;
 }
-
-/* to-do labels */
-
-.label {
-	color: #000000;
-}
-
-
-/* .footer-cont{
-	padding-top:5px;
-	padding-bottom:5px;
-} */
