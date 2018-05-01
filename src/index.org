@@ -2,6 +2,7 @@
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
 #+DATE: <2017-03-13 Mon>
+#+OPTIONS: auto-id:t
 
 # Add css to this page relative so we can develop css locally with this page
 #+HTML_HEAD_EXTRA: <link rel="stylesheet" href="src/jgkamat.css">
@@ -11,11 +12,17 @@
 #+MACRO: age-years-range src_emacs-lisp[:results raw :cache yes]{(- (string-to-number (format-time-string "$2")) (elt (parse-time-string "$1") 5))}
 
 * Introduction
+:PROPERTIES:
+:CUSTOM_ID: h:tselo5s0gyh0
+:END:
 Hi! I'm {{{author}}}, an undergraduate computer science student at Georgia Tech,
 and I'm interested in everything related to science, technology, computers,
 engineering, and space!
 
 ** Links
+:PROPERTIES:
+:CUSTOM_ID: h:hi70p5s0gyh0
+:END:
 - [[https://github.com/jgkamat][GitHub]]
 - [[https://gitlab.com/jgkamat][GitLab]]
 - [[file:blog/home.org][Blog]]
@@ -23,7 +30,13 @@ engineering, and space!
 - [[https://www.linkedin.com/in/jaykamat][Linkedin]]
 
 * Projects
+:PROPERTIES:
+:CUSTOM_ID: h:zue0p5s0gyh0
+:END:
 ** Personal Projects
+:PROPERTIES:
+:CUSTOM_ID: h:svk0p5s0gyh0
+:END:
 
 These are projects that I have created purely for fun, or for improvements in my day to day workflow.
 
@@ -52,6 +65,9 @@ These are projects that I have created purely for fun, or for improvements in my
 
   A Java 2D N-Body Planet Simulation using Newton's Laws
 ** Free Software Contributions
+:PROPERTIES:
+:CUSTOM_ID: h:ajs0p5s0gyh0
+:END:
 1. [[https://github.com/RoboJackets/robocup-software][robocup-software]]
    - Maintainer and Software Lead for 2016-2017
    - Actively contributing through undergrad.
@@ -68,6 +84,9 @@ These are projects that I have created purely for fun, or for improvements in my
 4. [[https://github.com/vector-im/riot-android][riot-android]]
    - [[https://github.com/vector-im/riot-android/pull/1240][Created]] the first revision of a theme switcher and a dark theme.
 ** School Projects                                                :noexport:
+:PROPERTIES:
+:CUSTOM_ID: h:zs01p5s0gyh0
+:END:
 1. [[https://github.com/MountainRange/MULE][MULE Clone]]
 
    Created for a project based class for CS2340 at Georgia Tech
@@ -76,8 +95,14 @@ These are projects that I have created purely for fun, or for improvements in my
 
    Created a lightweight cli inventory system
 * TODO About                                                       :noexport:
+:PROPERTIES:
+:CUSTOM_ID: h:e561p5s0gyh0
+:END:
 # Find out if this is actually needed, probably not
 ** Languages
+:PROPERTIES:
+:CUSTOM_ID: h:mua1p5s0gyh0
+:END:
 # Since 2009, then slowed down at 2016
 + Java /({{{age-years-range(2009, 2016)}}} years)/
 + Shell /({{{age-years(2013)}}} years)/
@@ -89,6 +114,9 @@ These are projects that I have created purely for fun, or for improvements in my
   # Since 2017
 + GoLang /(minimal)/
 ** Skills
+:PROPERTIES:
+:CUSTOM_ID: h:eng1p5s0gyh0
+:END:
 # My first distro was OpenSuse!
 # Followed by ubuntu followed by fedora followed by...........too many.
 - Linux /({{{age-years(2010)}}} years)/
@@ -114,6 +142,9 @@ These are projects that I have created purely for fun, or for improvements in my
   + [[https://www.robojackets.org/][Georgia Tech RoboJackets]] - RoboCup /(2014-Present)/
   + [[http://homesteadrobotics.com/][Homestead HRT]] - FRC Team 670 /(2012-2014)/
 * Contact
+:PROPERTIES:
+:CUSTOM_ID: h:a5p1p5s0gyh0
+:END:
 - [[mailto:jaygkamat@gmail.com][Email]]
 # IRC links don't seem to export properly in ox-html
 # - [[irc:irc.freenode.net/jgkamat][Irc (freenode)]]

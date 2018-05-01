@@ -2,8 +2,12 @@
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
 #+DATE: <2017-06-24 Sat>
+#+OPTIONS: auto-id:t
 
 * Preface
+:PROPERTIES:
+:CUSTOM_ID: h:xq566as0gyh0
+:END:
 
 Communication is a tricky problem, because it's hard to make everyone
 happy. When internet messaging started out, we had lots of choices, due to the
@@ -16,6 +20,9 @@ groupme, whatsapp, skype, tox, SMS, ...). This means that if you *love* a
 particular chat app, you simply won't be able to use it everywhere!
 
 ** Slack
+:PROPERTIES:
+:CUSTOM_ID: h:lxd66as0gyh0
+:END:
 
 Slack is a particularly bad example of the above, since it's a tool 'targeted'
 towards /team/ communication, rather than just direct messages. Usually, a team
@@ -42,6 +49,9 @@ shouldn't be too hard.
  possible, ideally while staying anonymous.
 
 * Message Limits
+:PROPERTIES:
+:CUSTOM_ID: h:iyk66as0gyh0
+:END:
 
 Message limits are the first core problem of slack. Since most slack users use a
 web client, and don't store any messages locally, 'clearing' the message history
@@ -51,6 +61,9 @@ Slack message limits are shared across dms, mpdms, public channels, and private
 channels. Slack message limits include both human and bot messages.
 
 ** Message Bomb
+:PROPERTIES:
+:CUSTOM_ID: h:qqr66as0gyh0
+:END:
 
 Slack has very generous throttling rates, even for extended periods of
 time. It's incredibly easy to make a bot that keeps posting something in a
@@ -80,6 +93,9 @@ means people will be stuck with unread notification markers they won't be able
 to clear without some extra effort!
 
 * Slack Namespace
+:PROPERTIES:
+:CUSTOM_ID: h:h5y66as0gyh0
+:END:
 
 Unlike any other self respecting (modern) chat application, it is *impossible*
 to create two channels with the same name. As if this isn't bad enough, this
@@ -89,6 +105,9 @@ groups.
 It's impossible for moderators to see who's hoarding the channel namespace.
 
 ** Channel Hoarding
+:PROPERTIES:
+:CUSTOM_ID: h:d6476as0gyh0
+:END:
 
 This is especially effective when joining a new slack team. Simply by creating
 tons and tons of private channels with popular names such as ~leads~, ~dev~, and
@@ -102,6 +121,9 @@ moderator. However, moderators are unable to delete /existing/ private slack
 channels, so hoard private channels early!
 
 ** TODO Channel Creation Bot
+:PROPERTIES:
+:CUSTOM_ID: h:4w976as0gyh0
+:END:
 
 It wouldn't be too hard to make a bot that creates private channels with every
 possible name. It probably would be a good idea to start with a wordlist,
@@ -112,11 +134,17 @@ cannot leave), and create a private channel with the old username. This would
 prevent any user from re-using their old username.
 
 * Lack of Permissions
+:PROPERTIES:
+:CUSTOM_ID: h:2qf76as0gyh0
+:END:
 
 A lot of issues come up when mixing some of the more restrictive permissions
 options with 'unconventional' usage.
 
 ** TODO Channel Jail Bot
+:PROPERTIES:
+:CUSTOM_ID: h:lhl76as0gyh0
+:END:
 
 For example, a common (but not default) setting is to restrict archiving
 channels. This means that when you create a private channel, you'll be unable to
@@ -140,6 +168,9 @@ If you combine this with the Message bomb method above, we can quickly clear our
 invite/part logs as well, which can hide your tracks to some extent.
 
 * Notification Spam
+:PROPERTIES:
+:CUSTOM_ID: h:jer76as0gyh0
+:END:
 
 Notification spam is unfortunately hard to achieve without getting noticed,
 because notifications usually have the sender's name attached. There are ways to
@@ -152,9 +183,15 @@ after that, the only thing linking you to the notification is direct
 eyewitnesses or the notification popup itself.
 
 * Bots
+:PROPERTIES:
+:CUSTOM_ID: h:v4x76as0gyh0
+:END:
 Bots let you take some of the burden off of your own infrastructure, and make
 breaking slack easier than ever for everyone!
 ** PlusPlus
+:PROPERTIES:
+:CUSTOM_ID: h:l2386as0gyh0
+:END:
 
 [[https://plusplus.chat/][PlusPlus]] is a very popular extension for slack, and is installed on many
 teams. However, it's very easy to exploit PlusPlus for evil, as PlusPlus is
@@ -202,6 +239,9 @@ happens, PlusPlus will have posed about 1,000 messages, which means with a
 measly 10 messages, you can wipe an entire team's history.
 
 ** SlackBot
+:PROPERTIES:
+:CUSTOM_ID: h:rda86as0gyh0
+:END:
 
 Slackbot is the king of all bots in slack. Not only is it a bot (and therefore
 can easily be exploited), but it's got *higher permissions than any other bot*. That
@@ -221,6 +261,9 @@ over the client API), you can take advantage of slackbot to solve your problems
 by simply setting up a slackbot response to act like a proxy.
 
 ** SlackBot and PlusPlus
+:PROPERTIES:
+:CUSTOM_ID: h:7ag86as0gyh0
+:END:
 
 If you have both slackbot and plusplus on your slack server, you can exploit
 them together for profit. Simply set up a reccuring reminder to ~@1-- @2--
@@ -232,13 +275,22 @@ You don't ever need to log into slack again, people will loose their messages
 for 'unexplained reasons'.
 
 * Room For Improvement
+:PROPERTIES:
+:CUSTOM_ID: h:f2m86as0gyh0
+:END:
 ** Threads
+:PROPERTIES:
+:CUSTOM_ID: h:bsr86as0gyh0
+:END:
 
 Threads are incredibly buggy and I guarantee you can exploit them (to hide your
 messages, to cause notifications, etc), but I wasn't able to explore that in
 much detail before I left slack.
 
 ** Evolution
+:PROPERTIES:
+:CUSTOM_ID: h:mix86as0gyh0
+:END:
 
 As slack adds more misfeatures, it's likely these problems will get worse, not
 better.
@@ -247,6 +299,9 @@ better.
 new slack exploit.
 
 * Conclusion
+:PROPERTIES:
+:CUSTOM_ID: h:de396as0gyh0
+:END:
 
 It's incredibly easy to break slack! But why?
 
@@ -261,6 +316,9 @@ seems to be ignoring these requests.
 6. Inability of moderators to see secret channels
 
 ** Mitigation
+:PROPERTIES:
+:CUSTOM_ID: h:e8a96as0gyh0
+:END:
 
 If you are a slack moderator, and you are concerned about these threats, you should immediately:
 
@@ -287,6 +345,9 @@ solution you can:
    - Matrix (if you really really want 'modern features')
 
 ** Related Posts
+:PROPERTIES:
+:CUSTOM_ID: h:e8j96as0gyh0
+:END:
 1. [[https://drewdevault.com/2015/11/01/Please-stop-using-slack.html][Please don't use Slack for FOSS projects]]
 2. [[https://medium.freecodecamp.com/so-yeah-we-tried-slack-and-we-deeply-regretted-it-391bcc714c81][So yeah, we tried slack...]]
 3. [[https://ux.useronboard.com/slack-i-m-breaking-up-with-you-54600ace03ea][Slack, I’m Breaking Up with You]]
@@ -294,6 +355,9 @@ solution you can:
 5. [[https://drewdevault.com/2018/03/10/How-to-write-an-IRC-bot.html][How to write an IRC Bot]]
 
 * Navigation
+:PROPERTIES:
+:CUSTOM_ID: h:f7q96as0gyh0
+:END:
 
 #+BEGIN_SRC emacs-lisp :exports results :results raw
 (gen-prev-next)

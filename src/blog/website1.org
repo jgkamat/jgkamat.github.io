@@ -2,8 +2,12 @@
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
 #+DATE: <2016-12-06 Tue>
+#+OPTIONS: auto-id:t
 
 * Overview
+:PROPERTIES:
+:CUSTOM_ID: h:ua1fi9s0gyh0
+:END:
 
 Org is a very powerful tool, but most of the org setups I've seen hasn't used it to its full potential.
 This website is one example of a complex, multi-page project built in org. This post is a 'brief' overview of how it was created.
@@ -24,7 +28,13 @@ Features:
 This post will go over everything you need to set up a complex, customized, and dynamic org project like this one. It assumes you are familiar with org, and that you know elisp.
 
 * Org Projects
+:PROPERTIES:
+:CUSTOM_ID: h:vw6fi9s0gyh0
+:END:
 ** Basic Setup
+:PROPERTIES:
+:CUSTOM_ID: h:n3bfi9s0gyh0
+:END:
 
 Org projects are a simple way to combine and link multiple org files together into one complete export. The complete docs are [[http://orgmode.org/manual/Publishing.html][here]].
 
@@ -53,11 +63,17 @@ Running the export again will cache the output files, if they have not changed, 
 Files that are linked with ~org-insert-link~ will link fine in the export, as long as they are /realtive links/. This should happen automatically, but occasionally, you have to tweak a few links.
 
 ** Customization
+:PROPERTIES:
+:CUSTOM_ID: h:ifffi9s0gyh0
+:END:
 
 While the above setup works, there's a lot we might want to change. For instance, we might want to turn of table of contents for the entire project.
 For a single file, we would put ~#+OPTIONS: toc:nil~, but to apply this to every file in our project, we can add ~:with-toc nil~ to the project above. [[http://orgmode.org/manual/Publishing-options.html#Publishing-options][Here are the rest of the default org project options.]]
 
 ** Making this Shareable
+:PROPERTIES:
+:CUSTOM_ID: h:edjfi9s0gyh0
+:END:
 
 Some people might want to put this ~setq~ call in your Emacs dotfiles, but I prefer to place it in a [[https://github.com/jgkamat/jgkamat.github.io/blob/sources/jgkamat-website.el][seperate emacs lisp file]] file instead, which lets others get the same project definition. It also lets you put other changes you make in this file as well, since all those changes will be elisp. Anyone who wants to work with your project simply needs to source this file, instead of setting up the project again.
 
@@ -78,6 +94,9 @@ The main difference is it has a bunch of org project customizations turned on, a
 This is done by changing the ~:publishing-function~ to ~org-twbs-publish-to-html~, which is in the ~ox-twbs~ docs.
 
 * Custom CSS on HTML Exports
+:PROPERTIES:
+:CUSTOM_ID: h:7bnfi9s0gyh0
+:END:
 
 We've got a nice website now, but it looks pretty bare bones. How do we provide our own CSS?
 
@@ -92,6 +111,9 @@ Another option is to set ~#+HTML_HEAD_EXTRA~ at the top of your org files.
 I'm very new to 'webdev', so actually creating the CSS was a struggle for me. [[https://github.com/jgkamat/jgkamat.github.io/blob/master/src/jgkamat.css][This is the final result.]]
 
 * Dynamic Org Exports
+:PROPERTIES:
+:CUSTOM_ID: h:qyqfi9s0gyh0
+:END:
 
 We've got our nice org project for easy export, custom CSS styling, and maybe even a custom org exporter to get our website looking just how we want it, but how can we get dynamic exports?
 In my case, I wanted an [[file:home.org][aggregation of all my (sorted) blog posts]] and [[*Navigation][previous/next links on all my blog entries]]
@@ -132,6 +154,9 @@ I put the source for these functions in my [[https://github.com/jgkamat/jgkamat.
 They need some more work, but they are usable for now. I might post about how I made those functions later...
 
 * Side Note: Divs
+:PROPERTIES:
+:CUSTOM_ID: h:pmufi9s0gyh0
+:END:
 
 It might be nice to generate divs in your html file from your org source. I used this to get my prev/next links into a nice 3 part table. You can insert a div with class ~classname~ like this:
 
@@ -144,6 +169,9 @@ It might be nice to generate divs in your html file from your org source. I used
 I created divs called ~div-wrap~, ~div-left~, ~div-right~, and ~div-center~ for this purpose, and referenced them in CSS to get them to fit properly. The actual divs are generated in the elisp source code blocks.
 
 * Wrapping Up
+:PROPERTIES:
+:CUSTOM_ID: h:u4yfi9s0gyh0
+:END:
 
 Creating an org blog is a lot easier than it seems, if you know how to use org's features to your advantage.
 
@@ -161,6 +189,9 @@ Lastly, here's an obligatory screenshot of me editing this post. ~=)~
 [[https://user-images.githubusercontent.com/4349709/27512957-922c8724-5908-11e7-81a6-866dcf54245b.png][https://user-images.githubusercontent.com/4349709/27512957-922c8724-5908-11e7-81a6-866dcf54245b.png]]
 
 * Navigation
+:PROPERTIES:
+:CUSTOM_ID: h:722gi9s0gyh0
+:END:
 
 #+BEGIN_SRC emacs-lisp :exports results :results raw
 (gen-prev-next)

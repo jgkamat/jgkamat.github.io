@@ -2,8 +2,12 @@
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
 #+DATE: <2017-01-22 Sun>
+#+OPTIONS: auto-id:t
 
 * Why Even Bother?
+:PROPERTIES:
+:CUSTOM_ID: h:xdhd2as0gyh0
+:END:
 
 I'm really picky about the applications I use, mainly to make sure I'm
 maximizing my productivity.
@@ -14,6 +18,9 @@ programmer). A common action such as 'append text to the current line' is
 time in the long run.
 
 * Core
+:PROPERTIES:
+:CUSTOM_ID: h:3uod2as0gyh0
+:END:
 
 In general, I look for 3 things in any application before I begin relying on it.
 
@@ -26,6 +33,9 @@ I'll talk about a few instances where I switched applications to give you a
 better idea of what I'm talking about.
 
 ** Stability
+:PROPERTIES:
+:CUSTOM_ID: h:8zvd2as0gyh0
+:END:
 
 Stability is important for obvious reasons.
 If a program crashes, freezes, or stops working, you loose productivity in the
@@ -39,6 +49,9 @@ issue for me. Despite fitting well into my workflow otherwise, I'm unable to use
 ~apvlv~ due to stability.
 
 ** Customizability
+:PROPERTIES:
+:CUSTOM_ID: h:1b2e2as0gyh0
+:END:
 
 Software that is customizable helps with productivity because it makes it easy
 to change the program to do exactly what you need with the least amount of
@@ -51,6 +64,9 @@ well polished, but it lacks customizability. It's very hard to get the /exact/
 behavior you want on GNOME 3, and that's why I ditched it for KDE at the time.
 
 ** Being Lightweight
+:PROPERTIES:
+:CUSTOM_ID: h:d98e2as0gyh0
+:END:
 
 Minimalist applications lend to productivity, simply because they are doing
 less. Especially when on limited hardware, lightweight applications end up being
@@ -65,12 +81,18 @@ IDE are very appealing, I can probably never go back to using one due to this
 point.
 
 * Wrapping Up
+:PROPERTIES:
+:CUSTOM_ID: h:0sde2as0gyh0
+:END:
 
 Hopefully this post can help you become more productive. I find that even small
 changes to workflow can improve productivity immensely, and reviewing the
 applications you use every day can help you have more free time in the future!
 
 * Navigation
+:PROPERTIES:
+:CUSTOM_ID: h:vcje2as0gyh0
+:END:
 
 #+BEGIN_SRC emacs-lisp :exports results :results raw
 (gen-prev-next)
