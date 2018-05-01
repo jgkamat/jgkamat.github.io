@@ -9,7 +9,7 @@ This is a dead simple browser font test page:
 
 * Default
 
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 <p class="nofont">
 <font size="5" face="">
 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
@@ -17,11 +17,11 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
 M.M.M.M.M<br>
 </font>
 </p>
-#+END_HTML
+#+END_EXPORT
 
 * Serif
 
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 <p>
 <font size="5" face="Serif">
 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
@@ -29,11 +29,11 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
 M.M.M.M.M<br>
 </font>
 </p>
-#+END_HTML
+#+END_EXPORT
 
 * Sans
 
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 <p>
 <font size="5" face="Sans-Serif">
 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
@@ -41,11 +41,11 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
 M.M.M.M.M<br>
 </font>
 </p>
-#+END_HTML
+#+END_EXPORT
 
 * Mono
 
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 <p>
 <font size="5" face="Monospace">
 abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
@@ -53,7 +53,7 @@ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
 M.M.M.M.M<br>
 </font>
 </p>
-#+END_HTML
+#+END_EXPORT
 
 
 * Footnote

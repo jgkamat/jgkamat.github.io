@@ -99,9 +99,8 @@
       :rss-extension "xml"
       :publishing-function (org-rss-publish-to-rss)))))
 
-(setq org-twbs-postamble 't
-      org-twbs-head-include-scripts nil)
-(setq org-twbs-postamble-format
+(setq org-html-postamble t
+      org-html-postamble-format
       '(("en" "
 <div>
 <p class=\"author\">Author: <a href=\"https://github.com/jgkamat/jgkamat.github.io\">%a</a></p>
