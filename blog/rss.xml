@@ -14,10 +14,10 @@
   <link>https://jgkamat.github.io/blog/</link>
   <description><![CDATA[]]></description>
   <language>en</language>
-  <pubDate>Tue, 01 May 2018 16:23:58 +0000</pubDate>
-  <lastBuildDate>Tue, 01 May 2018 16:23:58 +0000</lastBuildDate>
+  <pubDate>Tue, 01 May 2018 16:31:29 +0000</pubDate>
+  <lastBuildDate>Tue, 01 May 2018 16:31:29 +0000</lastBuildDate>
   <generator>Emacs 25.3 Org-mode 9.1.12</generator>
-  <webMaster>root@2128eaefa9d5 (Jay Kamat)</webMaster>
+  <webMaster>root@49a7e5b36186 (Jay Kamat)</webMaster>
   <image>
     <url>https://jgkamat.github.io/favicon.ico</url>
     <title></title>
@@ -27,13 +27,13 @@
   <item>
     <title>Breaking Slack</title>
     <link>https://jgkamat.github.io/blog/slack.html</link>
-    <author>root@2128eaefa9d5 (Jay Kamat)</author>
+    <author>root@49a7e5b36186 (Jay Kamat)</author>
     <guid isPermaLink="false">https://jgkamat.github.io/blog/slack.html</guid>
     <pubDate>Sat, 24 Jun 2017 00:00:00 +0000</pubDate>
 
     <description><![CDATA[
-    <div id="outline-container-orge9462d6" class="outline-3">
-    <h3 id="h:xq566as0gyh0"><a id="orge9462d6"></a>Preface</h3>
+    <div id="outline-container-orgca10942" class="outline-3">
+    <h3 id="h:xq566as0gyh0"><a id="orgca10942"></a>Preface</h3>
     <div class="outline-text-3" id="text-h:xq566as0gyh0">
     <p>
     Communication is a tricky problem, because it's hard to make everyone
@@ -48,8 +48,8 @@
     </p>
     </div>
 
-    <div id="outline-container-org653b197" class="outline-4">
-    <h4 id="h:lxd66as0gyh0"><a id="org653b197"></a>Slack</h4>
+    <div id="outline-container-org934d78f" class="outline-4">
+    <h4 id="h:lxd66as0gyh0"><a id="org934d78f"></a>Slack</h4>
     <div class="outline-text-4" id="text-h:lxd66as0gyh0">
     <p>
     Slack is a particularly bad example of the above, since it's a tool 'targeted'
@@ -86,8 +86,8 @@
     </div>
     </div>
 
-    <div id="outline-container-org4d68069" class="outline-3">
-    <h3 id="h:iyk66as0gyh0"><a id="org4d68069"></a>Message Limits</h3>
+    <div id="outline-container-org36895c7" class="outline-3">
+    <h3 id="h:iyk66as0gyh0"><a id="org36895c7"></a>Message Limits</h3>
     <div class="outline-text-3" id="text-h:iyk66as0gyh0">
     <p>
     Message limits are the first core problem of slack. Since most slack users use a
@@ -101,8 +101,8 @@
     </p>
     </div>
 
-    <div id="outline-container-org3e9e554" class="outline-4">
-    <h4 id="h:qqr66as0gyh0"><a id="org3e9e554"></a>Message Bomb</h4>
+    <div id="outline-container-orgf1a27f5" class="outline-4">
+    <h4 id="h:qqr66as0gyh0"><a id="orgf1a27f5"></a>Message Bomb</h4>
     <div class="outline-text-4" id="text-h:qqr66as0gyh0">
     <p>
     Slack has very generous throttling rates, even for extended periods of
@@ -148,8 +148,8 @@
     </div>
     </div>
 
-    <div id="outline-container-org094cbef" class="outline-3">
-    <h3 id="h:h5y66as0gyh0"><a id="org094cbef"></a>Slack Namespace</h3>
+    <div id="outline-container-org2140fee" class="outline-3">
+    <h3 id="h:h5y66as0gyh0"><a id="org2140fee"></a>Slack Namespace</h3>
     <div class="outline-text-3" id="text-h:h5y66as0gyh0">
     <p>
     Unlike any other self respecting (modern) chat application, it is <b>impossible</b>
@@ -163,8 +163,8 @@
     </p>
     </div>
 
-    <div id="outline-container-org5337460" class="outline-4">
-    <h4 id="h:d6476as0gyh0"><a id="org5337460"></a>Channel Hoarding</h4>
+    <div id="outline-container-orge22bb23" class="outline-4">
+    <h4 id="h:d6476as0gyh0"><a id="orge22bb23"></a>Channel Hoarding</h4>
     <div class="outline-text-4" id="text-h:d6476as0gyh0">
     <p>
     This is especially effective when joining a new slack team. Simply by creating
@@ -183,8 +183,8 @@
     </div>
     </div>
 
-    <div id="outline-container-org45b26d2" class="outline-4">
-    <h4 id="h:4w976as0gyh0"><a id="org45b26d2"></a><span class="todo TODO">TODO</span> Channel Creation Bot</h4>
+    <div id="outline-container-org0df9050" class="outline-4">
+    <h4 id="h:4w976as0gyh0"><a id="org0df9050"></a><span class="todo TODO">TODO</span> Channel Creation Bot</h4>
     <div class="outline-text-4" id="text-h:4w976as0gyh0">
     <p>
     It wouldn't be too hard to make a bot that creates private channels with every
@@ -201,8 +201,8 @@
     </div>
     </div>
 
-    <div id="outline-container-orgfb85048" class="outline-3">
-    <h3 id="h:2qf76as0gyh0"><a id="orgfb85048"></a>Lack of Permissions</h3>
+    <div id="outline-container-orgf50e3f1" class="outline-3">
+    <h3 id="h:2qf76as0gyh0"><a id="orgf50e3f1"></a>Lack of Permissions</h3>
     <div class="outline-text-3" id="text-h:2qf76as0gyh0">
     <p>
     A lot of issues come up when mixing some of the more restrictive permissions
@@ -210,8 +210,8 @@
     </p>
     </div>
 
-    <div id="outline-container-orgcc98d57" class="outline-4">
-    <h4 id="h:lhl76as0gyh0"><a id="orgcc98d57"></a><span class="todo TODO">TODO</span> Channel Jail Bot</h4>
+    <div id="outline-container-org86fd5fc" class="outline-4">
+    <h4 id="h:lhl76as0gyh0"><a id="org86fd5fc"></a><span class="todo TODO">TODO</span> Channel Jail Bot</h4>
     <div class="outline-text-4" id="text-h:lhl76as0gyh0">
     <p>
     For example, a common (but not default) setting is to restrict archiving
@@ -245,8 +245,8 @@
     </div>
     </div>
 
-    <div id="outline-container-org20f7ba8" class="outline-3">
-    <h3 id="h:jer76as0gyh0"><a id="org20f7ba8"></a>Notification Spam</h3>
+    <div id="outline-container-orgdaeaeb6" class="outline-3">
+    <h3 id="h:jer76as0gyh0"><a id="orgdaeaeb6"></a>Notification Spam</h3>
     <div class="outline-text-3" id="text-h:jer76as0gyh0">
     <p>
     Notification spam is unfortunately hard to achieve without getting noticed,
@@ -264,16 +264,16 @@
     </div>
     </div>
 
-    <div id="outline-container-orgbc317f8" class="outline-3">
-    <h3 id="h:v4x76as0gyh0"><a id="orgbc317f8"></a>Bots</h3>
+    <div id="outline-container-orgf7bae45" class="outline-3">
+    <h3 id="h:v4x76as0gyh0"><a id="orgf7bae45"></a>Bots</h3>
     <div class="outline-text-3" id="text-h:v4x76as0gyh0">
     <p>
     Bots let you take some of the burden off of your own infrastructure, and make
     breaking slack easier than ever for everyone!
     </p>
     </div>
-    <div id="outline-container-org0705269" class="outline-4">
-    <h4 id="h:l2386as0gyh0"><a id="org0705269"></a>PlusPlus</h4>
+    <div id="outline-container-org246d73e" class="outline-4">
+    <h4 id="h:l2386as0gyh0"><a id="org246d73e"></a>PlusPlus</h4>
     <div class="outline-text-4" id="text-h:l2386as0gyh0">
     <p>
     <a href="https://plusplus.chat/">PlusPlus</a> is a very popular extension for slack, and is installed on many
@@ -348,8 +348,8 @@
     </div>
     </div>
 
-    <div id="outline-container-orgbfe9764" class="outline-4">
-    <h4 id="h:rda86as0gyh0"><a id="orgbfe9764"></a>SlackBot</h4>
+    <div id="outline-container-org1f77cdf" class="outline-4">
+    <h4 id="h:rda86as0gyh0"><a id="org1f77cdf"></a>SlackBot</h4>
     <div class="outline-text-4" id="text-h:rda86as0gyh0">
     <p>
     Slackbot is the king of all bots in slack. Not only is it a bot (and therefore
@@ -376,8 +376,8 @@
     </div>
     </div>
 
-    <div id="outline-container-org81192dd" class="outline-4">
-    <h4 id="h:7ag86as0gyh0"><a id="org81192dd"></a>SlackBot and PlusPlus</h4>
+    <div id="outline-container-orgebf0dfc" class="outline-4">
+    <h4 id="h:7ag86as0gyh0"><a id="orgebf0dfc"></a>SlackBot and PlusPlus</h4>
     <div class="outline-text-4" id="text-h:7ag86as0gyh0">
     <p>
     If you have both slackbot and plusplus on your slack server, you can exploit
@@ -399,12 +399,12 @@
     </div>
     </div>
 
-    <div id="outline-container-org2ef9e9c" class="outline-3">
-    <h3 id="h:f2m86as0gyh0"><a id="org2ef9e9c"></a>Room For Improvement</h3>
+    <div id="outline-container-org6a9116b" class="outline-3">
+    <h3 id="h:f2m86as0gyh0"><a id="org6a9116b"></a>Room For Improvement</h3>
     <div class="outline-text-3" id="text-h:f2m86as0gyh0">
     </div>
-    <div id="outline-container-org5cc3b7c" class="outline-4">
-    <h4 id="h:bsr86as0gyh0"><a id="org5cc3b7c"></a>Threads</h4>
+    <div id="outline-container-org927f1a9" class="outline-4">
+    <h4 id="h:bsr86as0gyh0"><a id="org927f1a9"></a>Threads</h4>
     <div class="outline-text-4" id="text-h:bsr86as0gyh0">
     <p>
     Threads are incredibly buggy and I guarantee you can exploit them (to hide your
@@ -414,8 +414,8 @@
     </div>
     </div>
 
-    <div id="outline-container-orgf31d8c0" class="outline-4">
-    <h4 id="h:mix86as0gyh0"><a id="orgf31d8c0"></a>Evolution</h4>
+    <div id="outline-container-org6245ef3" class="outline-4">
+    <h4 id="h:mix86as0gyh0"><a id="org6245ef3"></a>Evolution</h4>
     <div class="outline-text-4" id="text-h:mix86as0gyh0">
     <p>
     As slack adds more misfeatures, it's likely these problems will get worse, not
@@ -430,8 +430,8 @@
     </div>
     </div>
 
-    <div id="outline-container-org72dffa3" class="outline-3">
-    <h3 id="h:de396as0gyh0"><a id="org72dffa3"></a>Conclusion</h3>
+    <div id="outline-container-orgd6fec10" class="outline-3">
+    <h3 id="h:de396as0gyh0"><a id="orgd6fec10"></a>Conclusion</h3>
     <div class="outline-text-3" id="text-h:de396as0gyh0">
     <p>
     It's incredibly easy to break slack! But why?
@@ -452,8 +452,8 @@
     </ol>
     </div>
 
-    <div id="outline-container-orgabd3dbc" class="outline-4">
-    <h4 id="h:e8a96as0gyh0"><a id="orgabd3dbc"></a>Mitigation</h4>
+    <div id="outline-container-org7d63136" class="outline-4">
+    <h4 id="h:e8a96as0gyh0"><a id="org7d63136"></a>Mitigation</h4>
     <div class="outline-text-4" id="text-h:e8a96as0gyh0">
     <p>
     If you are a slack moderator, and you are concerned about these threats, you should immediately:
@@ -491,8 +491,8 @@
     </div>
     </div>
 
-    <div id="outline-container-orgb8d2ea1" class="outline-4">
-    <h4 id="h:e8j96as0gyh0"><a id="orgb8d2ea1"></a>Related Posts</h4>
+    <div id="outline-container-org1966887" class="outline-4">
+    <h4 id="h:e8j96as0gyh0"><a id="org1966887"></a>Related Posts</h4>
     <div class="outline-text-4" id="text-h:e8j96as0gyh0">
     <ol class="org-ol">
     <li><a href="https://drewdevault.com/2015/11/01/Please-stop-using-slack.html">Please don't use Slack for FOSS projects</a></li>
@@ -505,8 +505,8 @@
     </div>
     </div>
 
-    <div id="outline-container-org00246a9" class="outline-3">
-    <h3 id="h:f7q96as0gyh0"><a id="org00246a9"></a>Navigation</h3>
+    <div id="outline-container-orgaed9c55" class="outline-3">
+    <h3 id="h:f7q96as0gyh0"><a id="orgaed9c55"></a>Navigation</h3>
     <div class="outline-text-3" id="text-h:f7q96as0gyh0">
     <p>
     nil
@@ -519,13 +519,13 @@
 <item>
   <title>Productivity and Applications</title>
   <link>https://jgkamat.github.io/blog/applications.html</link>
-  <author>root@2128eaefa9d5 (Jay Kamat)</author>
+  <author>root@49a7e5b36186 (Jay Kamat)</author>
   <guid isPermaLink="false">https://jgkamat.github.io/blog/applications.html</guid>
   <pubDate>Sun, 22 Jan 2017 00:00:00 +0000</pubDate>
 
   <description><![CDATA[
-  <div id="outline-container-org559149c" class="outline-3">
-  <h3 id="h:xdhd2as0gyh0"><a id="org559149c"></a>Why Even Bother?</h3>
+  <div id="outline-container-orgaaf212d" class="outline-3">
+  <h3 id="h:xdhd2as0gyh0"><a id="orgaaf212d"></a>Why Even Bother?</h3>
   <div class="outline-text-3" id="text-h:xdhd2as0gyh0">
   <p>
   I'm really picky about the applications I use, mainly to make sure I'm
@@ -541,8 +541,8 @@
   </div>
   </div>
 
-  <div id="outline-container-orga6bf4f2" class="outline-3">
-  <h3 id="h:3uod2as0gyh0"><a id="orga6bf4f2"></a>Core</h3>
+  <div id="outline-container-orgae09b85" class="outline-3">
+  <h3 id="h:3uod2as0gyh0"><a id="orgae09b85"></a>Core</h3>
   <div class="outline-text-3" id="text-h:3uod2as0gyh0">
   <p>
   In general, I look for 3 things in any application before I begin relying on it.
@@ -563,8 +563,8 @@
   </p>
   </div>
 
-  <div id="outline-container-orga09da97" class="outline-4">
-  <h4 id="h:8zvd2as0gyh0"><a id="orga09da97"></a>Stability</h4>
+  <div id="outline-container-org20e4313" class="outline-4">
+  <h4 id="h:8zvd2as0gyh0"><a id="org20e4313"></a>Stability</h4>
   <div class="outline-text-4" id="text-h:8zvd2as0gyh0">
   <p>
   Stability is important for obvious reasons.
@@ -583,8 +583,8 @@
   </div>
   </div>
 
-  <div id="outline-container-orgf16e35e" class="outline-4">
-  <h4 id="h:1b2e2as0gyh0"><a id="orgf16e35e"></a>Customizability</h4>
+  <div id="outline-container-org4c1fa83" class="outline-4">
+  <h4 id="h:1b2e2as0gyh0"><a id="org4c1fa83"></a>Customizability</h4>
   <div class="outline-text-4" id="text-h:1b2e2as0gyh0">
   <p>
   Software that is customizable helps with productivity because it makes it easy
@@ -602,8 +602,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org176e5af" class="outline-4">
-  <h4 id="h:d98e2as0gyh0"><a id="org176e5af"></a>Being Lightweight</h4>
+  <div id="outline-container-org7e56111" class="outline-4">
+  <h4 id="h:d98e2as0gyh0"><a id="org7e56111"></a>Being Lightweight</h4>
   <div class="outline-text-4" id="text-h:d98e2as0gyh0">
   <p>
   Minimalist applications lend to productivity, simply because they are doing
@@ -624,8 +624,8 @@
   </div>
   </div>
 
-  <div id="outline-container-orgb469d5b" class="outline-3">
-  <h3 id="h:0sde2as0gyh0"><a id="orgb469d5b"></a>Wrapping Up</h3>
+  <div id="outline-container-orga401a41" class="outline-3">
+  <h3 id="h:0sde2as0gyh0"><a id="orga401a41"></a>Wrapping Up</h3>
   <div class="outline-text-3" id="text-h:0sde2as0gyh0">
   <p>
   Hopefully this post can help you become more productive. I find that even small
@@ -635,8 +635,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org1a2f0b2" class="outline-3">
-  <h3 id="h:vcje2as0gyh0"><a id="org1a2f0b2"></a>Navigation</h3>
+  <div id="outline-container-org643f478" class="outline-3">
+  <h3 id="h:vcje2as0gyh0"><a id="org643f478"></a>Navigation</h3>
   <div class="outline-text-3" id="text-h:vcje2as0gyh0">
   <p>
   nil
@@ -649,13 +649,13 @@
 <item>
   <title>Creating A Blog in Org Mode</title>
   <link>https://jgkamat.github.io/blog/website1.html</link>
-  <author>root@2128eaefa9d5 (Jay Kamat)</author>
+  <author>root@49a7e5b36186 (Jay Kamat)</author>
   <guid isPermaLink="false">https://jgkamat.github.io/blog/website1.html</guid>
   <pubDate>Tue, 06 Dec 2016 00:00:00 +0000</pubDate>
 
   <description><![CDATA[
-  <div id="outline-container-org2cb981d" class="outline-3">
-  <h3 id="h:ua1fi9s0gyh0"><a id="org2cb981d"></a>Overview</h3>
+  <div id="outline-container-orge425238" class="outline-3">
+  <h3 id="h:ua1fi9s0gyh0"><a id="orge425238"></a>Overview</h3>
   <div class="outline-text-3" id="text-h:ua1fi9s0gyh0">
   <p>
   <b>NOTE:</b> My website used to be build with ox-twbs, now it's built on ox-html.
@@ -699,12 +699,12 @@
   </div>
   </div>
 
-  <div id="outline-container-org67d5472" class="outline-3">
-  <h3 id="h:vw6fi9s0gyh0"><a id="org67d5472"></a>Org Projects</h3>
+  <div id="outline-container-org0e19c20" class="outline-3">
+  <h3 id="h:vw6fi9s0gyh0"><a id="org0e19c20"></a>Org Projects</h3>
   <div class="outline-text-3" id="text-h:vw6fi9s0gyh0">
   </div>
-  <div id="outline-container-org9de995d" class="outline-4">
-  <h4 id="h:n3bfi9s0gyh0"><a id="org9de995d"></a>Basic Setup</h4>
+  <div id="outline-container-org6cc8601" class="outline-4">
+  <h4 id="h:n3bfi9s0gyh0"><a id="org6cc8601"></a>Basic Setup</h4>
   <div class="outline-text-4" id="text-h:n3bfi9s0gyh0">
   <p>
   Org projects are a simple way to combine and link multiple org files together into one complete export. The complete docs are <a href="http://orgmode.org/manual/Publishing.html">here</a>.
@@ -745,8 +745,8 @@
   </div>
   </div>
 
-  <div id="outline-container-orgb03ccb9" class="outline-4">
-  <h4 id="h:ifffi9s0gyh0"><a id="orgb03ccb9"></a>Customization</h4>
+  <div id="outline-container-org9d9da2b" class="outline-4">
+  <h4 id="h:ifffi9s0gyh0"><a id="org9d9da2b"></a>Customization</h4>
   <div class="outline-text-4" id="text-h:ifffi9s0gyh0">
   <p>
   While the above setup works, there's a lot we might want to change. For instance, we might want to turn of table of contents for the entire project.
@@ -755,8 +755,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org7105037" class="outline-4">
-  <h4 id="h:edjfi9s0gyh0"><a id="org7105037"></a>Making this Shareable</h4>
+  <div id="outline-container-orgc63f791" class="outline-4">
+  <h4 id="h:edjfi9s0gyh0"><a id="orgc63f791"></a>Making this Shareable</h4>
   <div class="outline-text-4" id="text-h:edjfi9s0gyh0">
   <p>
   Some people might want to put this <code>setq</code> call in your Emacs dotfiles, but I prefer to place it in a <a href="https://github.com/jgkamat/jgkamat.github.io/blob/sources/jgkamat-website.el">seperate emacs lisp file</a> file instead, which lets others get the same project definition. It also lets you put other changes you make in this file as well, since all those changes will be elisp. Anyone who wants to work with your project simply needs to source this file, instead of setting up the project again.
@@ -786,8 +786,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org54d5569" class="outline-3">
-  <h3 id="h:7bnfi9s0gyh0"><a id="org54d5569"></a>Custom CSS on HTML Exports</h3>
+  <div id="outline-container-org44be258" class="outline-3">
+  <h3 id="h:7bnfi9s0gyh0"><a id="org44be258"></a>Custom CSS on HTML Exports</h3>
   <div class="outline-text-3" id="text-h:7bnfi9s0gyh0">
   <p>
   We've got a nice website now, but it looks pretty bare bones. How do we provide our own CSS?
@@ -812,8 +812,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org91078eb" class="outline-3">
-  <h3 id="h:qyqfi9s0gyh0"><a id="org91078eb"></a>Dynamic Org Exports</h3>
+  <div id="outline-container-org6638cc2" class="outline-3">
+  <h3 id="h:qyqfi9s0gyh0"><a id="org6638cc2"></a>Dynamic Org Exports</h3>
   <div class="outline-text-3" id="text-h:qyqfi9s0gyh0">
   <p>
   We've got our nice org project for easy export, custom CSS styling, and maybe even a custom org exporter to get our website looking just how we want it, but how can we get dynamic exports?
@@ -869,8 +869,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org3f315e4" class="outline-3">
-  <h3 id="h:pmufi9s0gyh0"><a id="org3f315e4"></a>Side Note: Divs</h3>
+  <div id="outline-container-orgd55f764" class="outline-3">
+  <h3 id="h:pmufi9s0gyh0"><a id="orgd55f764"></a>Side Note: Divs</h3>
   <div class="outline-text-3" id="text-h:pmufi9s0gyh0">
   <p>
   It might be nice to generate divs in your html file from your org source. I used this to get my prev/next links into a nice 3 part table. You can insert a div with class <code>classname</code> like this:
@@ -889,8 +889,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org3de02ad" class="outline-3">
-  <h3 id="h:u4yfi9s0gyh0"><a id="org3de02ad"></a>Wrapping Up</h3>
+  <div id="outline-container-orgd57b297" class="outline-3">
+  <h3 id="h:u4yfi9s0gyh0"><a id="orgd57b297"></a>Wrapping Up</h3>
   <div class="outline-text-3" id="text-h:u4yfi9s0gyh0">
   <p>
   Creating an org blog is a lot easier than it seems, if you know how to use org's features to your advantage.
@@ -925,8 +925,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org5def109" class="outline-3">
-  <h3 id="h:722gi9s0gyh0"><a id="org5def109"></a>Navigation</h3>
+  <div id="outline-container-orgcaae699" class="outline-3">
+  <h3 id="h:722gi9s0gyh0"><a id="orgcaae699"></a>Navigation</h3>
   <div class="outline-text-3" id="text-h:722gi9s0gyh0">
   <p>
   nil
