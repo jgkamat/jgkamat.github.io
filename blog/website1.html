@@ -8,7 +8,7 @@
 <title>Creating A Blog in Org Mode</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Jay Kamat" />
-<link rel="stylesheet" href="https://jgkamat.github.io/src/jgkamat.css">
+<link rel="stylesheet" href="https://jgkamat.github.io/src/jgkamat.css"/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -80,8 +80,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgea74448" class="outline-2">
-<h2 id="h:ua1fi9s0gyh0"><a id="orgea74448"></a><span class="section-number-2">1</span> Overview</h2>
+<div id="outline-container-orgbe65bf2" class="outline-2">
+<h2 id="h:ua1fi9s0gyh0"><a id="orgbe65bf2"></a><span class="section-number-2">1</span> Overview</h2>
 <div class="outline-text-2" id="text-h:ua1fi9s0gyh0">
 <p>
 <b>NOTE:</b> My website used to be build with ox-twbs, now it's built on ox-html.
@@ -125,12 +125,12 @@ that you know elisp.
 </div>
 </div>
 
-<div id="outline-container-org3bf5fd9" class="outline-2">
-<h2 id="h:vw6fi9s0gyh0"><a id="org3bf5fd9"></a><span class="section-number-2">2</span> Org Projects</h2>
+<div id="outline-container-org74dbe0d" class="outline-2">
+<h2 id="h:vw6fi9s0gyh0"><a id="org74dbe0d"></a><span class="section-number-2">2</span> Org Projects</h2>
 <div class="outline-text-2" id="text-h:vw6fi9s0gyh0">
 </div>
-<div id="outline-container-org8223712" class="outline-3">
-<h3 id="h:n3bfi9s0gyh0"><a id="org8223712"></a><span class="section-number-3">2.1</span> Basic Setup</h3>
+<div id="outline-container-orgf8c6222" class="outline-3">
+<h3 id="h:n3bfi9s0gyh0"><a id="orgf8c6222"></a><span class="section-number-3">2.1</span> Basic Setup</h3>
 <div class="outline-text-3" id="text-h:n3bfi9s0gyh0">
 <p>
 Org projects are a simple way to combine and link multiple org files together into one complete export. The complete docs are <a href="http://orgmode.org/manual/Publishing.html">here</a>.
@@ -171,8 +171,8 @@ Files that are linked with <code>org-insert-link</code> will link fine in the ex
 </div>
 </div>
 
-<div id="outline-container-orgb62ff9c" class="outline-3">
-<h3 id="h:ifffi9s0gyh0"><a id="orgb62ff9c"></a><span class="section-number-3">2.2</span> Customization</h3>
+<div id="outline-container-orge72f430" class="outline-3">
+<h3 id="h:ifffi9s0gyh0"><a id="orge72f430"></a><span class="section-number-3">2.2</span> Customization</h3>
 <div class="outline-text-3" id="text-h:ifffi9s0gyh0">
 <p>
 While the above setup works, there's a lot we might want to change. For instance, we might want to turn of table of contents for the entire project.
@@ -181,8 +181,8 @@ For a single file, we would put <code>#+OPTIONS: toc:nil</code>, but to apply th
 </div>
 </div>
 
-<div id="outline-container-org1f7f473" class="outline-3">
-<h3 id="h:edjfi9s0gyh0"><a id="org1f7f473"></a><span class="section-number-3">2.3</span> Making this Shareable</h3>
+<div id="outline-container-org76c3f54" class="outline-3">
+<h3 id="h:edjfi9s0gyh0"><a id="org76c3f54"></a><span class="section-number-3">2.3</span> Making this Shareable</h3>
 <div class="outline-text-3" id="text-h:edjfi9s0gyh0">
 <p>
 Some people might want to put this <code>setq</code> call in your Emacs dotfiles, but I prefer to place it in a <a href="https://github.com/jgkamat/jgkamat.github.io/blob/sources/jgkamat-website.el">seperate emacs lisp file</a> file instead, which lets others get the same project definition. It also lets you put other changes you make in this file as well, since all those changes will be elisp. Anyone who wants to work with your project simply needs to source this file, instead of setting up the project again.
@@ -212,8 +212,8 @@ This is done by changing the <code>:publishing-function</code> to <code>org-twbs
 </div>
 </div>
 
-<div id="outline-container-orgd97cfef" class="outline-2">
-<h2 id="h:7bnfi9s0gyh0"><a id="orgd97cfef"></a><span class="section-number-2">3</span> Custom CSS on HTML Exports</h2>
+<div id="outline-container-org5d93fd8" class="outline-2">
+<h2 id="h:7bnfi9s0gyh0"><a id="org5d93fd8"></a><span class="section-number-2">3</span> Custom CSS on HTML Exports</h2>
 <div class="outline-text-2" id="text-h:7bnfi9s0gyh0">
 <p>
 We've got a nice website now, but it looks pretty bare bones. How do we provide our own CSS?
@@ -238,8 +238,8 @@ I'm very new to 'webdev', so actually creating the CSS was a struggle for me. <a
 </div>
 </div>
 
-<div id="outline-container-org84d4d6e" class="outline-2">
-<h2 id="h:qyqfi9s0gyh0"><a id="org84d4d6e"></a><span class="section-number-2">4</span> Dynamic Org Exports</h2>
+<div id="outline-container-org721d074" class="outline-2">
+<h2 id="h:qyqfi9s0gyh0"><a id="org721d074"></a><span class="section-number-2">4</span> Dynamic Org Exports</h2>
 <div class="outline-text-2" id="text-h:qyqfi9s0gyh0">
 <p>
 We've got our nice org project for easy export, custom CSS styling, and maybe even a custom org exporter to get our website looking just how we want it, but how can we get dynamic exports?
@@ -295,8 +295,8 @@ They need some more work, but they are usable for now. I might post about how I 
 </div>
 </div>
 
-<div id="outline-container-org64cd7f4" class="outline-2">
-<h2 id="h:pmufi9s0gyh0"><a id="org64cd7f4"></a><span class="section-number-2">5</span> Side Note: Divs</h2>
+<div id="outline-container-orge2bdf20" class="outline-2">
+<h2 id="h:pmufi9s0gyh0"><a id="orge2bdf20"></a><span class="section-number-2">5</span> Side Note: Divs</h2>
 <div class="outline-text-2" id="text-h:pmufi9s0gyh0">
 <p>
 It might be nice to generate divs in your html file from your org source. I used this to get my prev/next links into a nice 3 part table. You can insert a div with class <code>classname</code> like this:
@@ -315,8 +315,8 @@ I created divs called <code>div-wrap</code>, <code>div-left</code>, <code>div-ri
 </div>
 </div>
 
-<div id="outline-container-org1997a21" class="outline-2">
-<h2 id="h:u4yfi9s0gyh0"><a id="org1997a21"></a><span class="section-number-2">6</span> Wrapping Up</h2>
+<div id="outline-container-org2a6b180" class="outline-2">
+<h2 id="h:u4yfi9s0gyh0"><a id="org2a6b180"></a><span class="section-number-2">6</span> Wrapping Up</h2>
 <div class="outline-text-2" id="text-h:u4yfi9s0gyh0">
 <p>
 Creating an org blog is a lot easier than it seems, if you know how to use org's features to your advantage.
@@ -351,8 +351,8 @@ Lastly, here's an obligatory screenshot of me editing this post. <code>=)</code>
 </div>
 </div>
 
-<div id="outline-container-org3b7ab30" class="outline-2">
-<h2 id="h:722gi9s0gyh0"><a id="org3b7ab30"></a><span class="section-number-2">7</span> Navigation</h2>
+<div id="outline-container-org1f82257" class="outline-2">
+<h2 id="h:722gi9s0gyh0"><a id="org1f82257"></a><span class="section-number-2">7</span> Navigation</h2>
 <div class="outline-text-2" id="text-h:722gi9s0gyh0">
 <div class="div-wrap">
 <div class="div-left">
