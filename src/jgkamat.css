@@ -53,6 +53,12 @@ img {
 	max-height:100%;
 }
 
+h1, h2, h3, h4, h5, h6, h7 {
+	/* All headers should not be split */
+	display: inline-block;
+	width: 100%;
+}
+
 /*  Simple colors here */
 h5, h6, h7, li {
 	color: #909396;
@@ -89,7 +95,7 @@ table {
 /* @group Layout */
 
 #content {
-	width: 70em;
+	max-width: 63em;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -100,7 +106,7 @@ table {
 */
 
 #table-of-contents {
-	width: 15em;
+	max-width: 15em;
 	float: right;
 	overflow: auto;
 	font-size: 16px;
@@ -108,8 +114,7 @@ table {
 
 /* #main { */
 div.outline-2 {
-	width: 52em;
-	float: left;
+	max-width: 45em;
 	/* The lines below are useful if the "main" div isn't available and
 	   div.outline-2 has to be used. */
 	position: relative;
