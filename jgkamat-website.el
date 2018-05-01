@@ -55,7 +55,7 @@
       :recursive t
       :publishing-directory ,website-publish-dir
       ;; Add my CSS and fonts
-      :html-head "<link rel=\"stylesheet\" href=\"https://jgkamat.github.io/src/jgkamat.css\">"
+      :html-head "<link rel=\"stylesheet\" href=\"https://jgkamat.github.io/src/jgkamat.css\"/>"
       :html-head-include-default-style nil
       :title nil
       :with-headline-numbers nil
