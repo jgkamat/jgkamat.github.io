@@ -5,7 +5,7 @@
 ;; Version: 1.0
 ;; Keywords: jgkamat
 ;; URL: https://github.com/jgkamat/jgkamat.github.io
-;; Package-Requires: ((emacs "25.0") (htmlize) (ox-twbs))
+;; Package-Requires: ((emacs "25.0") (htmlize))
 
 ;;; Commentary:
 ;;Creates and builds org project files for my website
@@ -98,7 +98,9 @@
       :rss-extension "xml"
       :publishing-function (org-rss-publish-to-rss)))))
 
-(setq org-html-postamble t
+(setq org-export-date-timestamp-format "%Y-%m-%d"
+      org-html-metadata-timestamp-format org-export-date-timestamp-format
+      org-html-postamble t
       org-html-postamble-format
       '(("en" "
 <div>
@@ -106,8 +108,6 @@
 <p class=\"date\">Published: %d</p>
 <p class=\"creator\">%c</p>
 </div>")))
-;; Export format of DATE:
-(setq org-export-date-timestamp-format "%Y-%m-%d")
 
 (setq blog-homepage (concat project-base "/blog/home.org"))
 (setq overview-exclude-files '("rss.org"))
@@ -243,15 +243,6 @@ representation for the files to include, as returned by
          (org-set-property "PUBDATE" (org-timestamp-to-str (first (gen-raw-org-date link-target))))
          (org-set-property "RSS_PERMALINK" rss-permalink))))
     (buffer-string)))
-
-;; Make org-twbs links clickable...
-(defun org-twbs--format-image-wrap (fun source attributes info)
-  "Wrap org-twbs--format-image to make all images clickable."
-  (format
-   "<a href=\"%s\">%s</a>"
-   source
-   (apply fun `(,source ,attributes ,info))))
-(advice-add 'org-twbs--format-image :around #'org-twbs--format-image-wrap)
 
 (provide 'jgkamat-website)
 

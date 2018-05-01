@@ -27,7 +27,6 @@ engineering, and space!
 - [[https://gitlab.com/jgkamat][GitLab]]
 - [[file:blog/home.org][Blog]]
 - [[https://hub.docker.com/u/jgkamat/][DockerHub]]
-- [[https://www.linkedin.com/in/jaykamat][Linkedin]]
 
 * Projects
 :PROPERTIES:

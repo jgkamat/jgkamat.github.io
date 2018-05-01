@@ -9,8 +9,12 @@
 :CUSTOM_ID: h:ua1fi9s0gyh0
 :END:
 
-Org is a very powerful tool, but most of the org setups I've seen hasn't used it to its full potential.
-This website is one example of a complex, multi-page project built in org. This post is a 'brief' overview of how it was created.
+*NOTE:* My website used to be build with ox-twbs, now it's built on ox-html.
+Commit [[https://github.com/jgkamat/jgkamat.github.io/tree/bb5eadb640f982a0acdc6713dd99bfce64328798][bb5eadb6]] is one of the last to use ox-twbs.
+
+Org is a very powerful tool, but most of the org setups I've seen hasn't used it
+to its full potential. This website is one example of a complex, multi-page
+project built in org. This post is a 'brief' overview of how it was created.
 
 This blog was created with:
 
@@ -25,7 +29,9 @@ Features:
   - Archive Page (sorted)
   - Automatically add new org files to blog/archive
 
-This post will go over everything you need to set up a complex, customized, and dynamic org project like this one. It assumes you are familiar with org, and that you know elisp.
+This post will go over everything you need to set up a complex, customized, and
+dynamic org project like this one. It assumes you are familiar with org, and
+that you know elisp.
 
 * Org Projects
 :PROPERTIES:
