@@ -42,27 +42,21 @@ These are projects that I have created purely for fun, or for improvements in my
 1. [[https://github.com/jgkamat/alda-mode][alda-mode]]
 
    An Emacs major mode for [[https://github.com/alda-lang/alda][alda]]
-2. [[https://github.com/jgkamat/DoCIF][DoCIF]]
-
-  A Docker CI Framework, Leveraging Github/CircleCI
-3. [[https://github.com/jgkamat/elevator-linked-list][elevator-linked-list]]
+2. [[https://github.com/jgkamat/elevator-linked-list][elevator-linked-list]]
 
   A C++ demo on how the design of super-tall elevators can be used to improve linked list performance
-4. [[http://www.github.com/MountainRange/mobius-tunes][Mobius-Tunes]]
-
-  Created at HackGT 2015
-5. [[https://github.com/jgkamat/ViPaint][ViPaint]]
+3. [[https://github.com/jgkamat/ViPaint][ViPaint]]
 
   A vi inspired, modal painting program, written in Java
-6. [[https://github.com/jgkamat/dotfiles][dotfiles]]
+4. [[https://github.com/jgkamat/dotfiles][dotfiles]]
 
    My dotfiles, containing all my configs and desktop automation tools
-7. [[https://github.com/jgkamat/JayLayer/][JayLayer]]
-
-  A Java MP3 wrapper library to make sound easy!
-8. [[https://github.com/jgkamat/JPlanetSimulator][JPlanetSimulator]]
+5. [[https://github.com/jgkamat/JPlanetSimulator][JPlanetSimulator]]
 
   A Java 2D N-Body Planet Simulation using Newton's Laws
+6. [[https://github.com/jgkamat/DoCIF][DoCIF]] (deprecated)
+
+  A Docker CI Framework, Leveraging Github/CircleCI
 ** Free Software Contributions
 :PROPERTIES:
 :CUSTOM_ID: h:ajs0p5s0gyh0
