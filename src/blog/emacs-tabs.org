@@ -11,12 +11,11 @@
 
 As someone who migrated from more "normal" editors to Emacs, one of the first
 things that I wanted was a tabbar, which Emacs notably does not ship with. I
-spent a lot of time configuring [[https://github.com/dholm/tabbar/tree/b6c285a7d59dcdb1f17716f0b60787922fa4be82][tabbar]] to my liking, but it always felt slightly
-"wrong" especially when seeing that most Emacsers weren't using tabbar. After
-almost 2 years of using tabbar, I finally decided to stop using it and try out
-the native buffer switching paradigm, and I don't miss tabs at all. Hopefully,
-this post will help explain my journey, so others don't have to be as lost as I
-did!
+spent a lot of time configuring [[https://github.com/dholm/tabbar/tree/b6c285a7d59dcdb1f17716f0b60787922fa4be82][tabbar]] to my liking, but it always felt "wrong"
+especially when seeing that most Emacsers weren't using tabbar. After almost 2
+years of using tabbar, I finally decided to stop using it and try out the native
+buffer switching paradigm, and I don't miss tabs at all. Hopefully, this post
+will help explain my journey, so others don't have to be as lost as I did!
 
 * tabbar.el
 :PROPERTIES:
@@ -35,6 +34,8 @@ My solution to this was to [[https://github.com/jgkamat/dotfiles/blob/13da6a3416
 1. Create new groups for every projectile project, and one for leftover buffers
 2. Sort the buffers based on their full path, so similar files are automatically
    placed close to each other.
+
+[[file:../img/tabs-files.png][file:../img/tabs-files.png]]
 
 This works, but it has a couple problems. It's a bit slow/buggy (probably
 because of things I introduced), it dosen't scale well within a project, and it
@@ -133,3 +134,5 @@ other surprising things:
 
 If you're in the same situation as me, and have some concerns about keeping
 tabs, feel free to contact me and I'll add a section about it! ~:)~
+
+[[file:../img/ibuffer-demo.gif][file:../img/ibuffer-demo.gif]]
