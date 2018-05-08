@@ -90,6 +90,7 @@
       :time-stamp-file nil
       :section-numbers nil
       :table-of-contents nil
+      :email "jaygkamat@gmail.com"
       :author "Jay Kamat"
       :html-link-home "https://jgkamat.github.io/blog/"
       :rss-image-url "https://jgkamat.github.io/favicon.ico"
