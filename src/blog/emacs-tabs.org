@@ -1,7 +1,7 @@
 #+TITLE: How I Learned to Stop Worrying and Love Ibuffer
 #+AUTHOR: Jay Kamat
 #+EMAIL: jaygkamat@gmail.com
-#+DATE: <2018-05-02 Wed>
+#+DATE: <2018-05-07 Mon>
 #+OPTIONS: auto-id:t
 
 * Preface
