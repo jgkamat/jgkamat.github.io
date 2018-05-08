@@ -14,10 +14,10 @@
   <link>https://jgkamat.github.io/blog/</link>
   <description><![CDATA[]]></description>
   <language>en</language>
-  <pubDate>Wed, 02 May 2018 05:32:59 +0000</pubDate>
-  <lastBuildDate>Wed, 02 May 2018 05:32:59 +0000</lastBuildDate>
-  <generator>Emacs 25.3 Org-mode 9.1.12</generator>
-  <webMaster>root@dd4617150136 (Jay Kamat)</webMaster>
+  <pubDate>Tue, 08 May 2018 02:24:51 +0000</pubDate>
+  <lastBuildDate>Tue, 08 May 2018 02:24:51 +0000</lastBuildDate>
+  <generator>Emacs 25.3 Org-mode 9.1.13</generator>
+  <webMaster>root@ab4e43ed8d62 (Jay Kamat)</webMaster>
   <image>
     <url>https://jgkamat.github.io/favicon.ico</url>
     <title></title>
@@ -25,507 +25,696 @@
   </image>
 
   <item>
-    <title>Breaking Slack</title>
-    <link>https://jgkamat.github.io/blog/slack.html</link>
-    <author>root@dd4617150136 (Jay Kamat)</author>
-    <guid isPermaLink="false">https://jgkamat.github.io/blog/slack.html</guid>
-    <pubDate>Sat, 24 Jun 2017 00:00:00 +0000</pubDate>
+    <title>How I Learned to Stop Worrying and Love Ibuffer</title>
+    <link>https://jgkamat.github.io/blog/emacs-tabs.html</link>
+    <author>root@ab4e43ed8d62 (Jay Kamat)</author>
+    <guid isPermaLink="false">https://jgkamat.github.io/blog/emacs-tabs.html</guid>
+    <pubDate>Wed, 02 May 2018 00:00:00 +0000</pubDate>
 
     <description><![CDATA[
-    <div id="outline-container-orga4e9ff4" class="outline-3">
-    <h3 id="h:xq566as0gyh0"><a id="orga4e9ff4"></a>Preface</h3>
-    <div class="outline-text-3" id="text-h:xq566as0gyh0">
+    <div id="outline-container-orgfb6635e" class="outline-3">
+    <h3 id="h:fe65df5d-d584-4b41-bf8e-820d0d7bda12"><a id="orgfb6635e"></a>Preface</h3>
+    <div class="outline-text-3" id="text-h:fe65df5d-d584-4b41-bf8e-820d0d7bda12">
     <p>
-    Communication is a tricky problem, because it's hard to make everyone
-    happy. When internet messaging started out, we had lots of choices, due to the
-    existence of standards that allowed multiple servers to talk to each other (<a href="https://xmpp.org/">XMPP</a>
-    federation) and standards that allowed a single client to talk to multiple
-    servers (IRC). In recent years, we have backtracked away from that model in
-    favor of hundreds of closed protocols, forcing users to install <i><a href="https://xkcd.com/1810/">yet another
-    client</a></i> for every service they use (hangouts, messenger, signal, telegram,
-    groupme, whatsapp, skype, tox, SMS, &#x2026;). This means that if you <b>love</b> a
-    particular chat app, you simply won't be able to use it everywhere!
-    </p>
-    </div>
-
-    <div id="outline-container-org73636ad" class="outline-4">
-    <h4 id="h:lxd66as0gyh0"><a id="org73636ad"></a>Slack</h4>
-    <div class="outline-text-4" id="text-h:lxd66as0gyh0">
-    <p>
-    Slack is a particularly bad example of the above, since it's a tool 'targeted'
-    towards <i>team</i> communication, rather than just direct messages. Usually, a team
-    consists of many more people than the average chat, and that makes the above
-    even more relevant, since the more people you need to connect, the more
-    flexibility you must have to keep the team happy and running smoothly. Slack
-    disallows features that even IRC has had for decades, such as ignoring,
-    blocking, message filtering, and knocking, which makes it a terrible tool for
-    any team that is actually trying to get things done. Unfortunately, I have been forced
-    into using slack in a few places that I 'work' at, which will hopefully no
-    longer be necessary in the long term.
-    </p>
-
-    <p>
-    However, Slack goes even further by also being terribly designed under the hood,
-    making it extremely easy to 'break'. While these are 'not security problems',
-    they do cause serious problems to team communication, and are impossible for
-    moderators to fix without slack admins intervening.
-    </p>
-
-    <p>
-    I do have code for most of these 'exploits', but I will not be linking to them
-    directly to make them 'harder to use'. They are <i>somewhere</i> in my GitHub
-    namespace though. I have not done anything with a TODO on my own, but it
-    shouldn't be too hard.
-    </p>
-
-    <p>
-    <b>TL;DR:</b> This is a guide to making your fellow slack user's lives as painful as
-    possible, ideally while staying anonymous.
+    As someone who migrated from more "normal" editors to Emacs, one of the first
+    things that I wanted was a tabbar, which Emacs notably does not ship with. I
+    spent a lot of time configuring <a href="https://github.com/dholm/tabbar/tree/b6c285a7d59dcdb1f17716f0b60787922fa4be82">tabbar</a> to my liking, but it always felt "wrong"
+    especially when seeing that most Emacsers weren't using tabbar. After almost 2
+    years of using tabbar, I finally decided to stop using it and try out the native
+    buffer switching paradigm, and I don't miss tabs at all. Hopefully, this post
+    will help explain my journey, so others don't have to be as lost as I did!
     </p>
     </div>
     </div>
-    </div>
 
-    <div id="outline-container-orgf9bde5c" class="outline-3">
-    <h3 id="h:iyk66as0gyh0"><a id="orgf9bde5c"></a>Message Limits</h3>
-    <div class="outline-text-3" id="text-h:iyk66as0gyh0">
+    <div id="outline-container-org2f533f4" class="outline-3">
+    <h3 id="h:ce165d7b-a7c4-4917-80a7-ac7267f33ac6"><a id="org2f533f4"></a>tabbar.el</h3>
+    <div class="outline-text-3" id="text-h:ce165d7b-a7c4-4917-80a7-ac7267f33ac6">
     <p>
-    Message limits are the first core problem of slack. Since most slack users use a
-    web client, and don't store any messages locally, 'clearing' the message history
-    causes a bunch of problems.
+    Tabs don't work very well from a conceptual standpoint in Emacs, and prevent you
+    from using Emacs to it's full potential. When using Emacs, you will likely have
+    many more buffers than horizontal space on your screen. I currently have 70
+    Buffers open (and I can have many more on a long-running session), and that
+    simply won't fit. In order to even consider tabbar, some filtering and grouping
+    is required.
     </p>
 
     <p>
-    Slack message limits are shared across dms, mpdms, public channels, and private
-    channels. Slack message limits include both human and bot messages.
+    My solution to this was to <a href="https://github.com/jgkamat/dotfiles/blob/13da6a341688e5fb1e74d6521dc9a3a941dd0cde/emacs/.emacs.d/lisp/tabbar-tweaks.el">create sorting functions</a> which would:
+    </p>
+
+    <ol class="org-ol">
+    <li>Create new groups for every projectile project, and one for leftover buffers</li>
+    <li>Sort the buffers based on their full path, so similar files are automatically
+    placed close to each other.</li>
+    </ol>
+
+
+    <div class="figure">
+    <p><a href="../img/tabs-files.png"><img src="../img/tabs-files.png" alt="tabs-files.png" /></a>
     </p>
     </div>
 
-    <div id="outline-container-org5ee2cb1" class="outline-4">
-    <h4 id="h:qqr66as0gyh0"><a id="org5ee2cb1"></a>Message Bomb</h4>
-    <div class="outline-text-4" id="text-h:qqr66as0gyh0">
     <p>
-    Slack has very generous throttling rates, even for extended periods of
-    time. It's incredibly easy to make a bot that keeps posting something in a
-    private channel. Since bots and DM's count to the message limit, we can speed
-    this up even more by getting a bot to do half our work!
+    This works, but it has a couple problems. It's a bit slow/buggy (probably
+    because of things I introduced), it dosen't scale well within a project, and it
+    breaks most third party usage of the header line. I also found it was very hard
+    to get to buffers that weren't part of the project I was visiting (as I wasn't
+    relying on <code>*-switch-buffer</code>).
+    </p>
+    </div>
+    </div>
+
+    <div id="outline-container-org5c06c00" class="outline-3">
+    <h3 id="h:8fe363cd-b952-459b-81ed-468d152d0b3a"><a id="org5c06c00"></a>Workflows</h3>
+    <div class="outline-text-3" id="text-h:8fe363cd-b952-459b-81ed-468d152d0b3a">
+    <p>
+    At least for me, there's a couple of different flows when I switch buffers:
+    </p>
+
+    <ol class="org-ol">
+    <li>I want to switch quickly between two related buffers</li>
+    <li>I know the filename of the buffer I want to switch to</li>
+    <li>I don't know what buffer I need, and I iterate through tabs until I find what
+    I want.</li>
+    <li>I forgot the name of the file I want, but I will know it when I see it.</li>
+    </ol>
+    </div>
+
+    <div id="outline-container-orgfe7f855" class="outline-4">
+    <h4 id="h:1e115d5a-071b-4026-902c-6b110c7da7f3"><a id="orgfe7f855"></a>Tabbed</h4>
+    <div class="outline-text-4" id="text-h:1e115d5a-071b-4026-902c-6b110c7da7f3">
+    <p>
+    I personally find that switching between two buffers is the most common switch
+    action I do, so that needs to be as quick as possible. I solved this with a
+    sorting algorithm, trying to get related files as close as possible, and using
+    left/right tab to switch between them.
+    </p>
+
+    <p>
+    I switched between buffers by name by searching for it's name in the tabbar,
+    then clicking or using tab left/right until I got there.
+    </p>
+
+    <p>
+    The iteration flow fits very well in the tabbed workflow, just iterate through
+    the tabs until you find what you want.
+    </p>
+
+    <p>
+    Tabs work well in the recognition flow as well, as you can see the files at the
+    top of the window and hold left/right or click on the desired one.
+    </p>
+    </div>
+    </div>
+
+    <div id="outline-container-org6c54a6b" class="outline-4">
+    <h4 id="h:f23967fc-3bed-402e-bf25-3f559240ffce"><a id="org6c54a6b"></a>Emacs Commands</h4>
+    <div class="outline-text-4" id="text-h:f23967fc-3bed-402e-bf25-3f559240ffce">
+    <p>
+    Since switching between two buffers is so important, I bound <code>M-o</code> to
+    <code>other-buffer</code>. I quickly found myself switching to unrelated buffers, so I
+    bound it to <code>projectile-project-buffers-other-buffer</code>, and configured projectile
+    to ignore some classes of buffers, like irc, compilations, or tags. This ends up
+    being much less thinking than left/right, even in the optimal case where they
+    end up right next to each other.
+    </p>
+
+    <p>
+    Switching between buffers is much faster with Emacs buffer selection than
+    through tabs. A bonus is that <code>C-x b &lt;RET&gt;</code> will go to the last buffer, (which
+    is a fallback if the buffer I want is not the 'most related buffer' but really
+    the last buffer viewed. I recommend setting up ido, <a href="https://github.com/abo-abo/swiper/">ivy</a>, or <a href="https://github.com/emacs-helm/helm">helm</a> to make
+    switching more of a breeze if you don't know the exact name.
+    </p>
+
+    <p>
+    The last flow is really bad practice. Even in the tabbed workflow it's mostly a
+    waste of time, and removing tabs forced me to stop doing this. I replaced this
+    with project wide searches (in my case <code>counsel-rg</code>) and tag jumps
+    (<code>projectile-find-tag</code>). I'd recommend trying to find any alternative besides
+    blindly cycling through your tabs. If I really need this, I'll use ibuffer.
+    </p>
+
+    <p>
+    When I want to get an overview of all the buffers open, I use ibuffer (which I
+    bound to <code>M-i</code>). To limit it to only buffers relevant to the current project, I
+    use <code>projectile-ibuffer</code>. By default, this is sorted by visit time, so you'll
+    see more important buffers at the top. Ibuffer has many advantages over tabs as
+    well, such as batch operations, but I won't go into them for now.
+    </p>
+    </div>
+    </div>
+    </div>
+
+    <div id="outline-container-orge097525" class="outline-3">
+    <h3 id="h:304ad2db-33c7-450f-9672-884be9d087fd"><a id="orge097525"></a>Closing Thoughts</h3>
+    <div class="outline-text-3" id="text-h:304ad2db-33c7-450f-9672-884be9d087fd">
+    <p>
+    After only a couple days on my new workflow, I was cured of my tabbar addiction!
+    Considering how much I relied on tabs before, that shocked me. I found a few
+    other surprising things:
+    </p>
+
+    <ol class="org-ol">
+    <li>I spent less time cleaning up unused tabs, as they didn't clutter my tabbar
+    anymore. This means the undo tree stuck around, and was very helpful at
+    times. I use <code>midnight.el</code> to cleanup buffers that remain untouched for a
+    couple days.</li>
+    <li>I didn't realize how much brainpower I was allocating to decide whether to go
+    left/right in my tabbar when switching tabs. After switching, it felt like
+    buffer switching became a lot "lighter".</li>
+    <li>I found myself relying on the stacking behavior of popup buffers in Emacs a
+    lot more. I feel more comfortable with letting things popup, knowing that
+    they'll come back if I press <code>q</code> a bunch of times. Previously, I would
+    allocate a new window for such popups.</li>
+    <li>I found it incredibly liberating to <code>C-x b &lt;topic&gt;</code> to go to a certain IRC
+    channel (over having a group for them, and tabbing through). Combined with
+    tracking, it made processing IRC buffers much more efficient than I could
+    have imagined. I use this so much, I bound <code>M-b</code> to switch buffer so it's a
+    bit faster.</li>
+    <li>I still prefer the tabbed workflow in the browser. I think this is because I
+    almost never know which tab I'd like to switch to in a browser. I suppose I
+    still have more workflow work to do&#x2026;</li>
+    </ol>
+
+    <p>
+    If you're in the same situation as me, and have some concerns about keeping
+    tabs, feel free to contact me by <a href="https://github.com/jgkamat/jgkamat.github.io/issues">opening an issue</a> and I'll add a section about
+    it! <code>:)</code>
     </p>
 
 
     <div class="figure">
-    <p><a href="https://user-images.githubusercontent.com/4349709/27512954-84c7a0f0-5908-11e7-9f57-85540333644a.png"><img src="https://user-images.githubusercontent.com/4349709/27512954-84c7a0f0-5908-11e7-9f57-85540333644a.png" alt="27512954-84c7a0f0-5908-11e7-9f57-85540333644a.png" /></a>
+    <p><a href="../img/ibuffer-demo.gif"><img src="../img/ibuffer-demo.gif" alt="ibuffer-demo.gif" /></a>
     </p>
     </div>
-
-    <p>
-    We can speed this up even more by exploiting other bot features, which I'll talk
-    about later.
-    </p>
-
-    <p>
-    The message limit is 10,000 messages. Assuming we're posting at a <b>very
-    conservative</b> one message per second, that lets us clear the message history in
-    about 3 hours. With slackbot replying to all of our messages as well, that comes
-    down to 1.5 hours. This is crazy for such a slow rate. At higher rates (or with
-    multiple accounts), we can clear the message history in a matter of minutes or
-    seconds, meaning that people won't be able to see any messages if they are more
-    than a couple minutes old.
-    </p>
-
-    <p>
-    Deleting messages DOES NOT FREE UP HISTORY, so deleted history is GONE
-    FOREVER. The only way to get a team's messages back is to pay slack support (or
-    have them stored locally).
-    </p>
-
-    <p>
-    <b>BONUS:</b> Since we're clearing messages so quickly, DM's or other notifications
-    that show up won't be able to be cleared with default settings in the ui. This
-    means people will be stuck with unread notification markers they won't be able
-    to clear without some extra effort!
-    </p>
-    </div>
-    </div>
-    </div>
-
-    <div id="outline-container-org0dc5a86" class="outline-3">
-    <h3 id="h:h5y66as0gyh0"><a id="org0dc5a86"></a>Slack Namespace</h3>
-    <div class="outline-text-3" id="text-h:h5y66as0gyh0">
-    <p>
-    Unlike any other self respecting (modern) chat application, it is <b>impossible</b>
-    to create two channels with the same name. As if this isn't bad enough, this
-    namespace is <b>shared</b> among users, public channels, private channels, and user
-    groups.
-    </p>
-
-    <p>
-    It's impossible for moderators to see who's hoarding the channel namespace.
-    </p>
-    </div>
-
-    <div id="outline-container-org101722c" class="outline-4">
-    <h4 id="h:d6476as0gyh0"><a id="org101722c"></a>Channel Hoarding</h4>
-    <div class="outline-text-4" id="text-h:d6476as0gyh0">
-    <p>
-    This is especially effective when joining a new slack team. Simply by creating
-    tons and tons of private channels with popular names such as <code>leads</code>, <code>dev</code>, and
-    <code>beta</code>, we can make logical channel unavailable for public. Even better, make
-    channels that conflict with <i>users</i> and <i>user groups</i> that could be made in the
-    future.
-    </p>
-
-    <p>
-    Private channels are also very useful, since they are needed for many of the
-    other 'exploits'. Private channel creation can be turned off by your
-    moderator. However, moderators are unable to delete <i>existing</i> private slack
-    channels, so hoard private channels early!
-    </p>
-    </div>
-    </div>
-
-    <div id="outline-container-org8ecad82" class="outline-4">
-    <h4 id="h:4w976as0gyh0"><a id="org8ecad82"></a><span class="todo TODO">TODO</span> Channel Creation Bot</h4>
-    <div class="outline-text-4" id="text-h:4w976as0gyh0">
-    <p>
-    It wouldn't be too hard to make a bot that creates private channels with every
-    possible name. It probably would be a good idea to start with a wordlist,
-    tailored to the team being targeted, to maximize the effect.
-    </p>
-
-    <p>
-    Another idea is to detect any username change from posts in #general (which you
-    cannot leave), and create a private channel with the old username. This would
-    prevent any user from re-using their old username.
-    </p>
-    </div>
-    </div>
-    </div>
-
-    <div id="outline-container-org158dafc" class="outline-3">
-    <h3 id="h:2qf76as0gyh0"><a id="org158dafc"></a>Lack of Permissions</h3>
-    <div class="outline-text-3" id="text-h:2qf76as0gyh0">
-    <p>
-    A lot of issues come up when mixing some of the more restrictive permissions
-    options with 'unconventional' usage.
-    </p>
-    </div>
-
-    <div id="outline-container-org87929e7" class="outline-4">
-    <h4 id="h:lhl76as0gyh0"><a id="org87929e7"></a><span class="todo TODO">TODO</span> Channel Jail Bot</h4>
-    <div class="outline-text-4" id="text-h:lhl76as0gyh0">
-    <p>
-    For example, a common (but not default) setting is to restrict archiving
-    channels. This means that when you create a private channel, you'll be unable to
-    delete or even leave it until someone else joins (who in-turn will be
-    jailed). The web UI does not make this clear at all though, and it confuses
-    everyone who is jailed for their first time.
-    </p>
-
-    <p>
-    It wouldn't be too hard to detect when someone says something you don't like,
-    create a private channel for them, add them to said channel, and leave said
-    channel. This is a huge annoyance for the recipient, since it clutters their
-    channel list and gives them an unneeded notification (which cannot be disabled
-    by any means in the slack app). If they attempt to jail the bot itself, the bot
-    could immediately leave the channel. Other than that, it guarantees that at
-    least one member will be jailed, until a moderator is added.
-    </p>
-
-    <p>
-    Unfortunately, it's easy to see who's doing this in the logs, but there's no way
-    an moderator can prevent this from happening besides banning private channels
-    (stock up while you can), or by disabling your account.
-    </p>
-
-    <p>
-    If you combine this with the Message bomb method above, we can quickly clear our
-    invite/part logs as well, which can hide your tracks to some extent.
-    </p>
-    </div>
-    </div>
-    </div>
-
-    <div id="outline-container-org027630d" class="outline-3">
-    <h3 id="h:jer76as0gyh0"><a id="org027630d"></a>Notification Spam</h3>
-    <div class="outline-text-3" id="text-h:jer76as0gyh0">
-    <p>
-    Notification spam is unfortunately hard to achieve without getting noticed,
-    because notifications usually have the sender's name attached. There are ways to
-    get around this though&hellip;
-    </p>
-
-    <p>
-    Since no one can leave #general, (and most slack moderators don't change settings
-    about <code>@everyone/@here/@channel</code>), it is extremely easy to send the entire team a
-    notification with a quick <code>@channel/@everyone</code>. If you delete the post immediately
-    after that, the only thing linking you to the notification is direct
-    eyewitnesses or the notification popup itself.
-    </p>
-    </div>
-    </div>
-
-    <div id="outline-container-org2156f4b" class="outline-3">
-    <h3 id="h:v4x76as0gyh0"><a id="org2156f4b"></a>Bots</h3>
-    <div class="outline-text-3" id="text-h:v4x76as0gyh0">
-    <p>
-    Bots let you take some of the burden off of your own infrastructure, and make
-    breaking slack easier than ever for everyone!
-    </p>
-    </div>
-    <div id="outline-container-org219331e" class="outline-4">
-    <h4 id="h:l2386as0gyh0"><a id="org219331e"></a>PlusPlus</h4>
-    <div class="outline-text-4" id="text-h:l2386as0gyh0">
-    <p>
-    <a href="https://plusplus.chat/">PlusPlus</a> is a very popular extension for slack, and is installed on many
-    teams. However, it's very easy to exploit PlusPlus for evil, as PlusPlus is
-    installed on a team, rather than on a channel (like IRC), it's trivially easy to
-    exploit, <a href="https://plusplus.chat/things/leaderboard">as the leaderboards of plusplus show</a>.
-    </p>
-
-    <p>
-    First of all, we can trigger plusplus in a couple ways:
-    </p>
-
-    <ul class="org-ul">
-    <li><code>@username++</code></li>
-    <li><code>username+++</code></li>
-    <li><code>@anything++</code></li>
-    </ul>
-
-    <p>
-    I found that if one method of voting did not work in my automation, a different
-    one would work, so I was able to trigger plusplus from anywhere (that isn't a
-    'true slack bot', as slack bots cannot talk to each other).
-    </p>
-
-    <p>
-    PlusPlus replies like this:
-    </p>
-
-    <ul class="org-ul">
-    <li><code>Woot! [@username++, now at # points]</code></li>
-    <li><code>Ouch! [@username--, now at # points]</code></li>
-    </ul>
-
-    <p>
-    This means that in addition to the notification you get when someone initially
-    ++'s you, you get another one when the bot replies (which can improve the
-    section above)!
-    </p>
-
-    <p>
-    You can pair this with <code>@channel</code> or <code>@everyone</code> to notify everyone on the team
-    twice. If your team has the <code>username:</code> style of notification turned off, you
-    can exploit this by sending a <code>username+++</code>, which will <i>not</i> trigger a
-    notification on your message, but <i>will</i> trigger one in the reply.
-    </p>
-
-    <p>
-    A bot that posts a <code>+++</code> style of plussing, and immediately deletes it's post
-    will trigger a notification with no trace back to the bot, other than an
-    eyewitness testimony.
-    </p>
-
-    <p>
-    PlusPlus has the ability to add/subtract multiple people at once, like so:
-    </p>
-
-    <ul class="org-ul">
-    <li><code>username+++ username2+++</code></li>
-    </ul>
-
-    <p>
-    Even better, it sends an individual message for <b>every single one</b>.
-    </p>
-
-    <p>
-    It's incredibly easy to build a file full of <code>@1-- @2-- @3--...</code>, post a single
-    message, and delete your initial post. Once a wave like this starts, it can go
-    on for a couple minutes before slack begins trottling PlusPlus. By the time this
-    happens, PlusPlus will have posed about 1,000 messages, which means with a
-    measly 10 messages, you can wipe an entire team's history.
-    </p>
-    </div>
-    </div>
-
-    <div id="outline-container-org61710e5" class="outline-4">
-    <h4 id="h:rda86as0gyh0"><a id="org61710e5"></a>SlackBot</h4>
-    <div class="outline-text-4" id="text-h:rda86as0gyh0">
-    <p>
-    Slackbot is the king of all bots in slack. Not only is it a bot (and therefore
-    can easily be exploited), but it's got <b>higher permissions than any other bot</b>. That
-    means it's able to trigger bots itself (although it does not respond to bots),
-    as well as notify people. By exploiting slackbot, we can make our own automation
-    more powerful than slack lets us do directly.
-    </p>
-
-    <p>
-    Slackbot has two 'killer' features we can take advantage of, slackbot responses
-    and reminders. Slackbot responses are great because they're enabled by default
-    (meaning they're enabled almost everywhere) and you can customize them to say
-    whatever you want. Reminders are great because they let us effectively remove
-    our own infrastructure when we want to host a bot, and let slack tear itself
-    apart instead.
-    </p>
-
-    <p>
-    If for some reason, you find you can't access bots at all (ie: accessing slack
-    over the client API), you can take advantage of slackbot to solve your problems
-    by simply setting up a slackbot response to act like a proxy.
-    </p>
-    </div>
-    </div>
-
-    <div id="outline-container-org35fa3d6" class="outline-4">
-    <h4 id="h:7ag86as0gyh0"><a id="org35fa3d6"></a>SlackBot and PlusPlus</h4>
-    <div class="outline-text-4" id="text-h:7ag86as0gyh0">
-    <p>
-    If you have both slackbot and plusplus on your slack server, you can exploit
-    them together for profit. Simply set up a reccuring reminder to <code>@1-- @2--
-    @3--...</code> every day or so, add plusplus, and watch the fireworks.
-    </p>
-
-
-    <div class="figure">
-    <p><a href="https://user-images.githubusercontent.com/4349709/27512955-84c87e94-5908-11e7-90de-6c32f602c222.png"><img src="https://user-images.githubusercontent.com/4349709/27512955-84c87e94-5908-11e7-90de-6c32f602c222.png" alt="27512955-84c87e94-5908-11e7-90de-6c32f602c222.png" /></a>
-    </p>
-    </div>
-
-    <p>
-    You don't ever need to log into slack again, people will loose their messages
-    for 'unexplained reasons'.
-    </p>
-    </div>
-    </div>
-    </div>
-
-    <div id="outline-container-orgced5e53" class="outline-3">
-    <h3 id="h:f2m86as0gyh0"><a id="orgced5e53"></a>Room For Improvement</h3>
-    <div class="outline-text-3" id="text-h:f2m86as0gyh0">
-    </div>
-    <div id="outline-container-orga90b6f2" class="outline-4">
-    <h4 id="h:bsr86as0gyh0"><a id="orga90b6f2"></a>Threads</h4>
-    <div class="outline-text-4" id="text-h:bsr86as0gyh0">
-    <p>
-    Threads are incredibly buggy and I guarantee you can exploit them (to hide your
-    messages, to cause notifications, etc), but I wasn't able to explore that in
-    much detail before I left slack.
-    </p>
-    </div>
-    </div>
-
-    <div id="outline-container-org97d8853" class="outline-4">
-    <h4 id="h:mix86as0gyh0"><a id="org97d8853"></a>Evolution</h4>
-    <div class="outline-text-4" id="text-h:mix86as0gyh0">
-    <p>
-    As slack adds more misfeatures, it's likely these problems will get worse, not
-    better.
-    </p>
-
-    <p>
-    <a href="https://github.com/jgkamat/jgkamat.github.io">Pull Requests</a> are appreciated if you find a problem with this post, or a
-    new slack exploit.
-    </p>
-    </div>
-    </div>
-    </div>
-
-    <div id="outline-container-org78625ed" class="outline-3">
-    <h3 id="h:de396as0gyh0"><a id="org78625ed"></a>Conclusion</h3>
-    <div class="outline-text-3" id="text-h:de396as0gyh0">
-    <p>
-    It's incredibly easy to break slack! But why?
-    </p>
-
-    <p>
-    It boils down to a couple points, which slack could easily fix to solve all
-    these problems. These basic features have been requested many times, but slack
-    seems to be ignoring these requests.
-    </p>
-
-    <ol class="org-ol">
-    <li>Message/File Limits</li>
-    <li>Lack of fine grained notification control</li>
-    <li>Inability to block/ignore users</li>
-    <li>Lack of chanop (<code>+o</code>)</li>
-    <li>Inability of moderators to see secret channels</li>
-    </ol>
-    </div>
-
-    <div id="outline-container-orgcb6421b" class="outline-4">
-    <h4 id="h:e8a96as0gyh0"><a id="orgcb6421b"></a>Mitigation</h4>
-    <div class="outline-text-4" id="text-h:e8a96as0gyh0">
-    <p>
-    If you are a slack moderator, and you are concerned about these threats, you should immediately:
-    </p>
-
-    <ol class="org-ol">
-    <li>Disallow user creation of all channels</li>
-    <li>Disallow all bots</li>
-    <li>Disallow deletion or editing of any messages</li>
-    <li>Disallow any domain from automatically joining your slack channel (manual
-    invites only)</li>
-    <li>Disallow <code>@everyone</code>, <code>@here</code>, and <code>@channel</code>.</li>
-    <li>Disallow setting slackbot replies, and delete any present replies</li>
-    <li>Ensure you <b>personally</b> know everyone in your slack team, and are able to
-    hold all of them accountable.</li>
-    </ol>
-
-    <p>
-    Even with these steps, there are risks (ie: posting in a DM to slackbot cannot
-    be disabled, as slackbot cannot be disabled). If you would like a better
-    solution you can:
-    </p>
-
-    <ol class="org-ol">
-    <li>Pay slack for premium (which solves half of these issues)</li>
-    <li>Switch to a better designed chat platform
-    <ul class="org-ul">
-    <li>Please pick something that your team can use, not something that uses your
-    team.</li>
-    <li>IRC (still going strong)</li>
-    <li>XMPP (if you really want 'modern features')</li>
-    <li>Matrix (if you really really want 'modern features')</li>
-    </ul></li>
-    </ol>
-    </div>
-    </div>
-
-    <div id="outline-container-orgb8aefd4" class="outline-4">
-    <h4 id="h:e8j96as0gyh0"><a id="orgb8aefd4"></a>Related Posts</h4>
-    <div class="outline-text-4" id="text-h:e8j96as0gyh0">
-    <ol class="org-ol">
-    <li><a href="https://drewdevault.com/2015/11/01/Please-stop-using-slack.html">Please don't use Slack for FOSS projects</a></li>
-    <li><a href="https://medium.freecodecamp.com/so-yeah-we-tried-slack-and-we-deeply-regretted-it-391bcc714c81">So yeah, we tried slack&#x2026;</a></li>
-    <li><a href="https://ux.useronboard.com/slack-i-m-breaking-up-with-you-54600ace03ea">Slack, I’m Breaking Up with You</a></li>
-    <li><a href="https://medium.com/@quinnnorton/the-problem-with-slack-854adeef9154">The Problem With Slack</a></li>
-    <li><a href="https://drewdevault.com/2018/03/10/How-to-write-an-IRC-bot.html">How to write an IRC Bot</a></li>
-    </ol>
-    </div>
-    </div>
-    </div>
-
-    <div id="outline-container-org0bc7178" class="outline-3">
-    <h3 id="h:f7q96as0gyh0"><a id="org0bc7178"></a>Navigation</h3>
-    <div class="outline-text-3" id="text-h:f7q96as0gyh0">
-    <p>
-    nil
-    </p>
     </div>
     </div>
     ]]></description>
+</item>
+<item>
+  <title>Breaking Slack</title>
+  <link>https://jgkamat.github.io/blog/slack.html</link>
+  <author>root@ab4e43ed8d62 (Jay Kamat)</author>
+  <guid isPermaLink="false">https://jgkamat.github.io/blog/slack.html</guid>
+  <pubDate>Sat, 24 Jun 2017 00:00:00 +0000</pubDate>
+
+  <description><![CDATA[
+  <div id="outline-container-org6e2c24c" class="outline-3">
+  <h3 id="h:xq566as0gyh0"><a id="org6e2c24c"></a>Preface</h3>
+  <div class="outline-text-3" id="text-h:xq566as0gyh0">
+  <p>
+  Communication is a tricky problem, because it's hard to make everyone
+  happy. When internet messaging started out, we had lots of choices, due to the
+  existence of standards that allowed multiple servers to talk to each other (<a href="https://xmpp.org/">XMPP</a>
+  federation) and standards that allowed a single client to talk to multiple
+  servers (IRC). In recent years, we have backtracked away from that model in
+  favor of hundreds of closed protocols, forcing users to install <i><a href="https://xkcd.com/1810/">yet another
+  client</a></i> for every service they use (hangouts, messenger, signal, telegram,
+  groupme, whatsapp, skype, tox, SMS, &#x2026;). This means that if you <b>love</b> a
+  particular chat app, you simply won't be able to use it everywhere!
+  </p>
+  </div>
+
+  <div id="outline-container-org2349880" class="outline-4">
+  <h4 id="h:lxd66as0gyh0"><a id="org2349880"></a>Slack</h4>
+  <div class="outline-text-4" id="text-h:lxd66as0gyh0">
+  <p>
+  Slack is a particularly bad example of the above, since it's a tool 'targeted'
+  towards <i>team</i> communication, rather than just direct messages. Usually, a team
+  consists of many more people than the average chat, and that makes the above
+  even more relevant, since the more people you need to connect, the more
+  flexibility you must have to keep the team happy and running smoothly. Slack
+  disallows features that even IRC has had for decades, such as ignoring,
+  blocking, message filtering, and knocking, which makes it a terrible tool for
+  any team that is actually trying to get things done. Unfortunately, I have been forced
+  into using slack in a few places that I 'work' at, which will hopefully no
+  longer be necessary in the long term.
+  </p>
+
+  <p>
+  However, Slack goes even further by also being terribly designed under the hood,
+  making it extremely easy to 'break'. While these are 'not security problems',
+  they do cause serious problems to team communication, and are impossible for
+  moderators to fix without slack admins intervening.
+  </p>
+
+  <p>
+  I do have code for most of these 'exploits', but I will not be linking to them
+  directly to make them 'harder to use'. They are <i>somewhere</i> in my GitHub
+  namespace though. I have not done anything with a TODO on my own, but it
+  shouldn't be too hard.
+  </p>
+
+  <p>
+  <b>TL;DR:</b> This is a guide to making your fellow slack user's lives as painful as
+  possible, ideally while staying anonymous.
+  </p>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-org433b194" class="outline-3">
+  <h3 id="h:iyk66as0gyh0"><a id="org433b194"></a>Message Limits</h3>
+  <div class="outline-text-3" id="text-h:iyk66as0gyh0">
+  <p>
+  Message limits are the first core problem of slack. Since most slack users use a
+  web client, and don't store any messages locally, 'clearing' the message history
+  causes a bunch of problems.
+  </p>
+
+  <p>
+  Slack message limits are shared across dms, mpdms, public channels, and private
+  channels. Slack message limits include both human and bot messages.
+  </p>
+  </div>
+
+  <div id="outline-container-orgb3e6eed" class="outline-4">
+  <h4 id="h:qqr66as0gyh0"><a id="orgb3e6eed"></a>Message Bomb</h4>
+  <div class="outline-text-4" id="text-h:qqr66as0gyh0">
+  <p>
+  Slack has very generous throttling rates, even for extended periods of
+  time. It's incredibly easy to make a bot that keeps posting something in a
+  private channel. Since bots and DM's count to the message limit, we can speed
+  this up even more by getting a bot to do half our work!
+  </p>
+
+
+  <div class="figure">
+  <p><a href="https://user-images.githubusercontent.com/4349709/27512954-84c7a0f0-5908-11e7-9f57-85540333644a.png"><img src="https://user-images.githubusercontent.com/4349709/27512954-84c7a0f0-5908-11e7-9f57-85540333644a.png" alt="27512954-84c7a0f0-5908-11e7-9f57-85540333644a.png" /></a>
+  </p>
+  </div>
+
+  <p>
+  We can speed this up even more by exploiting other bot features, which I'll talk
+  about later.
+  </p>
+
+  <p>
+  The message limit is 10,000 messages. Assuming we're posting at a <b>very
+  conservative</b> one message per second, that lets us clear the message history in
+  about 3 hours. With slackbot replying to all of our messages as well, that comes
+  down to 1.5 hours. This is crazy for such a slow rate. At higher rates (or with
+  multiple accounts), we can clear the message history in a matter of minutes or
+  seconds, meaning that people won't be able to see any messages if they are more
+  than a couple minutes old.
+  </p>
+
+  <p>
+  Deleting messages DOES NOT FREE UP HISTORY, so deleted history is GONE
+  FOREVER. The only way to get a team's messages back is to pay slack support (or
+  have them stored locally).
+  </p>
+
+  <p>
+  <b>BONUS:</b> Since we're clearing messages so quickly, DM's or other notifications
+  that show up won't be able to be cleared with default settings in the ui. This
+  means people will be stuck with unread notification markers they won't be able
+  to clear without some extra effort!
+  </p>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-org9f46da6" class="outline-3">
+  <h3 id="h:h5y66as0gyh0"><a id="org9f46da6"></a>Slack Namespace</h3>
+  <div class="outline-text-3" id="text-h:h5y66as0gyh0">
+  <p>
+  Unlike any other self respecting (modern) chat application, it is <b>impossible</b>
+  to create two channels with the same name. As if this isn't bad enough, this
+  namespace is <b>shared</b> among users, public channels, private channels, and user
+  groups.
+  </p>
+
+  <p>
+  It's impossible for moderators to see who's hoarding the channel namespace.
+  </p>
+  </div>
+
+  <div id="outline-container-org6b4d55b" class="outline-4">
+  <h4 id="h:d6476as0gyh0"><a id="org6b4d55b"></a>Channel Hoarding</h4>
+  <div class="outline-text-4" id="text-h:d6476as0gyh0">
+  <p>
+  This is especially effective when joining a new slack team. Simply by creating
+  tons and tons of private channels with popular names such as <code>leads</code>, <code>dev</code>, and
+  <code>beta</code>, we can make logical channel unavailable for public. Even better, make
+  channels that conflict with <i>users</i> and <i>user groups</i> that could be made in the
+  future.
+  </p>
+
+  <p>
+  Private channels are also very useful, since they are needed for many of the
+  other 'exploits'. Private channel creation can be turned off by your
+  moderator. However, moderators are unable to delete <i>existing</i> private slack
+  channels, so hoard private channels early!
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-orge3dde17" class="outline-4">
+  <h4 id="h:4w976as0gyh0"><a id="orge3dde17"></a><span class="todo TODO">TODO</span> Channel Creation Bot</h4>
+  <div class="outline-text-4" id="text-h:4w976as0gyh0">
+  <p>
+  It wouldn't be too hard to make a bot that creates private channels with every
+  possible name. It probably would be a good idea to start with a wordlist,
+  tailored to the team being targeted, to maximize the effect.
+  </p>
+
+  <p>
+  Another idea is to detect any username change from posts in #general (which you
+  cannot leave), and create a private channel with the old username. This would
+  prevent any user from re-using their old username.
+  </p>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-org90bafef" class="outline-3">
+  <h3 id="h:2qf76as0gyh0"><a id="org90bafef"></a>Lack of Permissions</h3>
+  <div class="outline-text-3" id="text-h:2qf76as0gyh0">
+  <p>
+  A lot of issues come up when mixing some of the more restrictive permissions
+  options with 'unconventional' usage.
+  </p>
+  </div>
+
+  <div id="outline-container-org9cf3071" class="outline-4">
+  <h4 id="h:lhl76as0gyh0"><a id="org9cf3071"></a><span class="todo TODO">TODO</span> Channel Jail Bot</h4>
+  <div class="outline-text-4" id="text-h:lhl76as0gyh0">
+  <p>
+  For example, a common (but not default) setting is to restrict archiving
+  channels. This means that when you create a private channel, you'll be unable to
+  delete or even leave it until someone else joins (who in-turn will be
+  jailed). The web UI does not make this clear at all though, and it confuses
+  everyone who is jailed for their first time.
+  </p>
+
+  <p>
+  It wouldn't be too hard to detect when someone says something you don't like,
+  create a private channel for them, add them to said channel, and leave said
+  channel. This is a huge annoyance for the recipient, since it clutters their
+  channel list and gives them an unneeded notification (which cannot be disabled
+  by any means in the slack app). If they attempt to jail the bot itself, the bot
+  could immediately leave the channel. Other than that, it guarantees that at
+  least one member will be jailed, until a moderator is added.
+  </p>
+
+  <p>
+  Unfortunately, it's easy to see who's doing this in the logs, but there's no way
+  an moderator can prevent this from happening besides banning private channels
+  (stock up while you can), or by disabling your account.
+  </p>
+
+  <p>
+  If you combine this with the Message bomb method above, we can quickly clear our
+  invite/part logs as well, which can hide your tracks to some extent.
+  </p>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-orge061c67" class="outline-3">
+  <h3 id="h:jer76as0gyh0"><a id="orge061c67"></a>Notification Spam</h3>
+  <div class="outline-text-3" id="text-h:jer76as0gyh0">
+  <p>
+  Notification spam is unfortunately hard to achieve without getting noticed,
+  because notifications usually have the sender's name attached. There are ways to
+  get around this though&hellip;
+  </p>
+
+  <p>
+  Since no one can leave #general, (and most slack moderators don't change settings
+  about <code>@everyone/@here/@channel</code>), it is extremely easy to send the entire team a
+  notification with a quick <code>@channel/@everyone</code>. If you delete the post immediately
+  after that, the only thing linking you to the notification is direct
+  eyewitnesses or the notification popup itself.
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-orgd7a2d84" class="outline-3">
+  <h3 id="h:v4x76as0gyh0"><a id="orgd7a2d84"></a>Bots</h3>
+  <div class="outline-text-3" id="text-h:v4x76as0gyh0">
+  <p>
+  Bots let you take some of the burden off of your own infrastructure, and make
+  breaking slack easier than ever for everyone!
+  </p>
+  </div>
+  <div id="outline-container-org1890384" class="outline-4">
+  <h4 id="h:l2386as0gyh0"><a id="org1890384"></a>PlusPlus</h4>
+  <div class="outline-text-4" id="text-h:l2386as0gyh0">
+  <p>
+  <a href="https://plusplus.chat/">PlusPlus</a> is a very popular extension for slack, and is installed on many
+  teams. However, it's very easy to exploit PlusPlus for evil, as PlusPlus is
+  installed on a team, rather than on a channel (like IRC), it's trivially easy to
+  exploit, <a href="https://plusplus.chat/things/leaderboard">as the leaderboards of plusplus show</a>.
+  </p>
+
+  <p>
+  First of all, we can trigger plusplus in a couple ways:
+  </p>
+
+  <ul class="org-ul">
+  <li><code>@username++</code></li>
+  <li><code>username+++</code></li>
+  <li><code>@anything++</code></li>
+  </ul>
+
+  <p>
+  I found that if one method of voting did not work in my automation, a different
+  one would work, so I was able to trigger plusplus from anywhere (that isn't a
+  'true slack bot', as slack bots cannot talk to each other).
+  </p>
+
+  <p>
+  PlusPlus replies like this:
+  </p>
+
+  <ul class="org-ul">
+  <li><code>Woot! [@username++, now at # points]</code></li>
+  <li><code>Ouch! [@username--, now at # points]</code></li>
+  </ul>
+
+  <p>
+  This means that in addition to the notification you get when someone initially
+  ++'s you, you get another one when the bot replies (which can improve the
+  section above)!
+  </p>
+
+  <p>
+  You can pair this with <code>@channel</code> or <code>@everyone</code> to notify everyone on the team
+  twice. If your team has the <code>username:</code> style of notification turned off, you
+  can exploit this by sending a <code>username+++</code>, which will <i>not</i> trigger a
+  notification on your message, but <i>will</i> trigger one in the reply.
+  </p>
+
+  <p>
+  A bot that posts a <code>+++</code> style of plussing, and immediately deletes it's post
+  will trigger a notification with no trace back to the bot, other than an
+  eyewitness testimony.
+  </p>
+
+  <p>
+  PlusPlus has the ability to add/subtract multiple people at once, like so:
+  </p>
+
+  <ul class="org-ul">
+  <li><code>username+++ username2+++</code></li>
+  </ul>
+
+  <p>
+  Even better, it sends an individual message for <b>every single one</b>.
+  </p>
+
+  <p>
+  It's incredibly easy to build a file full of <code>@1-- @2-- @3--...</code>, post a single
+  message, and delete your initial post. Once a wave like this starts, it can go
+  on for a couple minutes before slack begins trottling PlusPlus. By the time this
+  happens, PlusPlus will have posed about 1,000 messages, which means with a
+  measly 10 messages, you can wipe an entire team's history.
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-org051ec97" class="outline-4">
+  <h4 id="h:rda86as0gyh0"><a id="org051ec97"></a>SlackBot</h4>
+  <div class="outline-text-4" id="text-h:rda86as0gyh0">
+  <p>
+  Slackbot is the king of all bots in slack. Not only is it a bot (and therefore
+  can easily be exploited), but it's got <b>higher permissions than any other bot</b>. That
+  means it's able to trigger bots itself (although it does not respond to bots),
+  as well as notify people. By exploiting slackbot, we can make our own automation
+  more powerful than slack lets us do directly.
+  </p>
+
+  <p>
+  Slackbot has two 'killer' features we can take advantage of, slackbot responses
+  and reminders. Slackbot responses are great because they're enabled by default
+  (meaning they're enabled almost everywhere) and you can customize them to say
+  whatever you want. Reminders are great because they let us effectively remove
+  our own infrastructure when we want to host a bot, and let slack tear itself
+  apart instead.
+  </p>
+
+  <p>
+  If for some reason, you find you can't access bots at all (ie: accessing slack
+  over the client API), you can take advantage of slackbot to solve your problems
+  by simply setting up a slackbot response to act like a proxy.
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-orga45b4a6" class="outline-4">
+  <h4 id="h:7ag86as0gyh0"><a id="orga45b4a6"></a>SlackBot and PlusPlus</h4>
+  <div class="outline-text-4" id="text-h:7ag86as0gyh0">
+  <p>
+  If you have both slackbot and plusplus on your slack server, you can exploit
+  them together for profit. Simply set up a reccuring reminder to <code>@1-- @2--
+  @3--...</code> every day or so, add plusplus, and watch the fireworks.
+  </p>
+
+
+  <div class="figure">
+  <p><a href="https://user-images.githubusercontent.com/4349709/27512955-84c87e94-5908-11e7-90de-6c32f602c222.png"><img src="https://user-images.githubusercontent.com/4349709/27512955-84c87e94-5908-11e7-90de-6c32f602c222.png" alt="27512955-84c87e94-5908-11e7-90de-6c32f602c222.png" /></a>
+  </p>
+  </div>
+
+  <p>
+  You don't ever need to log into slack again, people will loose their messages
+  for 'unexplained reasons'.
+  </p>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-org3eaceff" class="outline-3">
+  <h3 id="h:f2m86as0gyh0"><a id="org3eaceff"></a>Room For Improvement</h3>
+  <div class="outline-text-3" id="text-h:f2m86as0gyh0">
+  </div>
+  <div id="outline-container-org2779aa9" class="outline-4">
+  <h4 id="h:bsr86as0gyh0"><a id="org2779aa9"></a>Threads</h4>
+  <div class="outline-text-4" id="text-h:bsr86as0gyh0">
+  <p>
+  Threads are incredibly buggy and I guarantee you can exploit them (to hide your
+  messages, to cause notifications, etc), but I wasn't able to explore that in
+  much detail before I left slack.
+  </p>
+  </div>
+  </div>
+
+  <div id="outline-container-orgd79a334" class="outline-4">
+  <h4 id="h:mix86as0gyh0"><a id="orgd79a334"></a>Evolution</h4>
+  <div class="outline-text-4" id="text-h:mix86as0gyh0">
+  <p>
+  As slack adds more misfeatures, it's likely these problems will get worse, not
+  better.
+  </p>
+
+  <p>
+  <a href="https://github.com/jgkamat/jgkamat.github.io">Pull Requests</a> are appreciated if you find a problem with this post, or a
+  new slack exploit.
+  </p>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-org895904e" class="outline-3">
+  <h3 id="h:de396as0gyh0"><a id="org895904e"></a>Conclusion</h3>
+  <div class="outline-text-3" id="text-h:de396as0gyh0">
+  <p>
+  It's incredibly easy to break slack! But why?
+  </p>
+
+  <p>
+  It boils down to a couple points, which slack could easily fix to solve all
+  these problems. These basic features have been requested many times, but slack
+  seems to be ignoring these requests.
+  </p>
+
+  <ol class="org-ol">
+  <li>Message/File Limits</li>
+  <li>Lack of fine grained notification control</li>
+  <li>Inability to block/ignore users</li>
+  <li>Lack of chanop (<code>+o</code>)</li>
+  <li>Inability of moderators to see secret channels</li>
+  </ol>
+  </div>
+
+  <div id="outline-container-org26efe97" class="outline-4">
+  <h4 id="h:e8a96as0gyh0"><a id="org26efe97"></a>Mitigation</h4>
+  <div class="outline-text-4" id="text-h:e8a96as0gyh0">
+  <p>
+  If you are a slack moderator, and you are concerned about these threats, you should immediately:
+  </p>
+
+  <ol class="org-ol">
+  <li>Disallow user creation of all channels</li>
+  <li>Disallow all bots</li>
+  <li>Disallow deletion or editing of any messages</li>
+  <li>Disallow any domain from automatically joining your slack channel (manual
+  invites only)</li>
+  <li>Disallow <code>@everyone</code>, <code>@here</code>, and <code>@channel</code>.</li>
+  <li>Disallow setting slackbot replies, and delete any present replies</li>
+  <li>Ensure you <b>personally</b> know everyone in your slack team, and are able to
+  hold all of them accountable.</li>
+  </ol>
+
+  <p>
+  Even with these steps, there are risks (ie: posting in a DM to slackbot cannot
+  be disabled, as slackbot cannot be disabled). If you would like a better
+  solution you can:
+  </p>
+
+  <ol class="org-ol">
+  <li>Pay slack for premium (which solves half of these issues)</li>
+  <li>Switch to a better designed chat platform
+  <ul class="org-ul">
+  <li>Please pick something that your team can use, not something that uses your
+  team.</li>
+  <li>IRC (still going strong)</li>
+  <li>XMPP (if you really want 'modern features')</li>
+  <li>Matrix (if you really really want 'modern features')</li>
+  </ul></li>
+  </ol>
+  </div>
+  </div>
+
+  <div id="outline-container-org66925ec" class="outline-4">
+  <h4 id="h:e8j96as0gyh0"><a id="org66925ec"></a>Related Posts</h4>
+  <div class="outline-text-4" id="text-h:e8j96as0gyh0">
+  <ol class="org-ol">
+  <li><a href="https://drewdevault.com/2015/11/01/Please-stop-using-slack.html">Please don't use Slack for FOSS projects</a></li>
+  <li><a href="https://medium.freecodecamp.com/so-yeah-we-tried-slack-and-we-deeply-regretted-it-391bcc714c81">So yeah, we tried slack&#x2026;</a></li>
+  <li><a href="https://ux.useronboard.com/slack-i-m-breaking-up-with-you-54600ace03ea">Slack, I’m Breaking Up with You</a></li>
+  <li><a href="https://medium.com/@quinnnorton/the-problem-with-slack-854adeef9154">The Problem With Slack</a></li>
+  <li><a href="https://drewdevault.com/2018/03/10/How-to-write-an-IRC-bot.html">How to write an IRC Bot</a></li>
+  </ol>
+  </div>
+  </div>
+  </div>
+
+  <div id="outline-container-orgdc71187" class="outline-3">
+  <h3 id="h:f7q96as0gyh0"><a id="orgdc71187"></a>Navigation</h3>
+  <div class="outline-text-3" id="text-h:f7q96as0gyh0">
+  <p>
+  nil
+  </p>
+  </div>
+  </div>
+  ]]></description>
 </item>
 
 <item>
   <title>Productivity and Applications</title>
   <link>https://jgkamat.github.io/blog/applications.html</link>
-  <author>root@dd4617150136 (Jay Kamat)</author>
+  <author>root@ab4e43ed8d62 (Jay Kamat)</author>
   <guid isPermaLink="false">https://jgkamat.github.io/blog/applications.html</guid>
   <pubDate>Sun, 22 Jan 2017 00:00:00 +0000</pubDate>
 
   <description><![CDATA[
-  <div id="outline-container-org6f53de3" class="outline-3">
-  <h3 id="h:xdhd2as0gyh0"><a id="org6f53de3"></a>Why Even Bother?</h3>
+  <div id="outline-container-org102a8e8" class="outline-3">
+  <h3 id="h:xdhd2as0gyh0"><a id="org102a8e8"></a>Why Even Bother?</h3>
   <div class="outline-text-3" id="text-h:xdhd2as0gyh0">
   <p>
   I'm really picky about the applications I use, mainly to make sure I'm
@@ -541,8 +730,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org7d16896" class="outline-3">
-  <h3 id="h:3uod2as0gyh0"><a id="org7d16896"></a>Core</h3>
+  <div id="outline-container-org5b90ccf" class="outline-3">
+  <h3 id="h:3uod2as0gyh0"><a id="org5b90ccf"></a>Core</h3>
   <div class="outline-text-3" id="text-h:3uod2as0gyh0">
   <p>
   In general, I look for 3 things in any application before I begin relying on it.
@@ -563,8 +752,8 @@
   </p>
   </div>
 
-  <div id="outline-container-org44ea150" class="outline-4">
-  <h4 id="h:8zvd2as0gyh0"><a id="org44ea150"></a>Stability</h4>
+  <div id="outline-container-org3a04dc7" class="outline-4">
+  <h4 id="h:8zvd2as0gyh0"><a id="org3a04dc7"></a>Stability</h4>
   <div class="outline-text-4" id="text-h:8zvd2as0gyh0">
   <p>
   Stability is important for obvious reasons.
@@ -583,8 +772,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org9714b19" class="outline-4">
-  <h4 id="h:1b2e2as0gyh0"><a id="org9714b19"></a>Customizability</h4>
+  <div id="outline-container-org45df8fd" class="outline-4">
+  <h4 id="h:1b2e2as0gyh0"><a id="org45df8fd"></a>Customizability</h4>
   <div class="outline-text-4" id="text-h:1b2e2as0gyh0">
   <p>
   Software that is customizable helps with productivity because it makes it easy
@@ -602,8 +791,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org06cd97d" class="outline-4">
-  <h4 id="h:d98e2as0gyh0"><a id="org06cd97d"></a>Being Lightweight</h4>
+  <div id="outline-container-orgf43b6b9" class="outline-4">
+  <h4 id="h:d98e2as0gyh0"><a id="orgf43b6b9"></a>Being Lightweight</h4>
   <div class="outline-text-4" id="text-h:d98e2as0gyh0">
   <p>
   Minimalist applications lend to productivity, simply because they are doing
@@ -624,8 +813,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org08d5687" class="outline-3">
-  <h3 id="h:0sde2as0gyh0"><a id="org08d5687"></a>Wrapping Up</h3>
+  <div id="outline-container-org49005d8" class="outline-3">
+  <h3 id="h:0sde2as0gyh0"><a id="org49005d8"></a>Wrapping Up</h3>
   <div class="outline-text-3" id="text-h:0sde2as0gyh0">
   <p>
   Hopefully this post can help you become more productive. I find that even small
@@ -635,8 +824,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org79e5230" class="outline-3">
-  <h3 id="h:vcje2as0gyh0"><a id="org79e5230"></a>Navigation</h3>
+  <div id="outline-container-org1fd3ec5" class="outline-3">
+  <h3 id="h:vcje2as0gyh0"><a id="org1fd3ec5"></a>Navigation</h3>
   <div class="outline-text-3" id="text-h:vcje2as0gyh0">
   <p>
   nil
@@ -649,13 +838,13 @@
 <item>
   <title>Creating A Blog in Org Mode</title>
   <link>https://jgkamat.github.io/blog/website1.html</link>
-  <author>root@dd4617150136 (Jay Kamat)</author>
+  <author>root@ab4e43ed8d62 (Jay Kamat)</author>
   <guid isPermaLink="false">https://jgkamat.github.io/blog/website1.html</guid>
   <pubDate>Tue, 06 Dec 2016 00:00:00 +0000</pubDate>
 
   <description><![CDATA[
-  <div id="outline-container-org820d12a" class="outline-3">
-  <h3 id="h:ua1fi9s0gyh0"><a id="org820d12a"></a>Overview</h3>
+  <div id="outline-container-org0fdf695" class="outline-3">
+  <h3 id="h:ua1fi9s0gyh0"><a id="org0fdf695"></a>Overview</h3>
   <div class="outline-text-3" id="text-h:ua1fi9s0gyh0">
   <p>
   <b>NOTE:</b> My website used to be build with ox-twbs, now it's built on ox-html.
@@ -699,12 +888,12 @@
   </div>
   </div>
 
-  <div id="outline-container-org54bc951" class="outline-3">
-  <h3 id="h:vw6fi9s0gyh0"><a id="org54bc951"></a>Org Projects</h3>
+  <div id="outline-container-orgbd5ed43" class="outline-3">
+  <h3 id="h:vw6fi9s0gyh0"><a id="orgbd5ed43"></a>Org Projects</h3>
   <div class="outline-text-3" id="text-h:vw6fi9s0gyh0">
   </div>
-  <div id="outline-container-orgbe30bf9" class="outline-4">
-  <h4 id="h:n3bfi9s0gyh0"><a id="orgbe30bf9"></a>Basic Setup</h4>
+  <div id="outline-container-org5a7d7f3" class="outline-4">
+  <h4 id="h:n3bfi9s0gyh0"><a id="org5a7d7f3"></a>Basic Setup</h4>
   <div class="outline-text-4" id="text-h:n3bfi9s0gyh0">
   <p>
   Org projects are a simple way to combine and link multiple org files together into one complete export. The complete docs are <a href="http://orgmode.org/manual/Publishing.html">here</a>.
@@ -745,8 +934,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org41230f8" class="outline-4">
-  <h4 id="h:ifffi9s0gyh0"><a id="org41230f8"></a>Customization</h4>
+  <div id="outline-container-orgdd8e406" class="outline-4">
+  <h4 id="h:ifffi9s0gyh0"><a id="orgdd8e406"></a>Customization</h4>
   <div class="outline-text-4" id="text-h:ifffi9s0gyh0">
   <p>
   While the above setup works, there's a lot we might want to change. For instance, we might want to turn of table of contents for the entire project.
@@ -755,8 +944,8 @@
   </div>
   </div>
 
-  <div id="outline-container-orgf3f9a35" class="outline-4">
-  <h4 id="h:edjfi9s0gyh0"><a id="orgf3f9a35"></a>Making this Shareable</h4>
+  <div id="outline-container-orga16185a" class="outline-4">
+  <h4 id="h:edjfi9s0gyh0"><a id="orga16185a"></a>Making this Shareable</h4>
   <div class="outline-text-4" id="text-h:edjfi9s0gyh0">
   <p>
   Some people might want to put this <code>setq</code> call in your Emacs dotfiles, but I prefer to place it in a <a href="https://github.com/jgkamat/jgkamat.github.io/blob/sources/jgkamat-website.el">seperate emacs lisp file</a> file instead, which lets others get the same project definition. It also lets you put other changes you make in this file as well, since all those changes will be elisp. Anyone who wants to work with your project simply needs to source this file, instead of setting up the project again.
@@ -786,8 +975,8 @@
   </div>
   </div>
 
-  <div id="outline-container-orga1dcc65" class="outline-3">
-  <h3 id="h:7bnfi9s0gyh0"><a id="orga1dcc65"></a>Custom CSS on HTML Exports</h3>
+  <div id="outline-container-org08fcf9d" class="outline-3">
+  <h3 id="h:7bnfi9s0gyh0"><a id="org08fcf9d"></a>Custom CSS on HTML Exports</h3>
   <div class="outline-text-3" id="text-h:7bnfi9s0gyh0">
   <p>
   We've got a nice website now, but it looks pretty bare bones. How do we provide our own CSS?
@@ -812,8 +1001,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org8fc3f6d" class="outline-3">
-  <h3 id="h:qyqfi9s0gyh0"><a id="org8fc3f6d"></a>Dynamic Org Exports</h3>
+  <div id="outline-container-org903d6c4" class="outline-3">
+  <h3 id="h:qyqfi9s0gyh0"><a id="org903d6c4"></a>Dynamic Org Exports</h3>
   <div class="outline-text-3" id="text-h:qyqfi9s0gyh0">
   <p>
   We've got our nice org project for easy export, custom CSS styling, and maybe even a custom org exporter to get our website looking just how we want it, but how can we get dynamic exports?
@@ -869,8 +1058,8 @@
   </div>
   </div>
 
-  <div id="outline-container-orgf46a16f" class="outline-3">
-  <h3 id="h:pmufi9s0gyh0"><a id="orgf46a16f"></a>Side Note: Divs</h3>
+  <div id="outline-container-orgd31a5f2" class="outline-3">
+  <h3 id="h:pmufi9s0gyh0"><a id="orgd31a5f2"></a>Side Note: Divs</h3>
   <div class="outline-text-3" id="text-h:pmufi9s0gyh0">
   <p>
   It might be nice to generate divs in your html file from your org source. I used this to get my prev/next links into a nice 3 part table. You can insert a div with class <code>classname</code> like this:
@@ -889,8 +1078,8 @@
   </div>
   </div>
 
-  <div id="outline-container-orgd075c13" class="outline-3">
-  <h3 id="h:u4yfi9s0gyh0"><a id="orgd075c13"></a>Wrapping Up</h3>
+  <div id="outline-container-org3ea376f" class="outline-3">
+  <h3 id="h:u4yfi9s0gyh0"><a id="org3ea376f"></a>Wrapping Up</h3>
   <div class="outline-text-3" id="text-h:u4yfi9s0gyh0">
   <p>
   Creating an org blog is a lot easier than it seems, if you know how to use org's features to your advantage.
@@ -925,8 +1114,8 @@
   </div>
   </div>
 
-  <div id="outline-container-org66e9f8b" class="outline-3">
-  <h3 id="h:722gi9s0gyh0"><a id="org66e9f8b"></a>Navigation</h3>
+  <div id="outline-container-org015234e" class="outline-3">
+  <h3 id="h:722gi9s0gyh0"><a id="org015234e"></a>Navigation</h3>
   <div class="outline-text-3" id="text-h:722gi9s0gyh0">
   <p>
   nil

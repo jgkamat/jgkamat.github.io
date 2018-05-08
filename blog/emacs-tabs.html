@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>How I Learned to Stop Worrying and Love Ibuffer</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Jay Kamat" />
+<link rel="stylesheet" href="https://jgkamat.github.io/src/jgkamat.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">How I Learned to Stop Worrying and Love Ibuffer</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#h:fe65df5d-d584-4b41-bf8e-820d0d7bda12">1. Preface</a></li>
+<li><a href="#h:ce165d7b-a7c4-4917-80a7-ac7267f33ac6">2. tabbar.el</a></li>
+<li><a href="#h:8fe363cd-b952-459b-81ed-468d152d0b3a">3. Workflows</a>
+<ul>
+<li><a href="#h:1e115d5a-071b-4026-902c-6b110c7da7f3">3.1. Tabbed</a></li>
+<li><a href="#h:f23967fc-3bed-402e-bf25-3f559240ffce">3.2. Emacs Commands</a></li>
+</ul>
+</li>
+<li><a href="#h:304ad2db-33c7-450f-9672-884be9d087fd">4. Closing Thoughts</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga697e6c" class="outline-2">
+<h2 id="h:fe65df5d-d584-4b41-bf8e-820d0d7bda12"><a id="orga697e6c"></a><span class="section-number-2">1</span> Preface</h2>
+<div class="outline-text-2" id="text-h:fe65df5d-d584-4b41-bf8e-820d0d7bda12">
+<p>
+As someone who migrated from more "normal" editors to Emacs, one of the first
+things that I wanted was a tabbar, which Emacs notably does not ship with. I
+spent a lot of time configuring <a href="https://github.com/dholm/tabbar/tree/b6c285a7d59dcdb1f17716f0b60787922fa4be82">tabbar</a> to my liking, but it always felt "wrong"
+especially when seeing that most Emacsers weren't using tabbar. After almost 2
+years of using tabbar, I finally decided to stop using it and try out the native
+buffer switching paradigm, and I don't miss tabs at all. Hopefully, this post
+will help explain my journey, so others don't have to be as lost as I did!
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1bf2daf" class="outline-2">
+<h2 id="h:ce165d7b-a7c4-4917-80a7-ac7267f33ac6"><a id="org1bf2daf"></a><span class="section-number-2">2</span> tabbar.el</h2>
+<div class="outline-text-2" id="text-h:ce165d7b-a7c4-4917-80a7-ac7267f33ac6">
+<p>
+Tabs don't work very well from a conceptual standpoint in Emacs, and prevent you
+from using Emacs to it's full potential. When using Emacs, you will likely have
+many more buffers than horizontal space on your screen. I currently have 70
+Buffers open (and I can have many more on a long-running session), and that
+simply won't fit. In order to even consider tabbar, some filtering and grouping
+is required.
+</p>
+
+<p>
+My solution to this was to <a href="https://github.com/jgkamat/dotfiles/blob/13da6a341688e5fb1e74d6521dc9a3a941dd0cde/emacs/.emacs.d/lisp/tabbar-tweaks.el">create sorting functions</a> which would:
+</p>
+
+<ol class="org-ol">
+<li>Create new groups for every projectile project, and one for leftover buffers</li>
+<li>Sort the buffers based on their full path, so similar files are automatically
+placed close to each other.</li>
+</ol>
+
+
+<div class="figure">
+<p><a href="../img/tabs-files.png"><img src="../img/tabs-files.png" alt="tabs-files.png" /></a>
+</p>
+</div>
+
+<p>
+This works, but it has a couple problems. It's a bit slow/buggy (probably
+because of things I introduced), it dosen't scale well within a project, and it
+breaks most third party usage of the header line. I also found it was very hard
+to get to buffers that weren't part of the project I was visiting (as I wasn't
+relying on <code>*-switch-buffer</code>).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0666989" class="outline-2">
+<h2 id="h:8fe363cd-b952-459b-81ed-468d152d0b3a"><a id="org0666989"></a><span class="section-number-2">3</span> Workflows</h2>
+<div class="outline-text-2" id="text-h:8fe363cd-b952-459b-81ed-468d152d0b3a">
+<p>
+At least for me, there's a couple of different flows when I switch buffers:
+</p>
+
+<ol class="org-ol">
+<li>I want to switch quickly between two related buffers</li>
+<li>I know the filename of the buffer I want to switch to</li>
+<li>I don't know what buffer I need, and I iterate through tabs until I find what
+I want.</li>
+<li>I forgot the name of the file I want, but I will know it when I see it.</li>
+</ol>
+</div>
+
+<div id="outline-container-org4c56b35" class="outline-3">
+<h3 id="h:1e115d5a-071b-4026-902c-6b110c7da7f3"><a id="org4c56b35"></a><span class="section-number-3">3.1</span> Tabbed</h3>
+<div class="outline-text-3" id="text-h:1e115d5a-071b-4026-902c-6b110c7da7f3">
+<p>
+I personally find that switching between two buffers is the most common switch
+action I do, so that needs to be as quick as possible. I solved this with a
+sorting algorithm, trying to get related files as close as possible, and using
+left/right tab to switch between them.
+</p>
+
+<p>
+I switched between buffers by name by searching for it's name in the tabbar,
+then clicking or using tab left/right until I got there.
+</p>
+
+<p>
+The iteration flow fits very well in the tabbed workflow, just iterate through
+the tabs until you find what you want.
+</p>
+
+<p>
+Tabs work well in the recognition flow as well, as you can see the files at the
+top of the window and hold left/right or click on the desired one.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2ada520" class="outline-3">
+<h3 id="h:f23967fc-3bed-402e-bf25-3f559240ffce"><a id="org2ada520"></a><span class="section-number-3">3.2</span> Emacs Commands</h3>
+<div class="outline-text-3" id="text-h:f23967fc-3bed-402e-bf25-3f559240ffce">
+<p>
+Since switching between two buffers is so important, I bound <code>M-o</code> to
+<code>other-buffer</code>. I quickly found myself switching to unrelated buffers, so I
+bound it to <code>projectile-project-buffers-other-buffer</code>, and configured projectile
+to ignore some classes of buffers, like irc, compilations, or tags. This ends up
+being much less thinking than left/right, even in the optimal case where they
+end up right next to each other.
+</p>
+
+<p>
+Switching between buffers is much faster with Emacs buffer selection than
+through tabs. A bonus is that <code>C-x b &lt;RET&gt;</code> will go to the last buffer, (which
+is a fallback if the buffer I want is not the 'most related buffer' but really
+the last buffer viewed. I recommend setting up ido, <a href="https://github.com/abo-abo/swiper/">ivy</a>, or <a href="https://github.com/emacs-helm/helm">helm</a> to make
+switching more of a breeze if you don't know the exact name.
+</p>
+
+<p>
+The last flow is really bad practice. Even in the tabbed workflow it's mostly a
+waste of time, and removing tabs forced me to stop doing this. I replaced this
+with project wide searches (in my case <code>counsel-rg</code>) and tag jumps
+(<code>projectile-find-tag</code>). I'd recommend trying to find any alternative besides
+blindly cycling through your tabs. If I really need this, I'll use ibuffer.
+</p>
+
+<p>
+When I want to get an overview of all the buffers open, I use ibuffer (which I
+bound to <code>M-i</code>). To limit it to only buffers relevant to the current project, I
+use <code>projectile-ibuffer</code>. By default, this is sorted by visit time, so you'll
+see more important buffers at the top. Ibuffer has many advantages over tabs as
+well, such as batch operations, but I won't go into them for now.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0bd7010" class="outline-2">
+<h2 id="h:304ad2db-33c7-450f-9672-884be9d087fd"><a id="org0bd7010"></a><span class="section-number-2">4</span> Closing Thoughts</h2>
+<div class="outline-text-2" id="text-h:304ad2db-33c7-450f-9672-884be9d087fd">
+<p>
+After only a couple days on my new workflow, I was cured of my tabbar addiction!
+Considering how much I relied on tabs before, that shocked me. I found a few
+other surprising things:
+</p>
+
+<ol class="org-ol">
+<li>I spent less time cleaning up unused tabs, as they didn't clutter my tabbar
+anymore. This means the undo tree stuck around, and was very helpful at
+times. I use <code>midnight.el</code> to cleanup buffers that remain untouched for a
+couple days.</li>
+<li>I didn't realize how much brainpower I was allocating to decide whether to go
+left/right in my tabbar when switching tabs. After switching, it felt like
+buffer switching became a lot "lighter".</li>
+<li>I found myself relying on the stacking behavior of popup buffers in Emacs a
+lot more. I feel more comfortable with letting things popup, knowing that
+they'll come back if I press <code>q</code> a bunch of times. Previously, I would
+allocate a new window for such popups.</li>
+<li>I found it incredibly liberating to <code>C-x b &lt;topic&gt;</code> to go to a certain IRC
+channel (over having a group for them, and tabbing through). Combined with
+tracking, it made processing IRC buffers much more efficient than I could
+have imagined. I use this so much, I bound <code>M-b</code> to switch buffer so it's a
+bit faster.</li>
+<li>I still prefer the tabbed workflow in the browser. I think this is because I
+almost never know which tab I'd like to switch to in a browser. I suppose I
+still have more workflow work to do&#x2026;</li>
+</ol>
+
+<p>
+If you're in the same situation as me, and have some concerns about keeping
+tabs, feel free to contact me by <a href="https://github.com/jgkamat/jgkamat.github.io/issues">opening an issue</a> and I'll add a section about
+it! <code>:)</code>
+</p>
+
+
+<div class="figure">
+<p><a href="../img/ibuffer-demo.gif"><img src="../img/ibuffer-demo.gif" alt="ibuffer-demo.gif" /></a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+
+<div>
+<p class="author">Author: <a href="https://github.com/jgkamat/jgkamat.github.io">Jay Kamat</a></p>
+<p class="date">Published: 2018-05-02</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="https://orgmode.org">Org</a> mode 9.1.13)</p>
+</div>
+</div>
+</body>
+</html>
