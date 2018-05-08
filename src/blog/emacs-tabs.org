@@ -62,8 +62,8 @@ At least for me, there's a couple of different flows when I switch buffers:
 :END:
 
 I personally find that switching between two buffers is the most common switch
-action I do, so that needs to be as quick as possible. I solved this with my
-complex sorting algorithm, trying to get tabs as close as possible, and using
+action I do, so that needs to be as quick as possible. I solved this with a
+sorting algorithm, trying to get related files as close as possible, and using
 left/right tab to switch between them.
 
 I switched between buffers by name by searching for it's name in the tabbar,
@@ -73,7 +73,7 @@ The iteration flow fits very well in the tabbed workflow, just iterate through
 the tabs until you find what you want.
 
 Tabs work well in the recognition flow as well, as you can see the files at the
-top of the window.
+top of the window and hold left/right or click on the desired one.
 
 ** Emacs Commands
 :PROPERTIES:
@@ -81,9 +81,9 @@ top of the window.
 :END:
 
 Since switching between two buffers is so important, I bound ~M-o~ to
-~other-buffer~. I quickly found myself switching to an unrelated buffers, so I
+~other-buffer~. I quickly found myself switching to unrelated buffers, so I
 bound it to ~projectile-project-buffers-other-buffer~, and configured projectile
-to ignore some classes of buffers, like irc/compilations/tags. This ends up
+to ignore some classes of buffers, like irc, compilations, or tags. This ends up
 being much less thinking than left/right, even in the optimal case where they
 end up right next to each other.
 
@@ -110,7 +110,7 @@ well, such as batch operations, but I won't go into them for now.
 :CUSTOM_ID: h:304ad2db-33c7-450f-9672-884be9d087fd
 :END:
 
-After only a couple days on my new workflow, I was cured of my tab addiction!
+After only a couple days on my new workflow, I was cured of my tabbar addiction!
 Considering how much I relied on tabs before, that shocked me. I found a few
 other surprising things:
 
@@ -128,11 +128,14 @@ other surprising things:
 4. I found it incredibly liberating to ~C-x b <topic>~ to go to a certain IRC
    channel (over having a group for them, and tabbing through). Combined with
    tracking, it made processing IRC buffers much more efficient than I could
-   have imagined.
-5. I still prefer the tabbed workflow in the browser. I suppose I still have
-   more work to do...
+   have imagined. I use this so much, I bound ~M-b~ to switch buffer so it's a
+   bit faster.
+5. I still prefer the tabbed workflow in the browser. I think this is because I
+   almost never know which tab I'd like to switch to in a browser. I suppose I
+   still have more workflow work to do...
 
 If you're in the same situation as me, and have some concerns about keeping
-tabs, feel free to contact me and I'll add a section about it! ~:)~
+tabs, feel free to contact me by [[https://github.com/jgkamat/jgkamat.github.io/issues][opening an issue]] and I'll add a section about
+it! ~:)~
 
 [[file:../img/ibuffer-demo.gif][file:../img/ibuffer-demo.gif]]
